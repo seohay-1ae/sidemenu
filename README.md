@@ -65,7 +65,8 @@ code .
 
 2. **내 작업 브랜치 만들기 (최초 1회만)**
    ```bash
-   git checkout -b feature/my-part
+   git checkout -b 브랜치이름
+   (브랜치이름 예시: feature/product_detail-youngshin)
    ```
 
 3. **작업 후 커밋**
@@ -82,13 +83,13 @@ code .
 
 5. **내 브랜치로 돌아와서 최신 dev 반영**
    ```bash
-   git checkout feature/my-part
+   git checkout 브랜치이름
    git merge dev
    ```
 
 6. **작업 브랜치 푸시**
    ```bash
-   git push origin feature/my-part
+   git push origin 브랜치이름
    ```
 
 ---
