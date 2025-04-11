@@ -13,7 +13,7 @@ sidemenu/
 
 ---
 
-## 각 작업자 index.html 수정 방법
+## 각 작업자 index.html 수정 방법 (자기 브랜치 아무데서나 수정하고 dev로 병합요청)
 
 각 폴더(donguk, seoha, jeongsub, youngshin)에는 독립적인 index.html이 존재합니다.  
 자신의 폴더 안에서만 파일을 수정하며, Vercel 미리보기는 해당 index.html 기준으로 동작합니다.  
@@ -37,7 +37,7 @@ const pages = [
 
 ---
 
-## 루트 index.html 수정 방법
+## 루트 index.html 수정 방법(main 브랜치)
 
 루트(sidemenu/index.html)는 전체 페이지 링크를 보여주는 테스트용 페이지입니다.  
 `pages` 배열에 경로를 추가하면 자동으로 링크가 생성됩니다.
