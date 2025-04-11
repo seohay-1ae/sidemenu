@@ -25,6 +25,14 @@ sidemenu/
 -   seoha/index.html
 -   ...
 
+```js
+const pages = [
+    "login.html",
+    "dashboard.html",
+                // 여기에 donguk 폴더 내 실제 존재하는 html 파일명을 추가!
+];
+```
+
 변경 후 `add` → `commit` → `push` 해주세요.
 
 ---
