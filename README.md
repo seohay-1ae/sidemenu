@@ -13,7 +13,7 @@ sidemenu/
 
 ---
 
-## 각 작업자 index.html 수정 방법 (자기 브랜치 아무데서나 수정하고 dev로 병합요청)
+## ⚠️각 작업자 index.html 수정 방법 (자기 브랜치 아무데서나 수정하고 dev로 병합요청)
 
 각 폴더(donguk, seoha, jeongsub, youngshin)에는 독립적인 index.html이 존재합니다.  
 자신의 폴더 안에서만 파일을 수정하며, Vercel 미리보기는 해당 index.html 기준으로 동작합니다.  
@@ -29,10 +29,10 @@ sidemenu/
 const pages = [
     "login.html",
     "dashboard.html",
-                // 여기에 donguk 폴더 내 실제 존재하는 html 파일명을 추가!
+                // ⚠️여기에 donguk 폴더 내 실제 존재하는 html 파일명을 추가!
 ];
 ```
-각 페이지 작업 push할때 이 index.html도 꼭 수정해서 같이 push 해주세요!!!!
+⚠️각 페이지 작업 push할때 이 index.html도 꼭 수정해서 같이 push 해주세요!!!!
 변경 후 `add` → `commit` → `push` 해주세요.
 
 ---
