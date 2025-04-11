@@ -34,6 +34,84 @@ code .
 
 ---
 
+## 🧑‍💻 팀원 가이드
+
+1. 저장소 클론 후 VS Code로 열기
+2. 추천 확장 설치
+3. 코드 저장 시 자동 포맷 및 ESLint 적용
+4. 추가 설정 없이 바로 개발 시작 가능! 🚀
+
+---
+
+## 🔄 팀 협업 Git 작업 흐름
+
+> 최신 코드 유지 & 충돌 방지를 위한 팀 개발 규칙
+
+### 📌 브랜치 전략
+
+- `main`: 최종 배포용 코드
+- `dev`: 개발 중간 브랜치 (**PM만 머지 담당**)
+- `feature/브랜치명`: 팀원별 작업용 브랜치
+
+---
+
+### ✅ 팀원 작업 순서
+
+1. **dev 브랜치에서 최신 코드 가져오기**
+   ```bash
+   git checkout dev
+   git pull origin dev
+   ```
+
+2. **내 작업 브랜치 만들기 (최초 1회만)**
+   ```bash
+   git checkout -b feature/my-part
+   ```
+
+3. **작업 후 커밋**
+   ```bash
+   git add .
+   git commit -m "✨ 작업 내용"
+   ```
+
+4. **푸시 전에 dev 최신화**
+   ```bash
+   git checkout dev
+   git pull origin dev
+   ```
+
+5. **내 브랜치로 돌아와서 최신 dev 반영**
+   ```bash
+   git checkout feature/my-part
+   git merge dev
+   ```
+
+6. **작업 브랜치 푸시**
+   ```bash
+   git push origin feature/my-part
+   ```
+
+---
+
+### 📤 병합 흐름
+
+```
+feature → dev → main
+```
+
+- 팀원은 오직 `feature → dev` 까지만 작업  
+- `dev → main`은 **PM이 최종 Merge**
+
+---
+
+### 💡 주의사항
+
+- 절대 `main`에 직접 작업하지 마세요
+- 푸시 직전에 항상 `dev pull → merge`
+- PR은 `feature → dev`로 생성해주세요
+
+---
+
 ## 💻 개발 환경 자동 설정
 
 ### 📂 주요 설정 파일
@@ -47,30 +125,26 @@ code .
 
 ---
 
-## 🔧 설정 예시
-
 ### `.vscode/settings.json`
 
 ```json
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    },
-    "editor.tabSize": 2,
-    "editor.insertSpaces": false,
-  
-    "eslint.validate": ["javascript", "javascriptreact"],
-    "files.eol": "\n",
-    "files.insertFinalNewline": true,
-  
-    "prettier.requireConfig": true,
-    "prettier.singleQuote": true,
-    "prettier.printWidth": 100,
-    "prettier.tabWidth": 2,
-    "prettier.useTabs": true
-  }
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "prettier.requireConfig": true,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": true
+}
 ```
 
 ---
@@ -122,63 +196,52 @@ code .
 ### `.eslintrc.js`
 
 ```js
-// .eslintrc.js
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-		node: true,
-	},
-	extends: [
-		'eslint:recommended',
-		'plugin:react/recommended',
-		'plugin:jsx-a11y/recommended',
-		'plugin:import/errors',
-		'plugin:import/warnings',
-		'plugin:prettier/recommended',
-	],
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-		ecmaFeatures: {
-			jsx: true,
-		},
-	},
-	plugins: ['react', 'jsx-a11y', 'import'],
-	rules: {
-		'react/react-in-jsx-scope': 'off',
-		'prettier/prettier': [
-			'error',
-			{
-				singleQuote: true,
-				semi: true,
-				printWidth: 100,
-				tabWidth: 2,
-				useTabs: true,
-				bracketSpacing: true,
-				trailingComma: 'all',
-			},
-		],
-		semi: ['error', 'always'],
-		'no-unused-vars': 'warn',
-	},
-	settings: {
-		react: {
-			version: 'detect',
-		},
-	},
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:prettier/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: ['react', 'jsx-a11y', 'import'],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        semi: true,
+        printWidth: 100,
+        tabWidth: 2,
+        useTabs: true,
+        bracketSpacing: true,
+        trailingComma: 'all',
+      },
+    ],
+    semi: ['error', 'always'],
+    'no-unused-vars': 'warn',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
-
 ```
-
----
-
-## 🧑‍💻 팀원 가이드
-
-1. 저장소 클론 후 VS Code로 열기
-2. 추천 확장 설치
-3. 코드 저장 시 자동 포맷 및 ESLint 적용
-4. 추가 설정 없이 바로 개발 시작 가능! 🚀
 
 ---
 
