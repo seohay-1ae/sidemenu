@@ -32,7 +32,7 @@ const pages = [
                 // 여기에 donguk 폴더 내 실제 존재하는 html 파일명을 추가!
 ];
 ```
-
+각 페이지 작업 push할때 이 index.html도 꼭 수정해서 같이 push 해주세요!!!!
 변경 후 `add` → `commit` → `push` 해주세요.
 
 ---
