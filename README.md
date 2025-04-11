@@ -59,39 +59,39 @@ code .
 
 1. **dev 브랜치에서 최신 코드 가져오기**
    ```bash
-   git checkout dev (dev로 이동)
-   git pull origin dev (dev의 내용 내려받기)
+   git checkout dev  //(dev로 이동)
+   git pull origin dev  //(dev의 내용 내려받기)
    ```
 
 2. **내 작업 브랜치 만들기 (최초 1회만)**
    ```bash
    git checkout -b feature/브랜치이름
      (브랜치이름 예시: product_detail-youngshin)
-   git push origin feature/브랜치이름 (브랜치 생성완료)
+   git push origin feature/브랜치이름  //(브랜치 생성완료)
    ```
 
 3. **작업 후 커밋(본인이 작업하는 브랜치인지 꼭 확인)**
    ```bash
-   git checkout feature/브랜치이름 (본인 브랜치 가기)
+   git checkout feature/브랜치이름  //(본인 브랜치 가기)
    git add .
    git commit -m "✨ 작업 내용"
    ```
 
 4. **푸시 전에 dev 최신화**
    ```bash
-   git checkout dev (dev로 이동)
-   git pull origin dev (dev의 내용 내려받기)
+   git checkout dev  //(dev로 이동)
+   git pull origin dev  //(dev의 내용 내려받기)
    ```
 
 5. **내 브랜치로 돌아와서 최신 dev 반영**
    ```bash
-   git checkout feature/브랜치이름 (내 브랜치로 돌아오기)
-   git merge dev (dev에서 받은거 내 브랜치에 합치기)
+   git checkout feature/브랜치이름  //(내 브랜치로 돌아오기)
+   git merge dev  //(dev에서 받은거 내 브랜치에 합치기)
    ```
 
 6. **작업 브랜치 푸시**
    ```bash
-   git push origin feature/브랜치이름 (내려받은거+작업한거 합친 내용을 내 브랜치에 올리기)
+   git push origin feature/브랜치이름  //(내려받은거+작업한거 합친 내용을 내 브랜치에 올리기)
    ```
 
 ---
