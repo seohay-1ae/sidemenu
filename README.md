@@ -4,7 +4,7 @@
 sidemenu/
 ├── common/       # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
 ├── donguk/       # 동욱 작업 폴더
-├── jeongsub/     # 정석 작업 폴더
+├── jeongsub/     # 정섭 작업 폴더
 ├── seoha/        # 서하 작업 폴더
 ├── youngshin/    # 영신 작업 폴더
 ├── resources/    # 이미지 등 정적 자원
