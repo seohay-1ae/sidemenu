@@ -68,10 +68,12 @@ git pull origin dev     # dev의 최신 내용 내려받기
 
 #### 2. 내 작업 브랜치 만들기 (최초 1회만)
 ```bash
-git checkout -b 이름/브랜치이름(페이지이름)  # dev에서 새로운 작업 브랜치 생성
+git checkout -b 이름/브랜치이름(카테고리 이름)  # dev에서 새로운 작업 브랜치 생성
 git push -u origin 이름/브랜치이름  # 원격 저장소에도 브랜치 올리기
 ```
-> 💡 브랜치 이름 예시: `youngshin/product_detail01`
+> 💡 브랜치 이름 예시: `donguk/login_join`
+> 💡 브랜치 이름 예시: `youngshin/festival`
+> 💡 브랜치 이름 예시: `jeongsub/experience`
 
 #### 3. 작업 후 커밋 (현재 브랜치 확인 필수!)
 ```bash
