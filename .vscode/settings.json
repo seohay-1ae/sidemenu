@@ -1,25 +1,25 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit"
-    },
-    "editor.tabSize": 2,
-    "editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	},
+	"editor.tabSize": 2,
+	"editor.insertSpaces": false,
 
-    "eslint.validate": ["javascript", "javascriptreact"],
-    "files.eol": "\n",
-    "files.insertFinalNewline": true,
+	"eslint.validate": ["javascript", "javascriptreact"],
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
 
-    "prettier.requireConfig": true,
-    "prettier.singleQuote": true,
-    "prettier.printWidth": 100,
-    "prettier.tabWidth": 2,
-    "prettier.useTabs": true,
-    "files.exclude": {
-        "**/node_modules": true
-    },
-    "search.exclude": {
-        "**/node_modules": true
-    }
+	"prettier.requireConfig": true,
+	"prettier.singleQuote": true,
+	"prettier.printWidth": 100,
+	"prettier.tabWidth": 2,
+	"prettier.useTabs": true,
+	"files.exclude": {
+		"**/node_modules": true
+	},
+	"search.exclude": {
+		"**/node_modules": true
+	}
 }
