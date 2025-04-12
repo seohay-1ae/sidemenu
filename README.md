@@ -88,27 +88,34 @@ npm install
 
 | 브랜치     | 용도                                            |
 | ---------- | ----------------------------------------------- |
-| `main`     | 최종 배포용 코드                                |
-| `dev`      | 팀 작업을 병합하는 중간 브랜치 (PM이 머지 담당) |
-| `이름`     | 팀원별 브랜치                                   |
-| `브랜치명` | 기능 개발 브랜치                                |
+| `main`     | 최종 배포용 코드                                 |
+| `dev`      | 팀 작업을 병합하는 중간 브랜치 (PM이 머지 담당)    |
+| `브랜치명`  | 카테고리 기준 분류 브랜치(폴더구조와 동일)         |
 
 ```
-dev 브랜치의 폴더구조
+dev 브랜치 기준
+
 sidemenu/
-├── common/       # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
-├── donguk/       # 동욱 작업 폴더
-├── jeongsub/     # 정섭 작업 폴더
-├── seoha/        # 서하 작업 폴더
-├── youngshin/    # 영신 작업 폴더
-├── resources/    # 이미지 등 정적 자원
-└── index.html    # 전체 페이지 목록 테스트용
+├── admin/         # 관리자페이지 작업 폴더
+├── common/        # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
+├── community/     # 커뮤니티
+├── experience/    # 견학/체험
+├── festival/      # 축제
+├── login_join/    # 로그인_회원가입
+├── mainpage/      # 메인페이지
+├── node_modules/  # node js 관련(⚠️건들지 마세요)
+├── notice/        # 공지사항
+├── product/       # 상품
+├── project/       # 프로젝트
+├── resources/     # 이미지
+├── index.html     # 전체 페이지 목록 테스트용
+└── README.md      # 공지사항용 (⚠️건들지 마세요)
 ```
 
-> 💡 만약 **youngshin**/`festival` 이라는 브랜치가 있으면 그 브랜치에서 **yongshin**폴더에 `축제리스트 페이지, 축제상세 페이지` 작업  
-> 💡 **youngshin**/`images` 브랜치에서는 **resources** 폴더에 `이미지파일`들 업로드  
-> 💡 **jeongsub**/`experience` 브랜치에서는 **jeongsub** 폴더에 `견학/체험 페이지` 작업  
-> 💡 **donguk**/`community` 브랜치에서는 **donguk** 폴더에 `커뮤니티 페이지, 게시글작성 페이지, 게시글 페이지` 작업  
+> 💡 `festival` 이라는 브랜치가 있으면 그 브랜치에서 `festival` 폴더에 `축제리스트 페이지, 축제상세 페이지` 작업  
+> 💡 `images` 브랜치에서는 `resources` 폴더에 `이미지파일`들 업로드  
+> 💡 `experience` 브랜치에서는 `experience` 폴더에 `견학/체험 페이지` 작업  
+> 💡 `community` 브랜치에서는 `community` 폴더에 `커뮤니티 페이지, 게시글작성 페이지, 게시글 페이지` 작업  
 > 본인의 카테고리와 해당 페이지는 `WBS`와 `화면설계서`를 참고하세요
 
 ---
@@ -122,42 +129,33 @@ git checkout dev        # dev로 이동
 git pull origin dev     # dev의 최신 내용 내려받기
 ```
 
-#### 2. 내 작업 브랜치 만들기 `(최초 1회만)`
+#### 2. 작업 후 커밋 (현재 브랜치 확인 필수!)
 
 ```bash
-git checkout -b 이름/브랜치이름(카테고리 이름)  # dev에서 새로운 작업 브랜치 생성 (⚠️브랜치는 항상 dev에서 생성합니다)
-git push -u origin 이름/브랜치이름  # 원격 저장소에도 브랜치 올리기
+git checkout 작업할브랜치             # 작업할 브랜치로 이동
+git status                           # 현재 브랜치 한번 더 확인 (선택사항)
+브랜치와 같은 폴더에서 페이지 작업하기
+git add .                            # 변경된 파일 모두 추가
+git commit -m "작업 내용 메세지"
 ```
 
-> 💡 브랜치 이름 예시: `donguk/login_join`  
-> 💡 브랜치 이름 예시: `youngshin/festival`  
-> 💡 브랜치 이름 예시: `jeongsub/experience`
-
-#### 3. 작업 후 커밋 (현재 브랜치 확인 필수!)
+#### 3. 푸시 전 `dev` 최신화 & 반영
 
 ```bash
-git status                # 현재 브랜치 확인 (선택)
-git add .                 # 변경된 파일 모두 추가
-git commit -m "✨ 작업 내용"
+git checkout dev           # dev 브랜치로 이동
+git pull origin dev        # ⚠️최신 dev 내려받기
+
+git checkout 작업한브랜치   # 다시 작업 브랜치로 이동
+git merge dev              # 최신 dev 내용을 작업한 브랜치에 병합
 ```
 
-#### 4. 푸시 전 `dev` 최신화 & 반영
+#### 4. 작업 브랜치 푸시
 
 ```bash
-git checkout dev          # dev 이동
-git pull origin dev       # ⚠️최신 dev 내려받기
-
-git checkout 이름/브랜치이름  # 다시 작업 브랜치로 이동
-git merge dev             # 최신 dev 내용을 내 브랜치에 병합
+git push                  # 브랜치에 최종 작업 푸시
 ```
 
-#### 5. 작업 브랜치 푸시
-
-```bash
-git push                  # 내 브랜치에 최종 작업 푸시
-```
-
-#### 6. Dev 브랜치에 PR 요청하기
+#### 5. Dev 브랜치에 PR 요청하기
 
 **작업한 내용이 완료**되었다고 생각되면 **본인이 작업한 브랜치 -> dev** 로 **PR 요청**해주세요.  
 요청한 PR은 팀장, 부팀장이 깃허브 내에서 바로 vercel을 통해 웹으로 미리보기 할 수 있습니다.  
@@ -170,10 +168,10 @@ git push                  # 내 브랜치에 최종 작업 푸시
 ### 📤 병합 흐름 (여기서부터는 그냥 설명)
 
 ```bash
-이름 → dev → main
+각 브랜치 → dev → main
 ```
 
-- **팀원**: `이름 → dev` 브랜치까지만 작업
+- **팀원**: `각 브랜치 → dev` 브랜치까지만 작업
 - `dev → main` 병합은 **PM이 담당**
 
 ---
@@ -182,7 +180,7 @@ git push                  # 내 브랜치에 최종 작업 푸시
 
 - ❌ `main`, `dev` 브랜치에는 직접 작업하지 마세요.
 - ✅ 작업 전/푸시 전 **반드시 dev 최신화 → 병합** 진행.
-- 📝 Pull Request는 **이름 → dev**로 생성해주세요.
+- 📝 Pull Request는 **각 브랜치 → dev**로 생성해주세요.
 
 ---
 
