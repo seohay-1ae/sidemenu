@@ -1,35 +1,45 @@
 # Sidemenu 프로젝트 작업 가이드
 
 ```
+dev 브랜치 기준
+
 sidemenu/
-├── common/       # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
-├── donguk/       # 동욱 작업 폴더
-├── jeongsub/     # 정섭 작업 폴더
-├── seoha/        # 서하 작업 폴더
-├── youngshin/    # 영신 작업 폴더
-├── resources/    # 이미지 등 정적 자원
-└── index.html    # 전체 페이지 목록 테스트용
+├── admin/         # 관리자페이지 작업 폴더
+├── common/        # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
+├── community/     # 커뮤니티
+├── experience/    # 견학/체험
+├── festival/      # 축제
+├── login_join/    # 로그인_회원가입
+├── mainpage/      # 메인페이지
+├── mypage/        # 마이페이지
+├── node_modules/  # node js 관련(⚠️건들지 마세요)
+├── notice/        # 공지사항
+├── product/       # 상품
+├── project/       # 프로젝트
+├── resources/     # 이미지
+├── index.html     # 전체 페이지 목록 테스트용
+└── README.md      # 공지사항용 (⚠️건들지 마세요)
 ```
 
 ---
 
-## ⚠️각 작업자 index.html 수정 방법 (자기 브랜치 아무데서나 수정하고 dev로 병합요청)
+## ⚠️각 작업자 index.html 수정 방법 (각자 작업 브랜치에서 수정하고 dev로 병합요청)
 
-각 폴더(donguk, seoha, jeongsub, youngshin)에는 독립적인 index.html이 존재합니다.  
-자신의 폴더 안에서만 파일을 수정하며, Vercel 미리보기는 해당 index.html 기준으로 동작합니다.  
-병합 시 충돌을 피하기 위해 반드시 자기 폴더 안에서만 작업하세요.
+각 폴더(admin, common, community, ... )에는 `독립적인 index.html`이 존재합니다.  
+각 폴더 안에서만 파일을 수정하며, Vercel 미리보기는 해당 index.html 기준으로 동작합니다.  
+병합 시 충돌을 피하기 위해 `반드시 자기 폴더 안에서만 작업`하세요.
 
 **예시:**
 
--   donguk/index.html
--   seoha/index.html
--   ...
+-   admin/index.html
+-   common/index.html
+-   community/index.html
 
 ```js
 const pages = [
     "login.html",
     "dashboard.html",
-    // ⚠️여기에 donguk 폴더 내 실제 존재하는 html 파일명을 추가!
+    // ⚠️여기에 admin(혹은 그 외 각자) 폴더 내 실제 존재하는 html 파일명을 추가!
 ];
 ```
 
@@ -38,28 +48,28 @@ const pages = [
 
 ---
 
-## 루트 index.html 수정 방법(main 브랜치)
+## 루트 index.html 수정 방법(main 브랜치) ⚠️PM만 수정합니다
 
 루트(sidemenu/index.html)는 전체 페이지 링크를 보여주는 테스트용 페이지입니다.  
 `pages` 배열에 경로를 추가하면 자동으로 링크가 생성됩니다.
 
 ```js
 const pages = [
-    "donguk/index.html",
-    "seoha/index.html",
-    "jeongsub/index.html",
-    "youngshin/index.html",
+    "admin/index.html",
     "common/index.html",
+    "community/index.html",
+    "community/index.html",
+    "experience/index.html",
 ];
 ```
 
-변경 후 `add` → `commit` → `push` 해주세요.
+변경 후 `add` → `commit` → `push`
 
 ---
 
 ## 공통 요소 삽입 방법 (헤더 / 푸터 / 스타일)
 
-각자의 index.html에서 아래와 같이 공통 요소를 포함합니다:
+각자의 .html에서 아래와 같이 공통 요소를 포함합니다:
 
 ```html
 <!-- head 안에 공용 CSS 추가 -->
