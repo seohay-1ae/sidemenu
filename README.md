@@ -103,6 +103,7 @@ sidemenu/
 ├── festival/      # 축제
 ├── login_join/    # 로그인_회원가입
 ├── mainpage/      # 메인페이지
+├── mypage/        # 마이페이지
 ├── node_modules/  # node js 관련(⚠️건들지 마세요)
 ├── notice/        # 공지사항
 ├── product/       # 상품
