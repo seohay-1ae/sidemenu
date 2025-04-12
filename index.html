@@ -3,9 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>페이지 목록</title>
+		<title>자동 미리보기 페이지</title>
 		<style>
-			/* 기본 스타일 설정 */
 			body {
 				font-family: 'Arial', sans-serif;
 				padding: 2rem;
@@ -31,34 +30,35 @@
 		</style>
 	</head>
 	<body>
-		<h1>테스트용 페이지 목록</h1>
-
-		<!-- 여기서 페이지 링크들이 자동으로 생성됩니다 -->
-		<ul id="page-list"></ul>
+		<h1>전체 미리보기 페이지</h1>
+		<ul id="page-list">
+			<li>불러오는 중...</li>
+		</ul>
 
 		<script>
-			// 여기에 있는 배열에 파일 이름만 추가하면 됩니다!
-			// 파일 이름은 실제 프로젝트 폴더에 존재하는 .html 파일이어야 해요
-			const pages = [
-				'login.html', // 로그인 페이지
-				'signup.html', // 회원가입 페이지
-				'mypage.html', // 마이페이지
-				'about.html', // 소개 페이지
+			const folders = [
+				'admin',
+				'common',
+				'community',
+				'experience',
+				'festival',
+				'login_join',
+				'mainpage',
+				'mypage',
+				'notice',
+				'product',
+				'project',
 			];
 
-			// 위의 파일 목록을 기반으로 리스트 자동 생성
 			const ul = document.getElementById('page-list');
+			ul.innerHTML = '';
 
-			pages.forEach((page) => {
+			folders.forEach((folder) => {
+				const link = document.createElement('a');
+				link.href = `${folder}/index.html`;
+				link.innerText = folder;
 				const li = document.createElement('li');
-				const a = document.createElement('a');
-
-				// 각 항목에 링크 설정
-				a.href = page;
-				a.innerText = page;
-
-				// 리스트에 추가
-				li.appendChild(a);
+				li.appendChild(link);
 				ul.appendChild(li);
 			});
 		</script>
