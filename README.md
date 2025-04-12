@@ -8,8 +8,10 @@ sidemenu/
 ├── common/        # 공통 헤더/푸터, 공용 스타일 및 유틸 스크립트
 ├── community/     # 커뮤니티
 ├── experience/    # 견학/체험
+├── festival/      # 축제
 ├── login_join/    # 로그인_회원가입
 ├── mainpage/      # 메인페이지
+├── mypage/        # 마이페이지
 ├── node_modules/  # node js 관련(⚠️건들지 마세요)
 ├── notice/        # 공지사항
 ├── product/       # 상품
