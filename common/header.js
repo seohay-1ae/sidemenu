@@ -210,6 +210,10 @@ const headerHTML = `
       opacity: 1;
       pointer-events: auto;  /* active 클래스 추가 시 오버레이 활성화 */
     }
+    
+    // #mobile-notice{
+    //   margin-bottom:10px;
+    // }
   
    /* 모바일 및 태블릿 클릭 이벤트를 위한 submenu 설정 */
     .submenu {
@@ -333,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// 모바일에서 클릭 시 세부 메뉴 열기
 	if (mobileNotice) {
-		mobileNotice.addEventListener('click', (event) => {
+		mobileNotice.addEventListener('click', () => {
 			if (mobileSubmenu) {
 				mobileSubmenu.classList.toggle('active'); // 클릭 시 submenu 열기/닫기
 			}
