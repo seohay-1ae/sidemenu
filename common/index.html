@@ -1,55 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>미리보기</title>
-        <style>
-            body {
-                font-family: "Arial", sans-serif;
-                padding: 2rem;
-                background: #f9f9f9;
-            }
-            h1 {
-                margin-bottom: 1rem;
-            }
-            ul {
-                list-style: none;
-                padding: 0;
-            }
-            li {
-                margin-bottom: 0.5rem;
-            }
-            a {
-                text-decoration: none;
-                color: #0070f3;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>미리보기</h1>
-        <ul id="page-list"></ul>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>미리보기</title>
+		<style>
+			body {
+				font-family: 'Arial', sans-serif;
+				padding: 2rem;
+				background: #f9f9f9;
+			}
+			h1 {
+				margin-bottom: 1rem;
+			}
+			ul {
+				list-style: none;
+				padding: 0;
+			}
+			li {
+margin-bottom: 0.5rem;
+			}
+			a {
+				text-decoration: none;
+				color: #0070f3;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>미리보기</h1>
+		<ul id="page-list"></ul>
 
-        <script>
-            const pages = [
-                "login1.html",
-                "dashboard.html",
-                // 여기에 폴더 내 HTML 파일명을 추가!
-            ];
+		<script>
+			const pages = [
+				'login1.html',
+				'dashboard.html',
+				// 여기에 폴더 내 HTML 파일명을 추가!
+			];
 
-            const ul = document.getElementById("page-list");
+			const ul = document.getElementById('page-list');
 
-            pages.forEach((page) => {
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = page;
-                a.innerText = page;
-                li.appendChild(a);
-                ul.appendChild(li);
-            });
-        </script>
-    </body>
+			pages.forEach((page) => {
+				const li = document.createElement('li');
+				const a = document.createElement('a');
+				a.href = page;
+				a.innerText = page;
+				li.appendChild(a);
+				ul.appendChild(li);
+			});
+		</script>
+	</body>
 </html>
