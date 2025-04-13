@@ -85,6 +85,6 @@ const footerHTML = `
   </footer>
 `;
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.insertAdjacentHTML("beforeend", footerHTML);
+document.addEventListener('DOMContentLoaded', () => {
+	document.body.insertAdjacentHTML('beforeend', footerHTML);
 });

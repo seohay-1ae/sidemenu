@@ -1,16 +1,18 @@
 // Bootstrap CSS 삽입
-const bootstrapCSS = document.createElement("link");
-bootstrapCSS.rel = "stylesheet";
-bootstrapCSS.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css";
-bootstrapCSS.integrity = "sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7";
-bootstrapCSS.crossOrigin = "anonymous";
+const bootstrapCSS = document.createElement('link');
+bootstrapCSS.rel = 'stylesheet';
+bootstrapCSS.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css';
+bootstrapCSS.integrity = 'sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7';
+bootstrapCSS.crossOrigin = 'anonymous';
 document.head.appendChild(bootstrapCSS);
 
 // Bootstrap JS 번들 (Popper 포함) 삽입
-const bootstrapScript = document.createElement("script");
-bootstrapScript.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js";
-bootstrapScript.integrity = "sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq";
-bootstrapScript.crossOrigin = "anonymous";
+const bootstrapScript = document.createElement('script');
+bootstrapScript.src =
+	'https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js';
+bootstrapScript.integrity =
+	'sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq';
+bootstrapScript.crossOrigin = 'anonymous';
 document.body.appendChild(bootstrapScript);
 
 const headerHTML = ` 
@@ -59,6 +61,6 @@ const headerHTML = `
   </nav>
 `;
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+document.addEventListener('DOMContentLoaded', () => {
+	document.body.insertAdjacentHTML('afterbegin', headerHTML);
 });

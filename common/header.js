@@ -120,29 +120,29 @@ const headerHTML = `
   </header>
 `;
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+document.addEventListener('DOMContentLoaded', () => {
+	document.body.insertAdjacentHTML('afterbegin', headerHTML);
 
-  const toggle = document.querySelector(".dropdown-toggle");
-  const dropdown = document.querySelector(".dropdown");
+	const toggle = document.querySelector('.dropdown-toggle');
+	const dropdown = document.querySelector('.dropdown');
 
-  // 모바일과 태블릿 구분 함수
-  const isMobileOrTablet = () => {
-    return window.matchMedia("(max-width: 1024px)").matches; // 1024px 이하
-  };
+	// 모바일과 태블릿 구분 함수
+	const isMobileOrTablet = () => {
+		return window.matchMedia('(max-width: 1024px)').matches; // 1024px 이하
+	};
 
-  // 클릭 이벤트 처리
-  toggle.addEventListener("click", (e) => {
-    console.log("클릭 이벤트 발생", isMobileOrTablet());
-    if (isMobileOrTablet()) {
-      e.preventDefault();
-      dropdown.classList.toggle("active");
-    }
-  });
+	// 클릭 이벤트 처리
+	toggle.addEventListener('click', (e) => {
+		console.log('클릭 이벤트 발생', isMobileOrTablet());
+		if (isMobileOrTablet()) {
+			e.preventDefault();
+			dropdown.classList.toggle('active');
+		}
+	});
 
-  window.addEventListener("resize", () => {
-    if (!isMobileOrTablet()) {
-      dropdown.classList.remove("active");
-    }
-  });
+	window.addEventListener('resize', () => {
+		if (!isMobileOrTablet()) {
+			dropdown.classList.remove('active');
+		}
+	});
 });
