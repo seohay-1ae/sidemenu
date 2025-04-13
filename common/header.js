@@ -2,11 +2,6 @@
 
 const headerHTML = `
   <style>
-  *{
-  margin:0;
-  padding:0;
-  }
-
   .logo {
       height: 50px;
       margin-left:20px;
@@ -57,7 +52,6 @@ const headerHTML = `
       text-decoration: none;
       color: #000;
       margin-right: 4rem;
-      font-size: 1.3rem;
       font-weight: 600;
       position: relative;
       padding: 0.5rem 0;
@@ -87,16 +81,16 @@ const headerHTML = `
     .submenu {
       display: none;
       position: absolute;
-      top: 130%;
+      top: 125%;
       left: 0;
       background-color: #f4f4f4;
-      width: 100px;
+      width: 134px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       padding: 10px;
     }
     
     .submenu a {
-    font-size:17px;
+    font-size:0.9rem;
     margin:0;
     
     }
@@ -281,11 +275,11 @@ const headerHTML = `
     <a href="#"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
   </div>
   <div class="navbar_links">
-    <a href="#" id="pc-notice">&nbsp공지사항 ▾&nbsp&nbsp&nbsp</a>
+    <a href="#" id="pc-notice">&nbsp공지사항 ▾&nbsp</a>
     <div class="submenu">
         <a href="#">&nbsp&nbsp&nbsp&nbsp공지사항</a>
-        <a href="#">브랜드스토리</a>
-        <a href="#">정부지원정책</a>
+        <a href="#">&nbsp브랜드스토리</a>
+        <a href="#">&nbsp정부지원정책</a>
     </div>
     <a href="#">&nbsp상품&nbsp&nbsp</a>
     <a href="#">&nbsp견학/체험&nbsp&nbsp</a>
