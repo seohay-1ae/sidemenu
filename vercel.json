@@ -1,15 +1,48 @@
 {
-	"rewrites": [
-		{ "source": "/admin", "destination": "/admin/index.html" },
-		{ "source": "/common", "destination": "/common/index.html" },
-		{ "source": "/community", "destination": "/community/index.html" },
-		{ "source": "/experience", "destination": "/experience/index.html" },
-		{ "source": "/festival", "destination": "/festival/index.html" },
-		{ "source": "/login_join", "destination": "/login_join/index.html" },
-		{ "source": "/mainpage", "destination": "/mainpage/index.html" },
-		{ "source": "/mypage", "destination": "/mypage/index.html" },
-		{ "source": "/notice", "destination": "/notice/index.html" },
-		{ "source": "/product", "destination": "/product/index.html" },
-		{ "source": "/project", "destination": "/project/index.html" }
+	"builds": [
+		{
+			"src": "admin/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "common/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "community/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "experience/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "festival/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "login_join/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "mainpage/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "mypage/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "notice/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "product/**/*",
+			"use": "@vercel/static"
+		},
+		{
+			"src": "project/**/*",
+			"use": "@vercel/static"
+		}
 	]
 }
