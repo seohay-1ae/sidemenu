@@ -33,15 +33,15 @@ sidemenu/
 
 **예시:**
 
--   admin/index.html
--   common/index.html
--   community/index.html
+- admin/index.html
+- common/index.html
+- community/index.html
 
 ```js
 const pages = [
-    "login.html",
-    "dashboard.html",
-    // ⚠️여기에 admin(혹은 그 외 각자) 폴더 내 실제 존재하는 html 파일명을 추가!
+	'login.html',
+	'dashboard.html',
+	// ⚠️여기에 admin(혹은 그 외 각자) 폴더 내 실제 존재하는 html 파일명을 추가!
 ];
 ```
 
@@ -57,11 +57,11 @@ const pages = [
 
 ```js
 const pages = [
-    "admin/index.html",
-    "common/index.html",
-    "community/index.html",
-    "community/index.html",
-    "experience/index.html",
+	'admin/index.html',
+	'common/index.html',
+	'community/index.html',
+	'community/index.html',
+	'experience/index.html',
 ];
 ```
 
@@ -74,36 +74,41 @@ const pages = [
 각자의 .html에서 아래와 같이 공통 요소를 포함합니다:
 
 ```html
-<!-- head 안에 공용 CSS 추가 -->
-<link rel="stylesheet" href="../common/common.css" />
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<!-- styles.css 파일 불러오기 (경로는 알아서 잘 맞추기)-->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>제목</title>
+		<!-- 공통 헤더 불러오기 -->
+		<script defer src="/common/header.js"></script>
 
-<!-- body 안에 공통 구조 삽입 -->
-<div id="header"></div>
-
-<!-- 여기에 페이지 콘텐츠 -->
-
-<div id="footer"></div>
-
-<!-- 공통 스크립트 삽입 -->
-<script src="../common/header.js"></script>
-<script src="../common/footer.js"></script>
+		<!-- 공통 푸터 불러오기 -->
+		<script defer src="/common/footer.js"></script>
+	</head>
+	<body>
+		내용 작성
+	</body>
+</html>
 ```
 
 ---
 
 ## 반응형 스타일
 
-PC, 태블릿, 모바일에 대응하는 반응형 CSS는 `common` 폴더 내 `common.css`에서 관리합니다.  
+PC, 태블릿, 모바일에 대응하는 반응형 CSS는 `common` 폴더 내 `styles.css`에서 관리합니다.  
 미디어 쿼리를 통해 화면 크기에 맞춰 자동 대응되도록 작성합니다.
 
 ---
 
 ## 기본 작업 규칙
 
--   자신의 폴더 외에는 수정하지 않습니다.
--   `common` 폴더 변경 시 팀원과 **사전 협의** 필수입니다.
--   PR 시 자신의 디렉토리만 수정되도록 해주세요.
--   리소스는 `/resources`에 넣고, 경로는 **상대경로** 사용하세요.
+- 자신의 폴더 외에는 수정하지 않습니다.
+- `common` 폴더 변경 시 팀원과 **사전 협의** 필수입니다.
+- PR 시 자신의 디렉토리만 수정되도록 해주세요.
+- 리소스는 `/resources`에 넣고, 경로는 **상대경로** 사용하세요.
 
 ---
 
