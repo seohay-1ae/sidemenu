@@ -34,10 +34,6 @@ const footerHTML = `
         flex-direction: column;
       }
 
-      .footer-section {
-        margin-bottom: 0px; /* 섹션 사이 간격 좁게 설정 */
-      }
-
       .footer {
         padding: 12px; /* 전체 여백도 모바일에서 좀 더 좁게 */
       }
@@ -90,7 +86,5 @@ const footerHTML = `
 `;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const footerElement = document.createElement("div");
-  footerElement.innerHTML = footerHTML;
-  document.body.appendChild(footerElement);
+  document.body.insertAdjacentHTML("beforeend", footerHTML);
 });
