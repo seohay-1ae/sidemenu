@@ -116,7 +116,7 @@ sidemenu/
 ```
 
 > 💡 `festival` 이라는 브랜치가 있으면 그 브랜치에서 `festival` 폴더에 `축제리스트 페이지, 축제상세 페이지` 작업  
-> 💡 `images` 브랜치에서는 `resources` 폴더에 `이미지파일`들 업로드  
+> 💡 `resources` 브랜치에서는 `resources` 폴더에 `이미지파일`들 업로드  
 > 💡 `experience` 브랜치에서는 `experience` 폴더에 `견학/체험 페이지` 작업  
 > 💡 `community` 브랜치에서는 `community` 폴더에 `커뮤니티 페이지, 게시글작성 페이지, 게시글 페이지` 작업  
 > 본인의 카테고리와 해당 페이지는 `WBS`와 `화면설계서`를 참고하세요
@@ -207,7 +207,7 @@ git push                  # 브랜치에 최종 작업 푸시
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.codeActionsOnSave": {
-		"source.fixAll": true
+		"source.fixAll": "explicit"
 	},
 	"editor.tabSize": 2,
 	"editor.insertSpaces": false,
@@ -220,7 +220,22 @@ git push                  # 브랜치에 최종 작업 푸시
 	"prettier.singleQuote": true,
 	"prettier.printWidth": 100,
 	"prettier.tabWidth": 2,
-	"prettier.useTabs": true
+	"prettier.useTabs": true,
+	"files.exclude": {
+		"**/node_modules": true
+	},
+	"search.exclude": {
+		"**/node_modules": true
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
 ```
 
