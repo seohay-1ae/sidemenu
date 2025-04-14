@@ -200,10 +200,6 @@ const headerHTML = `
       opacity: 1;
       pointer-events: auto;  /* active 클래스 추가 시 오버레이 활성화 */
     }
-    
-    // #mobile-notice{
-    //   margin-bottom:10px;
-    // }
   
    /* 모바일 및 태블릿 클릭 이벤트를 위한 submenu 설정 */
     .submenu {
@@ -224,6 +220,75 @@ const headerHTML = `
       display: block;
     }
   }
+  
+  #check-summary {
+    display:none;
+  }
+  
+  details {
+    width: 100%;
+    text-align: left;
+    margin: 0 0 24px 0;
+    max-height: 2em;
+    overflow:hidden;
+    transition: max-height 400ms ease-out;
+  }
+
+  details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    color: rgb(157, 5, 99);
+    margin: 0 0 16px 1rem;
+    cursor: pointer;
+    list-style: none; /* 디폴트 화살표 제거 */
+  }
+
+  
+  details:last-child {
+    margin: 0 0 0 0;
+  }
+  
+  #check-summary:checked+details {
+    max-height: 250px;
+  }
+  
+  details>summary {
+    width:100%;
+  }
+  
+  details>summary::marker {
+    content: '';} /* 기본 아이콘 지우기 */
+
+  details>summary>label[for="check-summary"]::before{
+    content:'';
+  }
+  
+  details[open] .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url('../resources/chevron-down.svg');
+    background-size: cover;
+    transition: transform 0.3s ease;
+  } 
+
+    
+    details>.submenu{
+      font-size:0.8rem;
+      letter-spacing:0px;
+      line-height:1.4;
+      color: #181B21;
+      background-color:#f7f8f8;
+      border-radius:10px;
+      padding: 32px 24px;
+    }
+
   </style>
 
   <!-- 모바일버전 -->
@@ -242,12 +307,17 @@ const headerHTML = `
   </div>
   <div class="navbar_overlay">
     <div class="navbar_menu">
-      <a href="#" id="mobile-notice">공지사항 ▾</a>
+    <details id="mobile-accordion">
+      <summary>
+      <span class="accordion-title">공지사항</span>
+      <span class="accordion-icon"></span>
+    </summary>
       <div class="submenu">
-        <a href="#">공지사항</a>
-        <a href="#">브랜드스토리</a>
-        <a href="#">정부지원정책</a>
+        <a href="#">공지사항</a> <br>
+        <a href="#">브랜드스토리</a> <br>
+        <a href="#">정부지원정책</a> <br>
       </div>
+    </details>
       <a href="#">상품</a>
       <a href="#">견학/체험</a>
       <a href="#">축제</a>
@@ -289,65 +359,67 @@ document.addEventListener('DOMContentLoaded', () => {
 	// HTML 삽입
 	document.body.insertAdjacentHTML('afterbegin', headerHTML);
 
-	// 변수 선언
-	const navbarBurger = document.querySelector('.navbar_burger');
-	const navbarBurgerBack = document.querySelector('.navbar_burger_back');
-	const navbarMenu = document.querySelector('.navbar_menu');
-	const navbarOverlay = document.querySelector('.navbar_overlay');
+	function initHeaderEvents() {
+		// 변수 선언
+		const navbarBurger = document.querySelector('.navbar_burger');
+		const navbarBurgerBack = document.querySelector('.navbar_burger_back');
+		const navbarMenu = document.querySelector('.navbar_menu');
+		const navbarOverlay = document.querySelector('.navbar_overlay');
 
-	// **pc에서** 클릭된 항목의 submenu 열기
-	const pcNotice = document.getElementById('pc-notice'); // PC에서 공지사항 선택
-	const pcSubmenu = pcNotice ? pcNotice.nextElementSibling : null; // PC 공지사항 다음 submenu 찾기
+		// **pc에서** 클릭된 항목의 submenu 열기
+		const pcNotice = document.getElementById('pc-notice'); // PC에서 공지사항 선택
+		const pcSubmenu = pcNotice ? pcNotice.nextElementSibling : null; // PC 공지사항 다음 submenu 찾기
 
-	// **모바일에서** 클릭된 항목의 submenu 열기
-	const mobileNotice = document.getElementById('mobile-notice'); // 모바일에서만 공지사항 선택
-	const mobileSubmenu = mobileNotice ? mobileNotice.nextElementSibling : null; // 공지사항 다음 submenu 찾기
+		// **모바일에서** 클릭된 항목의 submenu 열기
+		//const mobileNotice = document.getElementById('mobile-notice'); // 모바일에서만 공지사항 선택
+		//const mobileSubmenu = mobileNotice ? mobileNotice.nextElementSibling : null; // 공지사항 다음 submenu 찾기
 
-	// 햄버거 메뉴 버튼 클릭 시
-	navbarBurger.addEventListener('click', () => {
-		navbarMenu.classList.add('active');
-		navbarOverlay.classList.add('active');
-	});
-
-	// 백버튼 클릭 시 메뉴 닫기
-	navbarBurgerBack.addEventListener('click', () => {
-		navbarMenu.classList.remove('active');
-		navbarOverlay.classList.remove('active');
-	});
-
-	// // 오버레이 클릭 시 메뉴 닫기
-	// navbarOverlay.addEventListener('click', () => {
-	// 	navbarMenu.classList.remove('active');
-	// 	navbarOverlay.classList.remove('active');
-	// });
-
-	// 모바일에서 클릭 시 세부 메뉴 열기
-	if (mobileNotice) {
-		mobileNotice.addEventListener('click', () => {
-			if (mobileSubmenu) {
-				mobileSubmenu.classList.toggle('active'); // 클릭 시 submenu 열기/닫기
-			}
-		});
-	}
-
-	// PC에서 호버 시 세부 메뉴 열기
-	if (pcNotice && pcSubmenu) {
-		pcNotice.addEventListener('mouseenter', () => {
-			pcSubmenu.style.display = 'block'; // 호버 시 세부 메뉴 열기
+		// 햄버거 메뉴
+		navbarBurger.addEventListener('click', () => {
+			navbarMenu.classList.add('active');
+			navbarOverlay.classList.add('active');
 		});
 
-		// 세부 메뉴에 마우스를 올려도 메뉴가 닫히지 않도록
-		pcSubmenu.addEventListener('mouseenter', () => {
-			pcSubmenu.style.display = 'block'; // 메뉴가 열려있도록 유지
+		// 백버튼 클릭 시 메뉴 닫기
+		navbarBurgerBack.addEventListener('click', () => {
+			navbarMenu.classList.remove('active');
+			navbarOverlay.classList.remove('active');
 		});
 
-		// 호버 벗어나면 메뉴 닫기
-		pcNotice.addEventListener('mouseleave', () => {
-			pcSubmenu.style.display = 'none'; // 호버 벗어나면 세부 메뉴 닫기
-		});
+		// // 오버레이 클릭 시 메뉴 닫기
+		// navbarOverlay.addEventListener('click', () => {
+		// 	navbarMenu.classList.remove('active');
+		// 	navbarOverlay.classList.remove('active');
+		// });
 
-		pcSubmenu.addEventListener('mouseleave', () => {
-			pcSubmenu.style.display = 'none'; // 세부 메뉴에서 벗어나면 닫기
-		});
+		// 모바일에서 클릭 시 세부 메뉴 열기
+		// if (mobileNotice) {
+		// 	mobileNotice.addEventListener('click', () => {
+		// 		if (mobileSubmenu) {
+		// 			mobileSubmenu.classList.toggle('active'); // 클릭 시 submenu 열기/닫기
+		// 		}
+		// 	});
+		// }
+
+		// PC에서 호버 시 세부 메뉴 열기
+		if (pcNotice && pcSubmenu) {
+			pcNotice.addEventListener('mouseenter', () => {
+				pcSubmenu.style.display = 'block'; // 호버 시 세부 메뉴 열기
+			});
+
+			// 세부 메뉴에 마우스를 올려도 메뉴가 닫히지 않도록
+			pcSubmenu.addEventListener('mouseenter', () => {
+				pcSubmenu.style.display = 'block'; // 메뉴가 열려있도록 유지
+			});
+
+			// 호버 벗어나면 메뉴 닫기
+			pcNotice.addEventListener('mouseleave', () => {
+				pcSubmenu.style.display = 'none'; // 호버 벗어나면 세부 메뉴 닫기
+			});
+
+			pcSubmenu.addEventListener('mouseleave', () => {
+				pcSubmenu.style.display = 'none'; // 세부 메뉴에서 벗어나면 닫기
+			});
+		}
 	}
 });
