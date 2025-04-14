@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://kit.fontawesome.com/516da99189.js" crossorigin="anonymous"></script>
+		<title>메인(로그아웃)</title>
+		<style>
+			.slide_item {
+				float: left;
+			}
+			.wrap {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.box {
+				overflow: hidden;
+				width: 400px;
+			}
+			.slide_box {
+				width: 3000px;
+				transition: 0.5s;
+			}
+			.slide_item {
+				float: left;
+			}
+			.prev {
+				padding: 10px;
+				border-radius: 50%;
+				cursor: pointer;
+			}
+			.prev:hover {
+				color: #0a8b11;
+			}
+
+			.next {
+				padding: 10px;
+				border-radius: 50%;
+				cursor: pointer;
+			}
+			.next:hover {
+				color: #0a8b11;
+			}
+		</style>
+		<!-- 공통 헤더 불러오기 -->
+		<script defer src="/common/header.js"></script>
+
+		<!-- 공통 푸터 불러오기 -->
+		<script defer src="/common/footer.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="wrap">
+				<div class="prev"><i class="fa-sharp fa-solid fa-arrow-left"></i></div>
+				<div class="box">
+					<div class="slide_box">
+						<div class="slide_item">
+							<a href=""><img src="../resources/apple.png" alt="1" /></a>
+						</div>
+						<div class="slide_item">
+							<a href=""><img src="../resources/grape.png" alt="2" /></a>
+						</div>
+						<div class="slide_item">
+							<a href=""><img src="../resources/strawberry.png" alt="3" /></a>
+						</div>
+						<div class="slide_item">
+							<a href=""><img src="../resources/tangerin.png" alt="4" /></a>
+						</div>
+					</div>
+				</div>
+				<div class="next"><i class="fa-sharp fa-solid fa-arrow-right"></i></div>
+			</div>
+		</div>
+		<script>
+			const prev = document.querySelector('.prev');
+			const next = document.querySelector('.next');
+			const slideBox = document.querySelector('.slide_box');
+			const slide = document.querySelectorAll('.slide_item img');
+			const slideLangth = slide.length;
+			let currentIndex = 0;
+
+			const moveSlide = function (num) {
+				slideBox.style.transform = `translateX(${-num * 400}px)`;
+				currentIndex = num;
+			};
+
+			prev.addEventListener('click', () => {
+				if (currentIndex !== 0) {
+					moveSlide(currentIndex - 1);
+				}
+			});
+
+			next.addEventListener('click', () => {
+				if (currentIndex !== slideLangth - 1) {
+					moveSlide(currentIndex + 1);
+				}
+			});
+		</script>
+	</body>
+</html>
