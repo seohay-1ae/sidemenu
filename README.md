@@ -1,7 +1,7 @@
 # Sidemenu 프로젝트 작업 가이드
 
 ```
-dev 브랜치 기준
+dev 브랜치 기준 폴더구조
 
 sidemenu/
 ├── .vscode/       # vscode 설정(⚠️건들지 마세요)
@@ -25,7 +25,7 @@ sidemenu/
 
 ---
 
-## ⚠️각 작업자 index.html 수정 방법 (각자 작업 브랜치에서 수정하고 dev로 병합요청)
+## ⚠️각 작업자 index.html 수정 방법 (각자 브랜치에서 수정하고 dev로 병합요청)
 
 각 폴더(admin, common, community, ... )에는 `독립적인 index.html`이 존재합니다.  
 각 폴더 안에서만 파일을 수정하며, Vercel 미리보기는 해당 index.html 기준으로 동작합니다.  
