@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>커뮤니티 게시판</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: 100vh; */
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      background: #f4f4f4;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header h2 {
+      margin: 0;
+      color: #333333;
+    }
+    .write-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>커뮤니티 게시판</h2>
+      <a href="write.html" class="write-button">글쓰기</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">NO.</th>
+          <th style="width: 45%;">제목</th>
+          <th style="width: 20%;">작성자</th>
+          <th style="width: 25%;">작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><a href="post1.html">딸기</a></td>
+          <td>test1</td>
+          <td>2025-04-14</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>상추</td>
+          <td>test2</td>
+          <td>2025-04-13</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>배추</td>
+          <td>test3</td>
+          <td>2025-04-12</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

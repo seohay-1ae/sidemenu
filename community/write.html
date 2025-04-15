@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>글쓰기</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    /* 제목 내용 사진 첨부 */
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    textarea {
+      resize: vertical;
+      height: 200px;
+    }
+    .btn-submit {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #000000;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    /* 팝업창 스타일 */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 25px 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .popup p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #333333;
+    }
+    .popup button {
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .overlay {
+      display: none;
+      position:relative;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>글쓰기</h2>
+    <form id="writeForm">
+      <label for="title">제목</label>
+      <input type="text" id="title" name="title" required>
+      <label for="content">내용</label>
+      <textarea id="content" name="content" required></textarea>
+      <label for="image">사진 첨부</label>
+      <input type="file" id="image" name="image" accept="image/*">
+      <button type="submit" class="btn-submit">등록</button>
+    </form>
+  </div>
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+  <p><strong>게시글이 등록되었습니다!</strong></p>
+  <button onclick="goToCommunity()">확인</button>
+</div>
+
+<script>
+  document.getElementById('writeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // 실제 제출 막기
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+  });
+
+  function goToCommunity() {
+    window.location.href = 'community1.html';
+  }
+</script>
+</body>
+</html>
