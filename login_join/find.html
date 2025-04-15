@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ID / PW 찾기</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; 
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+    .find-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    .tabs {
+      display: flex;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px 0;
+      text-align: center;
+      background-color: #f1f1f1;
+      font-weight: 500;
+      cursor: pointer;
+      border-right: 1px solid #dddddd;
+    }
+    .tab:last-child {
+      border-right: none;
+    }
+    .tab.active {
+      background-color: #ffffff;
+      font-weight: bold;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-row input[type="text"],
+    .input-row input[type="tel"] {
+      flex: 1;
+    }
+
+    .input-row button {
+      white-space: nowrap;
+      padding: 10px 14px;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* 팝업 스타일 */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-box {
+      background: white;
+      padding: 24px 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 80%;
+      max-width: 280px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-box p {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .popup-box button {
+      background-color: #555;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="find-container">
+      <div class="tabs">
+        <div class="tab active" onclick="showTab('id')">ID 찾기</div>
+        <div class="tab" onclick="showTab('pw')">PW 찾기</div>
+      </div>
+      <!-- 이름입력 -->
+      <div id="id-tab">
+        <div class="form-group">
+          <label>이름</label>
+          <input type="text" id="id-name" placeholder="이름 입력" />
+        </div>
+      <!-- 인증번호 발송창 -->
+        <div class="form-group">
+          <label>휴대폰 번호</label>
+          <div class="input-row">
+            <input type="tel" id="id-phone" placeholder="휴대폰 번호" />
+            <button onclick="sendCode()">인증번호 발송</button>
+          </div>
+        </div>
+      <!-- 인증 -->
+        <div class="form-group">
+          <label>인증번호</label>
+          <div class="input-row">
+            <input type="text" id="id-code" placeholder="인증번호 입력" />
+            <button onclick="verifyCode()">인증</button>
+          </div>
+        </div>
+      <!-- 아이디 찾기 -->
+        <button class="submit-btn" onclick="findId()">아이디 찾기</button>
+      </div>
+      <!-- PW 찾기 -->
+      <!-- 이름입력 -->
+      <div id="pw-tab" style="display: none;">
+        <div class="form-group">
+          <label>이름</label>
+          <input type="text" id="pw-name" placeholder="이름 입력" />
+        </div>
+      <!-- 인증번호 발송창 -->
+        <div class="form-group">
+          <label>휴대폰 번호</label>
+          <div class="input-row">
+            <input type="tel" id="pw-phone" placeholder="휴대폰 번호" />
+            <button onclick="sendCode()">인증번호 발송</button>
+          </div>
+        </div>
+      <!-- 인증 -->
+        <div class="form-group">
+          <label>인증번호</label>
+          <div class="input-row">
+            <input type="text" id="pw-code" placeholder="인증번호 입력" />
+            <button onclick="verifyCode()">인증</button>
+          </div>
+        </div>
+        <!-- 비밀번호 찾기 -->
+        <button class="submit-btn" onclick="findPw()">비밀번호 찾기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 팝업 -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <p id="popup-text">아이디는 admin 입니다.</p>
+      <button onclick="closePopup()">확인</button>
+    </div>
+  </div>
+
+  <script>
+    //id pw tab창
+    function showTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('#id-tab, #pw-tab').forEach(el => el.style.display = 'none');
+
+      if (tab === 'id') {
+        document.querySelector('.tab:nth-child(1)').classList.add('active');
+        document.getElementById('id-tab').style.display = 'block';
+      } else {
+        document.querySelector('.tab:nth-child(2)').classList.add('active');
+        document.getElementById('pw-tab').style.display = 'block';
+      }
+    }
+    //알람창
+    function sendCode() {
+      alert('인증번호가 발송되었습니다!');
+    }
+    function verifyCode() {
+      alert('인증이 완료되었습니다!');
+    }
+    //팝업창
+    function findId() {
+      document.getElementById('popup-text').innerText = '아이디는 admin 입니다.';
+      document.getElementById('popup').style.display = 'flex';
+    }
+    function findPw() {
+      document.getElementById('popup-text').innerText = '비밀번호는 1234 입니다.';
+      document.getElementById('popup').style.display = 'flex'; 
+    }
+    //이동창
+    function closePopup() {
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sidemen 로그인</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+    .login-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 380px;
+      box-sizing: border-box;
+    }
+    /* 로그인 큰 글씨 */
+    .login-container h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      text-align: center;
+      color: #000000;
+    }
+    .sns-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .sns-google {
+      background-color: white;
+      border: 1px solid #cccccc;
+      color: #333;
+    }
+    .sns-Kakao {
+      background-color: #FEE500;
+      border: none;
+      color: #000000;
+    }
+    .sns-button img {
+      height: 20px;
+      width: 20px;
+    }
+    /* 아이디 비밀번호 */
+    .login-container input {
+      width: 100%;  
+      padding: 10px 12px;
+      margin: 8px 0;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    /* 아이디 비밀번호 제출버튼 */
+    .login-container button[type="submit"] {
+      width: 100%;
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 15px;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    /* 회원가입, 아이디비번찾기 */
+    .login-container .links {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .login-container .links a {
+      color: #000000;
+      margin: 0 3px;
+    }
+    /* 팝업 스타일 - display설정*/
+    .popup-background {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; 
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-box {
+      background-color: #ffffff;
+      padding: 25px 30px;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .popup-box p {
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+    .popup-box button {
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="login-container">
+      <h2>로그인</h2>
+      <!-- SNS 로그인 버튼 -->
+      <button type="button" class="sns-button sns-google">
+        <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google 아이콘">
+        Google로 시작하기
+      </button>
+      <button type="button" class="sns-button sns-Kakao">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/KakaoTalk_logo.svg" alt="Kakao 아이콘">
+        카카오톡 시작하기
+      </button>
+      <div style="text-align: center; margin: 20px 0; color: #666666;">또는</div>
+      <!--입력이 안되었을 때 제출을 누르면 뜨는 팝업 설정-->
+      <form onsubmit="event.preventDefault(); showPopup();"> 
+        <input type="text" placeholder="아이디" required />
+        <input type="password" placeholder="비밀번호" required />
+        <button type="submit">로그인</button>
+      </form>
+      <!-- 회원가입과 아이디 비밀번호 찾기 -->
+      <div class="links">
+        <a href="join.html">회원가입</a> | <a href="find.html">아이디|비밀번호 찾기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 팝업 창 -->
+  <div class="popup-background" id="popup">
+    <div class="popup-box">
+      <p>Admin님 환영합니다!</p>
+      <button onclick="goToMain()">확인</button>
+    </div>
+  </div>
+
+  <script>
+    function showPopup() {
+      document.getElementById('popup').style.display = 'flex';
+    }
+
+    function goToMain() {
+      window.location.href = '메인화면.html';
+    }
+  </script>
+</body>
+</html>
