@@ -33,20 +33,26 @@ sidemenu/
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
-		<link rel="stylesheet" href="../common/styles.css" />
-		<!-- styles.css 파일 불러오기 (경로는 알아서 잘 맞추기)-->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!--j쿼리 사용시-->
+		<link rel="stylesheet" href="../common/styles.css" /> <!-- styles.css 파일 불러오기 (경로는 알아서 잘 맞추기)-->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>제목</title>
-		<!-- 공통 헤더 불러오기 -->
-		<script defer src="/common/header.js"></script>
-
-		<!-- 공통 푸터 불러오기 -->
-		<script defer src="/common/footer.js"></script>
+		<style>
+			/* css 작성 */
+		</style>
 	</head>
 	<body>
-		내용 작성
+		<!-- html 작성 -->
+		<scrit>
+			<!-- js 작성 -->
+		</scrit>
 	</body>
+		<!-- 공통 헤더 불러오기 -->
+		<script defer src="/common/header.js"></script>
+	
+		<!-- 공통 푸터 불러오기 -->
+		<script defer src="/common/footer.js"></script>
 </html>
 ```
 
@@ -64,6 +70,6 @@ PC, 태블릿, 모바일에 대응하는 반응형 CSS는 `common` 폴더 내 `s
 - 자신의 폴더 외에는 수정하지 않습니다.
 - `common` 폴더 변경 시 팀원과 **사전 협의** 필수입니다.
 - PR 시 자신의 디렉토리만 수정되도록 해주세요.
-- 리소스는 `/resources`에 넣고, 경로는 **상대경로** 사용하세요.
+- 이미지는 `/resources`에 넣고, 경로는 **상대경로** 사용하세요.
 
 ---
