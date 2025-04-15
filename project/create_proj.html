@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>프로젝트 생성</title>
+		<style>
+			/* 기본 세팅: 전체 높이 확보 및 플렉스 레이아웃 구성 */
+			html,
+			body {
+				height: 100%; /* 화면 전체 높이 사용 */
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				display: flex; /* body 자체에 flex , center, center 적용하면 있어서 푸터가 가로중앙+수직중앙 정렬됨 */
+				flex-direction: column; /* 수직 방향 레이아웃 */
+			}
+
+			.wrapper {
+				/* body에 정렬하면 전체 레이아웃 꼬이므로 wrapper로 감싸서 그 안에 컨텐츠를 넣고 정렬, footer는 wrapper 밖에 */
+				flex: 1; /* 남은 공간을 채움 (푸터 밀어내기 용도) */
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* 가운데 정렬 */
+				padding: 20px;
+				margin-top: 100px;
+			}
+			.container {
+				width: 100%; /* 페이지 전체 너비 차지 */
+			}
+			.create-proj {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			.create-button {
+				color: white;
+				padding: 10px 20px;
+				margin-top: 20px;
+				font-size: 1.1rem; /* 폰트 크기 줄임 */
+				border: none;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: bold;
+				transition: background-color 0.3s;
+				display: inline-block; /* 버튼처럼 보이도록 설정. 부모 컨테이너의 너비를 차지함 (버튼 안의 글씨를 정확히 클릭하지 않아도 되도록) */
+				background-color: #0a8b11;
+			}
+			.benefit,
+			.progress {
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 전체 콘텐츠를 감싸는 wrapper -->
+		<div class="wrapper">
+			<div class="container">
+				<div class="create-proj">
+					<h2>프로젝트 생성</h2>
+					<a href="./proj_info.html" class="create-button">지금 시작하기</a>
+				</div>
+			</div>
+			<hr style="height: 2px; background-color: rgb(218, 218, 218); width: 100%" />
+			<div class="container">
+				<div class="benefit">
+					<p>SIDEMENU를 선택해야 하는 이유</p>
+				</div>
+				<div class="progress">
+					<p>프로젝트 진행과정</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- 게시글 표시 및 검색 기능 -->
+		<script></script>
+
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="/common/header.js"></script>
+		<script defer src="/common/footer.js"></script>
+	</body>
+</html>
