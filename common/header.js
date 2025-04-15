@@ -20,18 +20,46 @@ const headerHTML = `
     align-items: center;
     padding: 1rem 0;
     color: #000;
-    z-index: 999;
+    z-index: 1000;
     animation: navbarBottom 1s forwards;
-    background-color:#e7f5e1;
+  }
+
+  .navbar_burger {
+    cursor: pointer;
+    color: #000;
+  }
+
+  .navbar_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
   }
   
   .auth_buttons {
-    margin-right:40px;
+    margin-right:0.5rem;
   }
 
+  .submenu {
+    display: none;
+    background-color: #f4f4f4;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+  }
   .submenu a {
     display: flex;
     flex-direction: column; /* 항목들이 세로로로 배치되도록 설정 */
+  }
+
+  .submenu.active {
+      display: block;
   }
 
   
@@ -39,6 +67,9 @@ const headerHTML = `
   @media (min-width: 1024px) 
   {
 
+    #tablet {
+    display:none;
+    }
     #mobile {
     display:none;
     }
@@ -51,10 +82,10 @@ const headerHTML = `
     .navbar_links a {
       text-decoration: none;
       color: #000;
-      margin-right: 0.3rem;
+      margin-right: 0.2rem;
       font-weight: 600;
       position: relative;
-      padding: 0.5rem 0;
+      padding: 0.3rem 0;
     }
 
     .navbar_links a:last-child {
@@ -79,24 +110,17 @@ const headerHTML = `
     
      /* 세부 메뉴 링크 스타일 */
     .submenu {
-      display: none;
       position: absolute;
-      top: 125%;
+      top: 115%;
       left: 0;
-      background-color: #f4f4f4;
-      width: 134px;
+      width: 25%;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       padding: 10px;
     }
     
     .submenu a {
-    font-size:0.9rem;
+    font-size:70%;
     margin:0;
-    
-    }
-
-    .submenu.active {
-    display: block;
     }
     
     /* 공지사항에 호버 시 세부 메뉴 보이기 */
@@ -118,33 +142,21 @@ const headerHTML = `
     }
   }
 
-  /* 태블릿 (768px ~ 1023px) 미만*/
-  @media (max-width: 1023px) 
+  /* 태블릿 (768px ~ 1023px) */
+  @media (max-width: 1023px) and (min-width: 768px) 
   {
 
     #pc {
     display:none;
-  }
-
-    .navbar_overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 998;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.1s ease;
+    }
+    #mobile {
+    display:none;
     }
 
     .navbar_burger {
       position: fixed;
       top: 1rem;
       right: 1rem;
-      cursor: pointer;
-      color: #000;
     }
 
     .navbar_burger_back {
@@ -200,6 +212,88 @@ const headerHTML = `
       opacity: 1;
       pointer-events: auto;  /* active 클래스 추가 시 오버레이 활성화 */
     }
+  
+   /* 모바일 및 태블릿 클릭 이벤트를 위한 submenu 설정 */
+    .submenu {
+      display: none;
+      margin-bottom:10px;
+    }
+    
+    .submenu a{
+      font-size: 20px;
+      color:rgb(37, 58, 126);
+      margin:15px;
+    }
+  }
+
+    /* 모바일 (~ 768px) */
+  @media (max-width: 767px)
+  {
+    #pc, #tablet{
+    display:none;
+    }
+    .auth_buttons {
+    flex-direction: column;
+    }
+    .navbar_burger {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+    }
+    .navbar_burger_back {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    /* 버튼을 오른쪽으로 밀고 햄버거 메뉴와 겹치지 않도록 설정 */
+    .auth_buttons {
+      position: fixed;
+      top: 1.3rem;
+      right: 70px; /* 햄버거 메뉴와 겹치지 않도록 간격 조정 */
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* 메뉴 슬라이드 애니메이션 */
+    .navbar_menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background-color:rgb(135, 206, 138);
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      transform: translateX(100%);  /* 메뉴 숨김 */
+      z-index: 999;
+      color: #ffffff;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar_menu a {
+      position: relative;
+      color: #ffffff;
+      font-size: 1rem;
+      margin-left: 0rem;
+      margin-bottom: 3rem;
+      text-decoration: none;
+    }
+
+    .navbar_menu.active {
+      transform: translateX(0);  /* active 클래스 추가 시 메뉴 보이도록 */
+      padding:1.2rem;
+    }
+
+    .navbar_overlay.active {
+      opacity: 1;
+      pointer-events: auto;  /* active 클래스 추가 시 오버레이 활성화 */
+    }
     
     // #mobile-notice{
     //   margin-bottom:10px;
@@ -215,19 +309,50 @@ const headerHTML = `
     }
     
     .submenu a{
-      font-size: 20px;
+      font-size: 0.7rem;
       color:rgb(37, 58, 126);
       margin:15px;
-    }
-    
-    .submenu.active {
-      display: block;
     }
   }
   </style>
 
   <!-- 모바일버전 -->
 <div class="navbar_main" id="mobile">
+  <div class="nav_logo">
+    <a href="#"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
+  </div>
+  <div class="navbar_burger">
+  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+  </svg>
+  </div>
+  <div class="navbar_overlay">
+  <div class="navbar_menu">
+  <div class="auth_buttons">
+    <button>로그인 / 회원가입</button>
+    <button>+ 프로젝트</button>
+    </div>
+      <a href="#" id="mobile-notice">공지사항 ▾</a>
+      <div class="submenu">
+        <a href="#">공지사항</a>
+        <a href="#">브랜드스토리</a>
+        <a href="#">정부지원정책</a>
+      </div>
+      <a href="#">상품</a>
+      <a href="#">견학/체험</a>
+      <a href="#">축제</a>
+      <a href="#">커뮤니티</a>
+      <div class="navbar_burger_back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- 태블릿버전 -->
+<div class="navbar_main" id="tablet">
   <div class="nav_logo">
     <a href="#"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
   </div>
@@ -242,7 +367,7 @@ const headerHTML = `
   </div>
   <div class="navbar_overlay">
     <div class="navbar_menu">
-      <a href="#" id="mobile-notice">공지사항 ▾</a>
+      <a href="#" id="tablet-notice">공지사항 ▾</a>
       <div class="submenu">
         <a href="#">공지사항</a>
         <a href="#">브랜드스토리</a>
@@ -289,65 +414,82 @@ document.addEventListener('DOMContentLoaded', () => {
 	// HTML 삽입
 	document.body.insertAdjacentHTML('afterbegin', headerHTML);
 
-	// 변수 선언
-	const navbarBurger = document.querySelector('.navbar_burger');
-	const navbarBurgerBack = document.querySelector('.navbar_burger_back');
-	const navbarMenu = document.querySelector('.navbar_menu');
-	const navbarOverlay = document.querySelector('.navbar_overlay');
+	// 📱 모바일 요소
+	const mobileBurger = document.querySelector('#mobile .navbar_burger');
+	const mobileMenu = document.querySelector('#mobile .navbar_menu');
+	const mobileOverlay = document.querySelector('#mobile .navbar_overlay');
+	const mobileBack = document.querySelector('#mobile .navbar_burger_back');
 
-	// **pc에서** 클릭된 항목의 submenu 열기
-	const pcNotice = document.getElementById('pc-notice'); // PC에서 공지사항 선택
-	const pcSubmenu = pcNotice ? pcNotice.nextElementSibling : null; // PC 공지사항 다음 submenu 찾기
+	// 📱 모바일 이벤트
+	if (mobileBurger && mobileMenu && mobileOverlay && mobileBack) {
+		mobileBurger.addEventListener('click', () => {
+			mobileMenu.classList.add('active');
+			mobileOverlay.classList.add('active');
+		});
 
-	// **모바일에서** 클릭된 항목의 submenu 열기
-	const mobileNotice = document.getElementById('mobile-notice'); // 모바일에서만 공지사항 선택
-	const mobileSubmenu = mobileNotice ? mobileNotice.nextElementSibling : null; // 공지사항 다음 submenu 찾기
-
-	// 햄버거 메뉴 버튼 클릭 시
-	navbarBurger.addEventListener('click', () => {
-		navbarMenu.classList.add('active');
-		navbarOverlay.classList.add('active');
-	});
-
-	// 백버튼 클릭 시 메뉴 닫기
-	navbarBurgerBack.addEventListener('click', () => {
-		navbarMenu.classList.remove('active');
-		navbarOverlay.classList.remove('active');
-	});
-
-	// // 오버레이 클릭 시 메뉴 닫기
-	// navbarOverlay.addEventListener('click', () => {
-	// 	navbarMenu.classList.remove('active');
-	// 	navbarOverlay.classList.remove('active');
-	// });
-
-	// 모바일에서 클릭 시 세부 메뉴 열기
-	if (mobileNotice) {
-		mobileNotice.addEventListener('click', () => {
-			if (mobileSubmenu) {
-				mobileSubmenu.classList.toggle('active'); // 클릭 시 submenu 열기/닫기
-			}
+		mobileBack.addEventListener('click', () => {
+			mobileMenu.classList.remove('active');
+			mobileOverlay.classList.remove('active');
 		});
 	}
 
-	// PC에서 호버 시 세부 메뉴 열기
+	// 💻 태블릿 요소
+	const tabletBurger = document.querySelector('#tablet .navbar_burger');
+	const tabletMenu = document.querySelector('#tablet .navbar_menu');
+	const tabletOverlay = document.querySelector('#tablet .navbar_overlay');
+	const tabletBack = document.querySelector('#tablet .navbar_burger_back');
+
+	// 💻 태블릿 이벤트
+	if (tabletBurger && tabletMenu && tabletOverlay && tabletBack) {
+		tabletBurger.addEventListener('click', () => {
+			tabletMenu.classList.add('active');
+			tabletOverlay.classList.add('active');
+		});
+
+		tabletBack.addEventListener('click', () => {
+			tabletMenu.classList.remove('active');
+			tabletOverlay.classList.remove('active');
+		});
+	}
+
+	// 📄 공지사항 submenu 토글 (모바일/태블릿)
+	const tabletNotice = document.getElementById('tablet-notice');
+	const tabletSubmenu = tabletNotice ? tabletNotice.nextElementSibling : null;
+
+	const mobileNotice = document.getElementById('mobile-notice');
+	const mobileSubmenu = mobileNotice ? mobileNotice.nextElementSibling : null;
+
+	if (tabletNotice && tabletSubmenu) {
+		tabletNotice.addEventListener('click', () => {
+			tabletSubmenu.classList.toggle('active');
+		});
+	}
+
+	if (mobileNotice && mobileSubmenu) {
+		mobileNotice.addEventListener('click', () => {
+			mobileSubmenu.classList.toggle('active');
+		});
+	}
+
+	// 🖥️ PC - 공지사항 hover 시 submenu 열기
+	const pcNotice = document.getElementById('pc-notice');
+	const pcSubmenu = pcNotice ? pcNotice.nextElementSibling : null;
+
 	if (pcNotice && pcSubmenu) {
 		pcNotice.addEventListener('mouseenter', () => {
-			pcSubmenu.style.display = 'block'; // 호버 시 세부 메뉴 열기
+			pcSubmenu.style.display = 'block';
 		});
 
-		// 세부 메뉴에 마우스를 올려도 메뉴가 닫히지 않도록
 		pcSubmenu.addEventListener('mouseenter', () => {
-			pcSubmenu.style.display = 'block'; // 메뉴가 열려있도록 유지
+			pcSubmenu.style.display = 'block';
 		});
 
-		// 호버 벗어나면 메뉴 닫기
 		pcNotice.addEventListener('mouseleave', () => {
-			pcSubmenu.style.display = 'none'; // 호버 벗어나면 세부 메뉴 닫기
+			pcSubmenu.style.display = 'none';
 		});
 
 		pcSubmenu.addEventListener('mouseleave', () => {
-			pcSubmenu.style.display = 'none'; // 세부 메뉴에서 벗어나면 닫기
+			pcSubmenu.style.display = 'none';
 		});
 	}
 });

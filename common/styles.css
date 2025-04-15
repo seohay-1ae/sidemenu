@@ -6,130 +6,86 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	text-decoration: none;
 }
 
-/* 기본 폰트 크기 설정 */
+/* 기본 폰트 크기 설정 (반응형) */
 html {
-	font-size: 16px; /* 1rem = 16px */
+	font-size: clamp(16px, 1.25vw, 50px); /* 1rem 기준 유동 크기 */
+	height: 100%; /* 화면 전체 높이 사용 */
 }
 
 /* 기본 스타일 - 모바일 퍼스트 */
 body {
 	font-family: 'Noto Sans KR', sans-serif !important;
-	font-size: 1rem; /* 16px */
+	font-size: clamp(1rem, 1.4vw, 2rem); /* 16px ~ 20px */
 	line-height: 1.5;
-	padding: 1rem; /* 16px */
+	padding: 1rem;
+	height: 100%; /* 화면 전체 높이 사용 */
 }
 
 h1 {
-	font-size: 2rem; /* 32px */
+	font-size: clamp(2rem, 4vw, 3rem); /* 32px ~ 60px */
 }
 
 h2 {
-	font-size: 1.5rem; /* 24px */
+	font-size: clamp(1.5rem, 3vw, 2.5rem); /* 24px ~ 50px */
 }
 
 /* 공통 버튼 스타일 */
 button {
 	display: inline-block;
 	padding: 0.5rem 1rem; /* 8px 16px */
-	font-size: 1rem; /* 16px */
-	font-weight: 600; /* 글꼴 굵기 */
+	font-size: clamp(0.7rem, 1vw, 1.05rem); /* 14.4px ~ 16.8px */
+	font-weight: 600;
 	text-align: center;
 	cursor: pointer;
-	border: 2px solid transparent; /* 테두리 기본 값 */
-	border-radius: 0.5rem; /* 8px */
-	transition: all 0.3s ease; /* 부드러운 전환 효과 */
-	background-color: #0a8b11; /* 기본 배경색 (파란색) */
-	color: white; /* 글자 색 */
-	outline: none; /* 아웃라인 제거 */
+	border: 2px solid transparent;
+	border-radius: 0.5rem;
+	transition: all 0.3s ease;
+	background-color: #0a8b11;
+	color: white;
+	text-decoration: none; /* 링크 스타일 없애기 */
+	outline: none;
 }
-
 button:hover {
-	background-color: #696b6a; /* 마우스 오버 시 배경색 변경 */
+	background-color: #696b6a;
 }
 
 ul,
 ol {
-	list-style: none; /* 목록 스타일 제거 */
+	list-style: none;
 }
 
 img {
-	max-width: 100%; /* 이미지가 부모 요소를 넘지 않도록 */
+	max-width: 100%;
 	height: auto;
 }
 
-/* a {
-	text-decoration: none; //링크 기본 스타일 
-	color: inherit;  //링크 색상 기본 텍스트 색상에 맞춤 
-} */
-
-.container {
-	max-width: 100%;
-	margin: 0 auto;
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 /* 기본 레이아웃 */
 .container {
-	padding: 6.5rem 3.5rem; /* 16px */
+	max-width: 100%;
+	margin: auto;
+	padding: 0.5rem 1rem 2rem 1rem;
 }
 
-/* 태블릿: 화면 너비가 768px 이상일 때 */
+/* 태블릿 이상에서 컨테이너 너비 제한 */
 @media (min-width: 48rem) {
-	/* 768px */
-	html {
-		font-size: 18px; /* 1rem = 18px */
-	}
-
-	body {
-		font-size: 1.125rem; /* 18px */
-	}
-
-	h1 {
-		font-size: 2.5rem; /* 45px */
-	}
-
-	h2 {
-		font-size: 2rem; /* 36px */
-	}
-
-	button {
-		padding: 0.5rem 1rem; /* 8px 16px */
-		font-size: 1.05rem; /* 12.6px */
-	}
-
 	.container {
 		max-width: 60rem; /* 960px */
-		padding: 7.5rem 5rem; /* 32px */
+		padding: 7.5rem 5rem;
 	}
 }
 
-/* 데스크탑: 화면 너비가 1024px 이상일 때 */
+/* 데스크탑 이상에서 컨테이너 최대 너비 */
 @media (min-width: 64rem) {
-	/* 1024px */
-	html {
-		font-size: 20px; /* 1rem = 20px */
-	}
-
-	body {
-		font-size: 1.25rem; /* 20px */
-	}
-
-	h1 {
-		font-size: 3rem; /* 60px */
-	}
-
-	h2 {
-		font-size: 2.5rem; /* 50px */
-	}
-
-	button {
-		padding: 0.4em 0.6rem; /* 8px 16px */
-		font-size: 0.9rem; /* 12.96px */
-	}
-
 	.container {
 		max-width: 75rem; /* 1200px */
-		padding: 8rem 5rem; /* 40px */
+		padding: 2rem 2rem;
 	}
 }
