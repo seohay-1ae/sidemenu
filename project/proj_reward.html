@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="../common/styles.css" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>프로젝트 정보</title>
+		<title>리워드 추가</title>
 		<style>
 			body {
 				display: flex; /* body 자체에 flex , center, center 적용하면 있어서 푸터가 가로중앙+수직중앙 정렬됨 */
@@ -51,13 +51,12 @@
 			.input-data label,
 			.input-data input,
 			.input-data select,
-			.input-data textarea,
-			.unit-label {
+			.input-data textarea {
 				font-size: 1.5rem; /* 필요에 따라 1.2rem, 1.3rem 등으로 조절 가능 */
 			}
 			.input-data label {
-				min-width: 12rem;;
-				max-width: 20rem;
+				min-width: 8rem;;
+				max-width: 15rem;
 				margin: 0;
 			}
 			.input-data input,
@@ -69,6 +68,14 @@
 			}
 			.input-data input[type="file"] {
 				padding: 8px;
+			}
+			textarea {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				resize: vertical; /* 사용자가 세로 길이 조절 가능하도록 */
+				box-sizing: border-box; /* 패딩 포함한 크기 계산 */
 			}
 			.button-container {
 				display: flex;
@@ -105,12 +112,39 @@
 				align-items: center;
 				gap: 10px;
 				margin-bottom: 20px;
+				flex-wrap: nowrap;
 			}
 			.required {
-    		color: red; /* 빨간색으로 표시 */
+        color: red; /* 빨간색으로 표시 */
+			}
+			.delivery-type {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 20px;
+			}
+			.radio-item input[type="radio"] {
+				transform: scale(1.5); /* 1.0이 기본, 1.5는 150% */
+				cursor: pointer;
+			}
+			.radio-wrapper label {
+				margin-right: 10px;
+				font-weight: normal;
+				font-size: 1.5rem;
+				cursor: pointer;
+			}
+			.radio-wrapper {
+				display: flex;
+				gap: 20px;
+				align-items: center;
+			}
+			.radio-item {
+				display: flex;
+				align-items: center;
+				gap: 6px;
 			}
 
-			/* 목표금액 입력 부분 */
+			/* 금액 입력 부분 */
 			.amount-wrapper {
 				display: flex;
 				align-items: center;
@@ -137,6 +171,7 @@
 				margin-left: 4px;
 				white-space: nowrap; /* 줄바꿈 방지 */
 				flex-shrink: 0; /* '원'이 줄어들지 않도록 설정 */
+				font-size: 1.5rem; /* ← 숫자 입력 박스와 자연스럽게 맞춤 */
 			}
 			/* 모바일/태블릿에서는 사이드바 숨김 */
 			@media (max-width: 1023px) {
@@ -206,49 +241,41 @@
 			
 			<div class="container">
 				<div class="route">
-					<p>프로젝트 생성 > <span style="color: #0a8b11;">프로젝트 정보</span></p>
+					<p>프로젝트 생성 > <span style="color: #0a8b11;">리워드 추가</span></p>
 				</div>
 				<div class="now-page">
-					<h2>프로젝트 정보</h2>
+					<h2>리워드 추가</h2>
 				</div>
 				<div class="input-data">
-					<div class="category">
-						<label for="categorySelect">카테고리 <span class="required">*</span></label>
-						<select id="categorySelect" required>
-							<option value="" disabled selected>카테고리 선택</option>
-							<option value="fruit">과일</option>
-							<option value="vegetable">야채</option>
-							<option value="health">건강식품</option>
-						</select>
-					
-					</div>
-					<div class="project-name">
-						<label for="projectName">프로젝트 이름 <span class="required">*</span></label>
-						<input type="text" id="projectName" required placeholder="프로젝트 이름을 입력하세요." />
-					</div>
-					<div class="thumbnail">
-						<label for="thumbnailInput">대표이미지 <span class="required">*</span></label>
-						<input type="file" id="thumbnailInput" accept="image /*" required />
-					</div>
-					<div class="project-startday">
-						<label for="startDate">프로젝트 시작일 <span class="required">*</span></label>
-						<input type="date" placeholder="YYYY-MM-DD" id="startDate" required />
-					</div>
-					<div class="project-dueday">
-						<label for="dueDate">프로젝트 종료일 <span class="required">*</span></label>
-						<input type="date" placeholder="YYYY-MM-DD" id="dueDate" required />
-					</div>
-					<div class="target-amount">
-						<label for="targetAmount">목표금액 <span class="required">*</span></label>
+					<div class="reward-price">
+						<label for="rewardPrice">금액 <span class="required">*</span></label>
 						<div class="amount-wrapper">
-							<input type="text" id="targetAmount" required />
+							<input type="text" id="rewardPrice" required />
 							<span class="unit-label">원</span>
 						</div>
 					</div>
-							<!-- 이전/다음 버튼 추가 -->
+					<div class="reward-name">
+						<label for="rewardName">리워드명 <span class="required">*</span></label>
+						<input type="text" id="rewardName" required placeholder="리워드 상품명을 입력하세요." />
+					</div>
+					<div class="delivery-type">
+						<label for="deliveryPost">배송 여부 <span class="required">*</span></label>
+						<div class="radio-wrapper">
+							<div class="radio-item">
+								<input type="radio" id="deliveryPost" name="deliveryType" value="post" required/>
+								<label for="deliveryPost">&nbsp;택배</label>
+							</div>
+							<div class="radio-item">	
+								<input type="radio" id="deliveryMail" name="deliveryType" value="mail" />
+								<label for="deliveryMail">&nbsp;메일 발송</label>
+							</div>
+						</div>
+					</div>
+				</div>
+					<!-- 이전/다음 버튼 추가 -->
 							<div class="button-container">
-								<a href="./create_proj.html" class="button prev-button">취소</a>
-								<a href="#" class="button next-button">다음</a>
+								<a href="./proj_story.html" class="button prev-button">이전</a>
+								<button type="button" class="button next-button">다음</button>
 							</div>
 						</div>
 					</div>
@@ -266,7 +293,7 @@
 						document.getElementById('sidebar-container').innerHTML = data;
 
         		// "카테고리" 항목의 글씨 색을 바꾸는 JavaScript 코드
-						const projInfoLink = document.querySelector('.sidebar .proj_info');
+						const projInfoLink = document.querySelector('.sidebar .proj_reward');
 					if (projInfoLink) {
 						projInfoLink.style.color = '#0a8b11';  // 원하는 색상으로 변경
 						}
@@ -274,43 +301,9 @@
 					.catch(error => console.error('사이드바를 불러오는 데 실패했습니다:', error));
 				}
 			
-
-
-			//날짜
-			const today = new Date().toISOString().split('T')[0];
-			
-			const startInput = document.getElementById('startDate');
-			const dueInput = document.getElementById('dueDate');
-			
-			// 오늘 이후만 선택 가능하도록 초기 설정
-			startInput.setAttribute('min', today);
-			dueInput.setAttribute('min', today);
-			
-			// 시작일 바뀌면 종료일 최소값 재설정
-			startInput.addEventListener('change', function () {
-				const selectedStart = new Date(this.value);
-				const nextDay = new Date(selectedStart);
-				nextDay.setDate(selectedStart.getDate() + 1);
-				
-				const minDue = nextDay.toISOString().split('T')[0];
-				dueInput.setAttribute('min', minDue);
-			});
-			
-			// 종료일 바뀌면 시작일보다 이른지 체크
-			dueInput.addEventListener('change', function () {
-				const startVal = new Date(startInput.value);
-				const dueVal = new Date(this.value);
-				
-				if (dueVal <= startVal) {
-					alert('종료일은 시작일보다 이후여야 합니다.');
-					this.value = ''; // 입력값 초기화
-				}
-			});
-
-
-
+			document.addEventListener('DOMContentLoaded', function () {
 			//금액 포맷
-			const amountInput = document.getElementById('targetAmount');
+			const amountInput = document.getElementById('rewardPrice');
 
 			amountInput.addEventListener('input', function (e) {
 				const cursorPosition = this.selectionStart;
@@ -329,66 +322,42 @@
 				// 커서 위치 보정
 				const newLength = this.value.length;
 				this.selectionEnd = cursorPosition + (newLength - originalLength);
-			});
+			})
+		});
 
-
-			
-			//필수값 전부 입력해야 넘어가게
 			//필수값 전부 입력해야 넘어가게
 			document.querySelector('.next-button').addEventListener('click', function(e) {
 				e.preventDefault(); // 기본 이동 막기
 				
-				const category = document.getElementById('categorySelect').value;
-				const name = document.getElementById('projectName').value.trim();
-				const start = document.getElementById('startDate').value;
-				const end = document.getElementById('dueDate').value;
-				const amount = document.getElementById('targetAmount').value.replace(/,/g, '');
-				const fileInput = document.getElementById('thumbnailInput');
-				const file = fileInput.files[0];
+				const price = document.getElementById('rewardPrice').value.replace(/,/g, '');
+				const name = document.getElementById('rewardName').value.trim();
+				const deliveryType = document.querySelector('input[name="deliveryType"]:checked');
 				
-				if (!category || category === '카테고리 선택' || !name || !start || !end || !amount || !file) {
+				if (!price || !name || !deliveryType) {
 					let missing = [];
-					if (!category) missing.push('카테고리');
-					if (!name) missing.push('프로젝트 이름');
-					if (!file) missing.push('대표이미지');
-					if (!start) missing.push('프로젝트 시작일');
-					if (!end) missing.push('프로젝트 종료일');
-					if (!amount) missing.push('목표금액');
+					if (!price) missing.push('금액');
+					if (!name) missing.push('리워드명');
+					if (!deliveryType) missing.push('배송여부');
 					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
 					return;
 				}
-				//이미지 파일 형식
-				const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-				if (!allowedTypes.includes(file.type)) {
-					alert('JPG, PNG, WEBP, GIF 형식의 이미지만 업로드 가능합니다.');
-					return;
-				}
 
-				//이미지 처리 및 저장
-				const reader = new FileReader();
-				reader.onload = function () {
-					const base64Image = reader.result;
-
+				//저장
 					const data = {
-						category,
+						price,
 						name,
-						start,
-						end,
-						amount,
-						image: base64Image
+						deliveryType: deliveryType.value
 					};
 
-					localStorage.setItem('projectInfo', JSON.stringify(data));
+					localStorage.setItem('projectReward', JSON.stringify(data));
 
 					// 확인용 콘솔 출력 (디버깅용)
-					console.log('저장된 정보 데이터:', data);
+					console.log('저장된 리워드 데이터:', data);
 
 					// 유효성 통과 → 다음 페이지로 이동
-					window.location.href = './proj_story.html'; // 다음 페이지 경로로 교체
-				};
+					window.location.href = './proj_maker.html'; // 다음 페이지 경로로 교체
+				});
 
-				reader.readAsDataURL(file);
-			});
 		</script>
 
 <!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
