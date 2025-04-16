@@ -74,16 +74,16 @@
 					return;
 				}
 
-				let imageBase64 = '';
 				if (image) {
 					const reader = new FileReader();
 					reader.onloadend = function () {
-						imageBase64 = reader.result;
+						const imageBase64 = reader.result;
 						savePost(imageBase64);
 					};
 					reader.readAsDataURL(image);
 				} else {
-					savePost(imageBase64);
+					// 이미지 없는 경우도 저장은 나중에 호출
+					savePost('');
 				}
 
 				function savePost(imageBase64) {
@@ -94,12 +94,12 @@
 					localStorage.setItem('posts', JSON.stringify(posts));
 
 					alert('게시글이 등록되었습니다.');
-					window.location.href = 'community.html'; // 커뮤니티 페이지로 돌아가기
+					window.location.href = '/community/community.html';
 				}
 			});
 		</script>
 		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="/common/header2.js"></script>
-		<script defer src="/common/footer2.js"></script>
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>
