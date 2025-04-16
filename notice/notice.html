@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>공지사항</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #f9f9f9;
+			}
+			.wrapper {
+				/* body에 정렬하면 전체 레이아웃 꼬이므로 wrapper로 감싸서 그 안에 컨텐츠를 넣고 정렬, footer는 wrapper 밖에 */
+				flex: 1; /* 남은 공간을 채움 (푸터 밀어내기 용도) */
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* 가운데 정렬 */
+				padding: 20px;
+				margin-top: 100px;
+			}
+			.container {
+				width: 80%;
+				margin: auto;
+				background: #ffffff;
+				padding: 20px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+				border-radius: 10px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				text-align: left;
+			}
+			th,
+			td {
+				padding: 12px;
+				font-size: 1rem;
+				border-bottom: 1px solid #dddddd;
+			}
+			th {
+				background-color: #f4f4f4;
+			}
+			tr:hover {
+				background-color: #f9f9f9;
+			}
+			a {
+				text-decoration: none;
+				color: #333333;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="container">
+				<h3>공지사항</h3>
+				<table>
+					<thead>
+						<tr>
+							<th style="width: 10%">NO.</th>
+							<th>제목</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td><a href="notice1.html">홈페이지 리뉴얼 안내</a></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>홈페이지 오류 안내</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>긴급 서버 점검 공지</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
+	</body>
+</html>
