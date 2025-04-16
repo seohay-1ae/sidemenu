@@ -74,7 +74,7 @@ a {
 	padding: 0.5rem 1rem 2rem 1rem;
 }
 
-/* 태블릿 이상에서 컨테이너 너비 제한 */
+/* 태블릿 이상에서 컨테이너 너비 제한  ~1024px*/
 @media (min-width: 48rem) {
 	.container {
 		max-width: 60rem; /* 960px */
@@ -82,7 +82,7 @@ a {
 	}
 }
 
-/* 데스크탑 이상에서 컨테이너 최대 너비 */
+/* 데스크탑 이상에서 컨테이너 최대 너비  1024px ~*/
 @media (min-width: 64rem) {
 	.container {
 		max-width: 75rem; /* 1200px */
