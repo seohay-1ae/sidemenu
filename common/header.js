@@ -43,7 +43,7 @@ const headerHTML = `
   }
   
   .auth_buttons {
-    margin-right:0.5rem;
+    margin-right:3rem;
   }
 
   .submenu {
