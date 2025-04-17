@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>공지사항</title>
+		<style>
+			body {
+				display: flex; /* body 자체에 flex , center, center 적용하면 있어서 푸터가 가로중앙+수직중앙 정렬됨 */
+				flex-direction: column; /* 수직 방향 레이아웃 */
+				min-height: 100vh;
+			}
+			/* 전체 레이아웃: 사이드바 + 콘텐츠 */
+			.layout {
+				display: flex;
+				min-height: 100vh; /* 푸터 밀림 방지 */
+				flex: 1;
+			}
+			/* 사이드바 */
+			#sidebar-container {
+				flex-shrink: 0; /* 줄어들지 않게 고정 */
+				width: 13vw;
+				min-width: 200px;
+				max-width: 600px;
+			}
+			.wrapper {
+				/* body에 정렬하면 전체 레이아웃 꼬이므로 wrapper로 감싸서 그 안에 컨텐츠를 넣고 정렬, footer는 wrapper 밖에 */
+				flex: 1; /* 남은 공간을 채움 (푸터 밀어내기 용도) */
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* 가운데 정렬 */
+				padding: 20px;
+			}
+			.container {
+				width: 80%;
+				margin: 100px auto;
+				background: #ffffff;
+				padding: 20px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+				border-radius: 10px;
+			}
+			.header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 20px;
+			}
+			.header h3 {
+				margin: 0;
+			}
+			.write-button {
+				color: white;
+				padding: 10px 20px;
+				font-size: 1rem;
+				border: none;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: bold;
+				background-color: #0a8b11;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				text-align: left;
+			}
+			th,
+			td {
+				padding: 12px;
+				border-bottom: 1px solid #dddddd;
+			}
+			th {
+				background-color: #f4f4f4;
+			}
+			tr:hover {
+				background-color: #f9f9f9;
+			}
+			a {
+				text-decoration: none;
+				color: #333333;
+			}
+			.delete-button {
+				color: white;
+				background-color: #d9534f;
+				border: none;
+				padding: 6px 10px;
+				border-radius: 6px;
+				font-size: 0.8rem;
+				cursor: pointer;
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="main-wrapper">
+			<div class="layout">
+				<!-- 사이드바를 삽입할 위치 -->
+				<div id="sidebar-container"></div>
+				<!-- 전체 콘텐츠를 감싸는 wrapper -->
+				<div class="wrapper">
+					<div class="container">
+						<div class="header">
+							<h3>공지사항</h3>
+							<a href="write_notice.html" class="write-button" id="writeBtn" style="display: none"
+								>글쓰기</a
+							>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th style="width: 10%">NO.</th>
+									<th>제목</th>
+								</tr>
+							</thead>
+							<tbody id="notice-list">
+								<!-- 기본 공지 3개 (항상 고정) -->
+								<tr>
+									<td>1</td>
+									<td><a href="../notice/notice1.html">홈페이지 리뉴얼 안내</a></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td><a href="#">홈페이지 오류 안내</a></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td><a href="#">긴급 서버 점검 공지</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- .container -->
+				</div>
+				<!-- .wrapper -->
+			</div>
+			<!-- .layout -->
+		</main>
+		<script>
+			// 사이드바 파일을 불러와서 div에 삽입
+			if (window.innerWidth >= 1024) {
+				fetch('admin_sidebar.html')
+					.then((response) => response.text())
+					.then((data) => {
+						document.getElementById('sidebar-container').innerHTML = data;
+
+						// "카테고리" 항목의 글씨 색을 바꾸는 JavaScript 코드
+						const projInfoLink = document.querySelector('.sidebar .admin_notice');
+						if (projInfoLink) {
+							projInfoLink.style.color = '#0a8b11'; // 원하는 색상으로 변경
+						}
+
+						// ✅ 아래부터는 반드시 fetch 완료 후 실행되어야 함
+						const user = JSON.parse(localStorage.getItem('loggedInUser'));
+						const isAdmin = user && user.id === 'admin';
+
+						if (isAdmin) {
+							document.getElementById('writeBtn').style.display = 'inline-block';
+						}
+
+						const notices = JSON.parse(localStorage.getItem('notices')) || [];
+						const noticeList = document.getElementById('notice-list');
+						const baseCount = noticeList.querySelectorAll('tr').length;
+
+						// 사용자 작성 공지를 최신순으로 렌더링
+						notices.reverse().forEach((notice, index) => {
+							const row = document.createElement('tr');
+
+							// 제목 + 삭제 버튼 (admin일 때만 표시)
+							const titleCell = document.createElement('td');
+							const link = document.createElement('a');
+							link.href = '#';
+							link.textContent = notice.title;
+							titleCell.appendChild(link);
+
+							if (isAdmin) {
+								const deleteBtn = document.createElement('button');
+								deleteBtn.className = 'delete-button';
+								deleteBtn.textContent = '삭제';
+								deleteBtn.onclick = () => {
+									if (confirm('정말 삭제하시겠습니까?')) {
+										deleteNotice(notices.length - 1 - index); // 원래 순서로 인덱스 복원
+									}
+								};
+								titleCell.appendChild(deleteBtn);
+							}
+
+							row.innerHTML = `<td>${baseCount + index + 1}</td>`;
+							row.appendChild(titleCell);
+							noticeList.appendChild(row);
+						});
+
+						// 삭제 함수
+						function deleteNotice(index) {
+							const originalNotices = JSON.parse(localStorage.getItem('notices')) || [];
+							originalNotices.splice(index, 1);
+							localStorage.setItem('notices', JSON.stringify(originalNotices));
+							alert('삭제되었습니다.');
+							location.reload();
+						}
+					})
+					.catch((error) => console.error('사이드바를 불러오는 데 실패했습니다:', error));
+			}
+		</script>
+	</body>
+</html>

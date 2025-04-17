@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>공지사항(관리자) 글쓰기</title>
+		<style>
+			body {
+				font-family: 'Arial', sans-serif;
+				background-color: #f4f4f4;
+				padding: 20px;
+			}
+			.container {
+				max-width: 600px;
+				margin: auto;
+				background: white;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				margin-top: 100px;
+			}
+			input,
+			textarea {
+				width: 100%;
+				padding: 10px;
+				margin: 10px 0;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				font-size: 1rem;
+			}
+			button {
+				color: white;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 8px;
+				font-weight: bold;
+				cursor: pointer;
+				background-color: #0a8b11;
+			}
+			.back-button {
+				color: white;
+				margin-top: 10px;
+				padding: 10px 20px;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: bold;
+				background-color: #0a8b11;
+				font-size: 0.9rem;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h2>공지사항 작성</h2>
+			<input type="text" id="title" placeholder="제목" />
+			<textarea id="content" rows="5" placeholder="내용"></textarea>
+			<button id="submit-notice">등록</button>
+			<a href="/admin/admin_notice.html" class="back-button">공지사항 목록으로</a>
+		</div>
+
+		<script>
+			$('#submit-notice').click(function () {
+				const title = $('#title').val().trim();
+				const content = $('#content').val().trim();
+				const date = new Date().toISOString().split('T')[0];
+
+				if (!title || !content) {
+					alert('모든 항목을 입력해주세요.');
+					return;
+				}
+
+				const notice = { title, content, date };
+				const notices = JSON.parse(localStorage.getItem('notices')) || [];
+
+				notices.push(notice);
+				localStorage.setItem('notices', JSON.stringify(notices));
+
+				alert('공지사항이 등록되었습니다.');
+				window.location.href = '/admin/admin_notice.html'; // 공지사항 목록으로 이동
+			});
+		</script>
+	</body>
+</html>

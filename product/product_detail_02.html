@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>영천햇살사과농장</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+			integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>
+			* {
+				box-sizing: border-box;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #fff;
+				color: #222;
+			}
+
+			.container {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+
+			.tag-wrapper {
+				text-align: center;
+				margin-bottom: 10px;
+			}
+
+			.tag {
+				display: inline-block;
+				background-color: #2b6653;
+				color: #fff;
+				padding: 5px 17px;
+				border-radius: 10px;
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+
+			.title {
+				font-size: 30px;
+				font-weight: bold;
+				text-align: center;
+				margin: 10px 0 30px;
+			}
+
+			.top-section {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+				justify-content: space-between;
+				align-items: flex-start;
+			}
+
+			.image-box {
+				flex: 1 1 300px;
+				max-width: 600px;
+				display: flex;
+				justify-content: center;
+			}
+
+			.image-box img {
+				width: 100%;
+				max-width: 100%;
+				aspect-ratio: 1 / 1;
+				object-fit: cover;
+				border-radius: 10px;
+			}
+
+			.info-box {
+				flex: 1 1 300px;
+				padding: 10px;
+			}
+
+			.info-box i {
+				margin-right: 6px;
+				color: #f83706c7;
+			}
+
+			.info-box .label {
+				font-size: 16px;
+				margin-top: 10px;
+			}
+
+			.info-box .value {
+				font-size: 20px;
+				font-weight: bold;
+			}
+
+			.divider {
+				border-top: 1px solid #ddd;
+				margin: 16px 0;
+			}
+
+			.label-sub {
+				font-size: 14px;
+				color: #666;
+				margin-top: 8px;
+			}
+
+			.value-sub {
+				font-size: 16px;
+				color: #333;
+				margin-bottom: 4px;
+			}
+
+			.select-box {
+				margin-top: 20px;
+				width: 100%;
+			}
+
+			select {
+				padding: 8px 10px;
+				border-radius: 6px;
+				border: 1px solid #ccc;
+				font-size: 16px;
+				width: 100%;
+			}
+
+			.btn-support {
+				margin-top: 15px;
+				width: 100%;
+				background-color: #2b6653;
+				color: #fff;
+				border: none;
+				padding: 12px;
+				border-radius: 6px;
+				font-size: 16px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+
+			.btn-support:hover {
+				background-color: #f72104;
+			}
+
+			.tabs {
+				margin-top: 40px;
+				border-top: 1px solid #ddd;
+				display: flex;
+				padding-top: 20px;
+				gap: 30px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			.tab-content {
+				display: none;
+				margin-top: 20px;
+			}
+
+			.tab-content.active {
+				display: block;
+			}
+
+			.tab-content img {
+				width: 100%;
+				max-width: 100%;
+				height: auto;
+				border-radius: 12px;
+			}
+
+			@media (max-width: 768px) {
+				.top-section {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.info-box {
+					width: 100%;
+				}
+
+				.image-box {
+					justify-content: center;
+					width: 100%;
+				}
+
+				.select-box select,
+				.btn-support {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="tag">과일</div>
+			<div class="title">따뜻한 햇살 속에서 자란 당도 1등급 사과</div>
+
+			<div class="top-section">
+				<div class="image-box">
+					<img src="../resources/product_detail_thumbnail_apple.png" alt="대표 이미지" />
+				</div>
+
+				<div class="info-box">
+					<div><i class="fa-solid fa-gift"></i><strong>펀딩제품</strong></div>
+					<div class="label">모인금액</div>
+					<div class="value">800,000원 <span style="font-size: 16px">80%</span></div>
+					<div class="label">남은시간</div>
+					<div class="value">27일</div>
+					<div class="divider"></div>
+					<div class="label-sub">목표금액</div>
+					<div class="value-sub">1,000,000원</div>
+
+					<div class="label-sub">펀딩기간</div>
+					<div class="value-sub">2025.04.04 ~ 2025.05.15</div>
+
+					<div class="label-sub">결제일자</div>
+					<div class="value-sub">목표금액 달성시 2025.05.15</div>
+
+					<div class="label-sub">예상출고일</div>
+					<div class="value-sub">2025.05.20</div>
+
+					<div class="select-box">
+						<select>
+							<option>-상품선택-</option>
+							<option>영천 가정용 사과(B급사과) 15,000원</option>
+							<option>영천 사과 실속형 35,000원</option>
+							<option>영천 사과 프리미엄 특급 55,000원</option>
+						</select>
+
+						<button class="btn-support" onclick="location.href='#'">후원하기</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="tabs">
+				<span onclick="showTab('detail')">스마트팜/상품 소개</span>
+				<span onclick="showTab('review')">후기</span>
+			</div>
+
+			<div class="tab-content active" id="detail">
+				<img src="../resources/product_detail_apple.png" alt="상세 이미지" />
+			</div>
+
+			<div class="tab-content" id="review">
+				<!-- 후기 탭 빈 페이지 -->
+			</div>
+		</div>
+
+		<script>
+			function showTab(tabId) {
+				const tabs = document.querySelectorAll('.tab-content');
+				tabs.forEach((tab) => tab.classList.remove('active'));
+				document.getElementById(tabId).classList.add('active');
+			}
+		</script>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
+	</body>
+</html>
