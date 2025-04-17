@@ -390,7 +390,7 @@ const headerHTML = `
         <a href="../notice/govt_support.html">정부지원정책</a>
       </div>
       <a href="../product/product_list.html">상품</a>
-      <a href="./experience/experience.html">견학/체험</a>
+      <a href="../experience/experience.html">견학/체험</a>
       <a href="../festival/festival_list.html">축제</a>
       <a href="../community/community.html">커뮤니티</a>
       <div class="navbar_burger_back">
@@ -558,7 +558,7 @@ function updateAuthButtons() {
 			logoutBtn.textContent = '로그아웃';
 			logoutBtn.onclick = () => {
 				localStorage.removeItem('loggedInUser');
-				location.reload();
+				window.location.href = '../mainpage/main.html';
 			};
 			authDiv.appendChild(logoutBtn);
 		}
