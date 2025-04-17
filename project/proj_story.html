@@ -210,7 +210,7 @@
 						<div class="input-data">
 							<div class="product-img">
 								<label for="productImg">썸네일 <span class="required">*</span></label>
-								<input type="file" id="productImg" accept="image /*" required />
+								<input type="file" id="productImg" accept="image/*" required />
 							</div>
 							<div class="project-summary">
 								<label for="projectSummary">프로젝트 요약 <span class="required">*</span></label>
@@ -264,16 +264,16 @@
 			document.querySelector('.next-button').addEventListener('click', function (e) {
 				e.preventDefault(); // 기본 이동 막기
 
-				const summary = document.getElementById('projectSummary').value.trim();
-				const story = document.getElementById('projectStory').value.trim();
-				const fileInput = document.getElementById('productImg');
-				const file = fileInput.files[0];
+				const projectSummary = document.getElementById('projectSummary').value.trim();
+				const projectStory = document.getElementById('projectStory').value.trim();
+				const projectImg = document.getElementById('productImg');
+				const file = projectImg.files[0];
 
-				if (!summary || !story || !file) {
+				if (!projectSummary || !projectStory || !file) {
 					let missing = [];
 					if (!file) missing.push('썸네일');
-					if (!summary) missing.push('프로젝트 요약');
-					if (!story) missing.push('프로젝트 스토리');
+					if (!projectSummary) missing.push('프로젝트 요약');
+					if (!projectStory) missing.push('프로젝트 스토리');
 					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
 					return;
 				}
@@ -291,9 +291,8 @@
 					const base64Image = reader.result;
 
 					const data = {
-						summary,
-						story,
-						image: base64Image,
+						projectSummary,
+						projectStory,
 					};
 
 					localStorage.setItem('projectStory', JSON.stringify(data));

@@ -273,10 +273,13 @@
 					</div>
 				</div>
 					<!-- 이전/다음 버튼 추가 -->
-							<div class="button-container">
-								<a href="./proj_story.html" class="button prev-button">이전</a>
-								<button type="button" class="button next-button">다음</button>
-							</div>
+					<div class="button-container">
+						<a href="./proj_story.html" class="button prev-button">이전</a>
+						<button type="button" class="button add-button">추가</button>
+						<button type="button" class="button next-button">다음</button>
+					</div>
+					<h3>추가된 리워드 목록</h3>
+<div id="rewardPreviewList" style="margin-bottom: 20px;"></div>
 						</div>
 					</div>
 				</div>
@@ -284,81 +287,120 @@
 		</div>
 	</div>
 	</main>
-		<script>
-			// 사이드바 파일을 불러와서 div에 삽입
-			if (window.innerWidth >= 1024) {
-				fetch('sidebar.html')
-					.then(response => response.text())
-					.then(data => {
-						document.getElementById('sidebar-container').innerHTML = data;
-
-        		// "카테고리" 항목의 글씨 색을 바꾸는 JavaScript 코드
-						const projInfoLink = document.querySelector('.sidebar .proj_reward');
+	<script>
+		if (window.innerWidth >= 1024) {
+			fetch('sidebar.html')
+				.then(response => response.text())
+				.then(data => {
+					document.getElementById('sidebar-container').innerHTML = data;
+					const projInfoLink = document.querySelector('.sidebar .proj_reward');
 					if (projInfoLink) {
-						projInfoLink.style.color = '#0a8b11';  // 원하는 색상으로 변경
-						}
-					})
-					.catch(error => console.error('사이드바를 불러오는 데 실패했습니다:', error));
-				}
-			
-			document.addEventListener('DOMContentLoaded', function () {
-			//금액 포맷
+						projInfoLink.style.color = '#0a8b11';
+					}
+				})
+				.catch(error => console.error('사이드바 로드 실패:', error));
+		}
+	
+		document.addEventListener('DOMContentLoaded', function () {
 			const amountInput = document.getElementById('rewardPrice');
-
-			amountInput.addEventListener('input', function (e) {
+	
+			// 숫자 입력 콤마 포맷
+			amountInput.addEventListener('input', function () {
 				const cursorPosition = this.selectionStart;
 				const originalLength = this.value.length;
-
-				// 숫자만 남기고
 				let value = this.value.replace(/[^0-9]/g, '');
-				if (value === '') {
+	
+				if (!value) {
 					this.value = '';
 					return;
 				}
-
-				// 천단위 콤마 추가
+	
 				this.value = Number(value).toLocaleString('ko-KR');
-
-				// 커서 위치 보정
 				const newLength = this.value.length;
 				this.selectionEnd = cursorPosition + (newLength - originalLength);
-			})
-		});
-
-			//필수값 전부 입력해야 넘어가게
-			document.querySelector('.next-button').addEventListener('click', function(e) {
-				e.preventDefault(); // 기본 이동 막기
-				
-				const price = document.getElementById('rewardPrice').value.replace(/,/g, '');
-				const name = document.getElementById('rewardName').value.trim();
+			});
+	
+			function renderRewardPreview() {
+				const previewList = document.getElementById('rewardPreviewList');
+				const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
+	
+				if (rewards.length === 0) {
+					previewList.innerHTML = '<p>추가된 리워드가 없습니다.</p>';
+					return;
+				}
+	
+				previewList.innerHTML = rewards.map((reward, index) => `
+					<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 5px; position: relative; border-radius: 6px;">
+						<strong>${reward.rewardName}</strong> - ${Number(reward.price).toLocaleString('ko-KR')}원 
+						(${reward.deliveryType === 'post' ? '택배' : '메일 발송'})
+						<button onclick="deleteReward(${index})"
+							style="position: absolute; right: 10px; top: 10px; border: none; background: red; color: white; border-radius: 3px; cursor: pointer;">X</button>
+					</div>
+				`).join('');
+			}
+	
+			window.deleteReward = function (index) {
+				const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
+				rewards.splice(index, 1);
+				localStorage.setItem('projectRewards', JSON.stringify(rewards));
+				renderRewardPreview();
+			};
+	
+			document.querySelector('.add-button').addEventListener('click', function () {
+				const priceRaw = document.getElementById('rewardPrice').value;
+				const price = priceRaw.replace(/,/g, '');
+				const rewardName = document.getElementById('rewardName').value.trim();
 				const deliveryType = document.querySelector('input[name="deliveryType"]:checked');
-				
-				if (!price || !name || !deliveryType) {
-					let missing = [];
+	
+				if (!price || !rewardName || !deliveryType) {
+					const missing = [];
 					if (!price) missing.push('금액');
-					if (!name) missing.push('리워드명');
+					if (!rewardName) missing.push('리워드명');
 					if (!deliveryType) missing.push('배송여부');
 					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
 					return;
 				}
-
-				//저장
-					const data = {
-						price,
-						name,
-						deliveryType: deliveryType.value
-					};
-
-					localStorage.setItem('projectReward', JSON.stringify(data));
-
-					// 확인용 콘솔 출력 (디버깅용)
-					console.log('저장된 리워드 데이터:', data);
-
-					// 유효성 통과 → 다음 페이지로 이동
-					window.location.href = './proj_maker.html'; // 다음 페이지 경로로 교체
-				});
-
-		</script>
+	
+				const newReward = {
+					price,
+					rewardName,
+					deliveryType: deliveryType.value,
+				};
+	
+				const existingData = JSON.parse(localStorage.getItem('projectRewards')) || [];
+				if (existingData.some(r => r.rewardName === rewardName)) {
+					alert('이미 동일한 이름의 리워드가 존재합니다.');
+					return;
+				}
+	
+				existingData.push(newReward);
+				localStorage.setItem('projectRewards', JSON.stringify(existingData));
+				alert('리워드가 추가되었습니다.');
+	
+				document.getElementById('rewardPrice').value = '';
+				document.getElementById('rewardName').value = '';
+				document.querySelectorAll('input[name="deliveryType"]').forEach(r => r.checked = false);
+	
+				renderRewardPreview();
+			});
+	
+			// 다음 페이지로 이동
+			document.querySelector('.next-button').addEventListener('click', function (e) {
+				e.preventDefault();
+				const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
+				if (rewards.length === 0) {
+					alert('최소 하나 이상의 리워드를 추가해주세요.');
+					return;
+				}
+				window.location.href = './proj_maker.html';
+			});
+	
+			// 미리보기 표시
+			renderRewardPreview();
+		});
+	</script>
+	
+	
 
 		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
 		<script defer src="../common/header3.js"></script>

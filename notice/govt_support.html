@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>정부지원정책</title>
+		<style>
+			/* 페이지 제목 스타일 */
+			h3 {
+				font-size: 25px;
+				font-weight: bold;
+				text-align: left;
+				margin-bottom: 20px;
+				color: #222;
+			}
+
+			/* 페이지 설명 문구 스타일 */
+			body > p {
+				font-size: 16px;
+				text-align: left;
+				color: #666;
+				margin-bottom: 60px;
+			}
+
+			.card-container {
+				display: flex;
+				flex-wrap: wrap; /* 카드가 많아지면 다음 줄로 넘어감 */
+				gap: 20px; /* 카드 간 간격 */
+				justify-content: center; /* 중앙 정렬 */
+				max-width: 1600px; /* 컨테이너 최대 너비 */
+				margin: 0 auto; /* 중앙 정렬 */
+			}
+
+			/* 네모 카드 스타일 */
+			.supportfund-card {
+				display: block;
+				text-decoration: none;
+				width: 350px;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				background-color: #ffffff; /* 흰색 배경 */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				transition: transform 0.2s;
+				background-color: #f5f5f5;
+			}
+
+			/* 카드 호버 효과 */
+			.supportfund-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+			}
+
+			/* 카드 내부 내용 스타일 */
+			.card-content {
+				padding: 40px;
+			}
+
+			/* 지원자금 타이틀 스타일 */
+			.card-content h2 {
+				font-size: 20px;
+				font-weight: bold;
+				color: #333;
+				margin-bottom: 30px;
+				white-space: nowrap; /* 제목 한 줄 표시: 줄바꿈 방지 */
+			}
+
+			/* 접수기간 텍스트 스타일 */
+			.card-content p {
+				font-size: 16px;
+				color: #666;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3>정부지원정책 신청하기</h3>
+		<p>정부에서 지원하는 농촌지원정책을 확인하세요.</p>
+		<div class="card-container">
+			<a
+				href="https://www.greendaero.go.kr/svc/rfph/cpif/front/frtHome.do"
+				class="supportfund-card"
+			>
+				<div class="card-content">
+					<h2>귀농창업자금</h2>
+					<p>접수기간: 자금 소진시까지</p>
+					<p>신청자격: 사이트에서 확인하세요</p>
+				</div>
+			</a>
+
+			<a href="https://www.rda.go.kr/young/content/custom0201.do" class="supportfund-card">
+				<div class="card-content">
+					<h2>청년농업인 영농정착 지원사업</h2>
+					<p>접수기간: 자금 소진시까지</p>
+					<p>신청자격: 사이트에서 확인하세요</p>
+				</div>
+			</a>
+
+			<a
+				href="https://www.smartfarmkorea.net/contents/view.do?menuId=M1102010103"
+				class="supportfund-card"
+			>
+				<div class="card-content">
+					<h2>스마트팜 종합자금</h2>
+					<p>접수기간: 자금 소진시까지</p>
+					<p>신청자격: 사이트에서 확인하세요</p>
+				</div>
+			</a>
+
+			<a
+				href="https://www.smartfarmkorea.net/charge/supBusinessList.do?menuId=M11020301"
+				class="supportfund-card"
+			>
+				<div class="card-content">
+					<h2>스마트팜 보조지원사업</h2>
+					<p>접수기간: 자금 소진시까지</p>
+					<p>신청자격: 사이트에서 확인하세요</p>
+				</div>
+			</a>
+		</div>
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
+	</body>
+	<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+	<script defer src="../common/header3.js"></script>
+	<script defer src="../common/footer2.js"></script>
+</html>

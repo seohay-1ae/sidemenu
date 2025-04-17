@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<link rel="stylesheet" href="../common/styles.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>mypage</title>
+		<style>
+			/* 제목 섹션 */
+			h3 {
+				font-size: 25px;
+				font-weight: bold;
+				text-align: left;
+				margin-bottom: 60px;
+				color: #222;
+			}
+
+			/* 전체 컨테이너 */
+			.mypage-container {
+				display: flex;
+				gap: 20px;
+				padding: 20px;
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			/* 좌측 프로필 섹션 */
+			.profile-section {
+				width: 200px;
+				padding: 20px;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-color: #f9f9f9;
+			}
+
+			/* 프로필 이미지 */
+			.profile-image {
+				width: 100px;
+				height: 100px;
+				border-radius: 1%;
+				margin-bottom: 15px;
+			}
+
+			/* 프로필 이름과 이메일 */
+			.profile-name {
+				font-size: 18px;
+				font-weight: bold;
+				margin: 5px 0;
+				color: #333;
+			}
+
+			.profile-email {
+				font-size: 14px;
+				color: #666;
+				margin-bottom: 20px;
+			}
+
+			/* 로그아웃 버튼 */
+			.logout-button {
+				background-color: #007bff;
+				border: none;
+				border-radius: 5px;
+				padding: 10px 10px;
+				color: white;
+				font-size: 14px;
+				cursor: pointer;
+				width: 100%;
+				text-align: center;
+				text-decoration: none;
+			}
+
+			.logout-button:hover {
+				background-color: #0056b3;
+			}
+
+			/* 우측 테이블 섹션 */
+			.tables-section {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
+
+			/* 테이블 컨테이너 */
+			.table-container {
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				padding: 15px;
+				background-color: #f9f9f9;
+			}
+
+			/* 테이블 제목 */
+			.table-container h3 {
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 10px;
+				color: #333;
+			}
+
+			/* 테이블 스타일 */
+			.table-container table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			.table-container th,
+			.table-container td {
+				padding: 10px;
+				text-align: left;
+				font-size: 14px;
+				color: #333;
+			}
+
+			.table-container th {
+				background-color: #f5f5f5;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.table-container td {
+				border-bottom: 1px solid #ddd;
+			}
+
+			.table-container tbody tr:last-child td {
+				border-bottom: none;
+			}
+
+			/* 처리 중 텍스트 스타일 */
+			.table-container td:last-child {
+				color: #007bff; /* "처리 중" 텍스트를 파란색으로 */
+			}
+			.review-button {
+				background-color: transparent;
+				border: 1px solid #007bff;
+				border-radius: 5px;
+				padding: 5px 10px;
+				color: #007bff;
+				font-size: 12px;
+				text-decoration: none;
+				cursor: pointer;
+				float: right;
+				margin-left: 0;
+			}
+
+			/* 후기 작성 버튼 호버 효과 */
+			.review-button:hover {
+				background-color: #007bff;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>마이페이지</h3>
+		<div class="mypage-container">
+			<!-- 좌측 프로필 섹션 -->
+			<div class="profile-section">
+				<img src="../resources/profile.png" alt="Profile Image" class="profile-image" />
+				<p id="profile-name" class="profile-name"></p>
+				<p id="profile-tel" class="profile-tel"></p>
+				<button class="logout-button">로그아웃</button>
+			</div>
+
+			<!-- 우측 테이블 섹션 -->
+			<div class="tables-section">
+				<!-- 구매내역정보 테이블 -->
+				<div class="table-container">
+					<h3>구매내역 정보</h3>
+					<table class="purchase-table">
+						<thead>
+							<tr>
+								<th>날짜</th>
+								<th>상품이름</th>
+								<th>총 금액</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+
+				<!-- 펀딩신청정보 테이블 -->
+				<div class="table-container">
+					<h3>펀딩신청정보</h3>
+					<table class="funding-table">
+						<thead>
+							<tr>
+								<th>날짜</th>
+								<th>상품이름</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>yyyy-mm-dd</td>
+								<td>#####</td>
+								<td>처리 중</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+				const userId = loggedInUser?.id;
+
+				function formatPhoneNumber(phone) {
+					if (phone.length === 11) {
+						return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+					} else if (phone.length === 10) {
+						return phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+					} else {
+						return phone;
+					}
+				}
+
+				// 유저 프로필 표시
+				if (loggedInUser) {
+					$('#profile-name').text(loggedInUser.name);
+					$('#profile-tel').text(formatPhoneNumber(loggedInUser.tel));
+				} else {
+					$('#profile-name').text('로그인 필요');
+					$('#profile-tel').text('-');
+				}
+
+				// 구매내역
+				const history = JSON.parse(localStorage.getItem('supportHistory')) || {};
+				const userHistory = history[userId] || [];
+
+				const tbody = $('.table-container').eq(0).find('tbody'); // 첫 번째 테이블
+				tbody.empty(); // 기존 비우기
+
+				if (userHistory.length === 0) {
+					tbody.append(
+						`<tr><td colspan="3" style="text-align:center;">구매내역이 없습니다.</td></tr>`,
+					);
+				} else {
+					userHistory.forEach((item) => {
+						const tdContent = item.reviewWritten
+							? '<span style="color: gray;">작성 완료</span>'
+							: `<a href="./review.html" class="review-button">후기 작성</a>`;
+						const row = `
+						<tr>
+							<td>${item.supportDate}</td>
+							<td>${item.product.title}</td>
+							<td>${Number(item.finalAmount).toLocaleString()}원 ${tdContent}</td>
+						</tr>
+					`;
+						tbody.append(row);
+					});
+				}
+
+				// 펀딩신청정보
+				const funding = JSON.parse(localStorage.getItem('final_project_data')) || null;
+
+				const tbody2 = $('.table-container').eq(1).find('tbody'); // 두 번째 테이블
+				tbody2.empty(); // 👉 이 테이블을 비워야 합니다
+
+				if (!funding) {
+					tbody2.append(
+						`<tr><td colspan="3" style="text-align:center;">펀딩신청이 없습니다.</td></tr>`,
+					);
+				} else {
+					const row = `
+		<tr>
+			<td>${funding.applyDate}</td>
+			<td>${funding.projectName || '(제목 없음)'}</td>
+			<td>처리 중</td>
+		</tr>
+	`;
+					tbody2.append(row);
+				}
+
+				// 로그아웃 이벤트
+				$('.logout-button').click(function () {
+					localStorage.removeItem('loggedInUser');
+					alert('로그아웃 되었습니다.');
+					window.location.href = '../mainpage/main.html';
+				});
+			});
+		</script>
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
+	</body>
+</html>

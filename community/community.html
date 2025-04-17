@@ -199,7 +199,7 @@
 			<div class="container">
 				<div class="header">
 					<h3>커뮤니티 게시판</h3>
-					<a href="/community/write.html" class="write-button">글쓰기</a>
+					<a href="./write.html" class="write-button">글쓰기</a>
 				</div>
 
 				<!-- 검색창 -->
@@ -309,7 +309,7 @@
 						if (isMobile) {
 							$('.card-list').append(`
 								<div class="card">
-									<h4><a href="post.html?index=${index}">${post.title}</a></h4>
+									<h4><a href="./post.html?index=${index}">${post.title}</a></h4>
 									<p><strong>내용:</strong> ${post.content || ''}</p>
 									<p><strong>작성자:</strong> ${post.author}</p>
 									<p><strong>작성일:</strong> ${post.date}</p>
@@ -322,7 +322,7 @@
 				// 게시글 리스트에서 각 행 클릭 시 해당 게시글로 이동
 				$(document).on('click', '.clickable-row', function () {
 					const index = $(this).data('index');
-					window.location.href = `post.html?index=${index}`;
+					window.location.href = `./post.html?index=${index}`;
 				});
 		
 				// 검색 필터링 함수

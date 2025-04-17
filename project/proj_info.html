@@ -228,7 +228,7 @@
 					</div>
 					<div class="thumbnail">
 						<label for="thumbnailInput">대표이미지 <span class="required">*</span></label>
-						<input type="file" id="thumbnailInput" accept="image /*" required />
+						<input type="file" id="thumbnailInput" accept="image/*" required />
 					</div>
 					<div class="project-startday">
 						<label for="startDate">프로젝트 시작일 <span class="required">*</span></label>
@@ -338,22 +338,22 @@
 			document.querySelector('.next-button').addEventListener('click', function(e) {
 				e.preventDefault(); // 기본 이동 막기
 				
-				const category = document.getElementById('categorySelect').value;
-				const name = document.getElementById('projectName').value.trim();
-				const start = document.getElementById('startDate').value;
-				const end = document.getElementById('dueDate').value;
-				const amount = document.getElementById('targetAmount').value.replace(/,/g, '');
-				const fileInput = document.getElementById('thumbnailInput');
-				const file = fileInput.files[0];
+				const projectCategory = document.getElementById('categorySelect').value;
+				const projectName = document.getElementById('projectName').value.trim();
+				const projectStartDay = document.getElementById('startDate').value;
+				const projectEndDay = document.getElementById('dueDate').value;
+				const targetAmount = document.getElementById('targetAmount').value.replace(/,/g, '');
+				const projectThumbnail = document.getElementById('thumbnailInput');
+				const file = projectThumbnail.files[0];
 				
-				if (!category || category === '카테고리 선택' || !name || !start || !end || !amount || !file) {
+				if (!projectCategory || projectCategory === '카테고리 선택' || !projectName || !projectStartDay || !projectEndDay || !targetAmount || !file) {
 					let missing = [];
-					if (!category) missing.push('카테고리');
-					if (!name) missing.push('프로젝트 이름');
+					if (!projectCategory) missing.push('카테고리');
+					if (!projectName) missing.push('프로젝트 이름');
 					if (!file) missing.push('대표이미지');
-					if (!start) missing.push('프로젝트 시작일');
-					if (!end) missing.push('프로젝트 종료일');
-					if (!amount) missing.push('목표금액');
+					if (!projectStartDay) missing.push('프로젝트 시작일');
+					if (!projectEndDay) missing.push('프로젝트 종료일');
+					if (!targetAmount) missing.push('목표금액');
 					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
 					return;
 				}
@@ -370,12 +370,11 @@
 					const base64Image = reader.result;
 
 					const data = {
-						category,
-						name,
-						start,
-						end,
-						amount,
-						image: base64Image
+						projectCategory,
+						projectName,
+						projectStartDay,
+						projectEndDay,
+						targetAmount,
 					};
 
 					localStorage.setItem('projectInfo', JSON.stringify(data));

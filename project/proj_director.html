@@ -336,72 +336,92 @@
 			document.querySelector('.next-button').addEventListener('click', function (e) {
 				e.preventDefault(); // 기본 이동 막기
 
-				const name = document.getElementById('directorName').value.trim();
-				const mail = document.getElementById('directorEmail').value.trim();
-				const info = document.getElementById('directorInfo').value.trim();
-				const invoice = document.getElementById('invoiceEmail').value.trim();
-				const bank = document.getElementById('bankInfo').value.trim();
-				const account = document.getElementById('accountNumber').value.trim();
+				const directorName = document.getElementById('directorName').value.trim();
+				const directorEmail = document.getElementById('directorEmail').value.trim();
+				const directorInfo = document.getElementById('directorInfo').value.trim();
+				const invoiceEmail = document.getElementById('invoiceEmail').value.trim();
+				const bankName = document.getElementById('bankInfo').value.trim();
+				const accountNumber = document.getElementById('accountNumber').value.trim();
 				const accountName = document.getElementById('accountName').value.trim();
-				const fileInput = document.getElementById('bankbookInput');
-				const file = fileInput.files[0];
+				const bankbookImg = document.getElementById('bankbookInput');
+				const file = bankbookImg.files[0];
 
-				if (!name || !mail || !info || !bank || !account || !accountName || !file) {
+				if (
+					!directorName ||
+					!directorEmail ||
+					!directorInfo ||
+					!bankName ||
+					!accountNumber ||
+					!accountName ||
+					!file
+				) {
 					let missing = [];
-					if (!name) missing.push('대표자명');
-					if (!mail) missing.push('대표자 이메일');
-					if (!info) missing.push('주민등록번호 or 사업자번호');
-					if (!bank) missing.push('은행명');
-					if (!account) missing.push('계좌번호');
+					if (!directorName) missing.push('대표자명');
+					if (!directorEmail) missing.push('대표자 이메일');
+					if (!directorInfo) missing.push('주민등록번호 or 사업자번호');
+					if (!bankName) missing.push('은행명');
+					if (!accountNumber) missing.push('계좌번호');
 					if (!accountName) missing.push('예금주명');
 					if (!file) missing.push('통장사본');
 					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
 					return;
 				}
 
-				//이미지 파일 형식
+				// 이미지 파일 형식 검사
 				const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 				if (!allowedTypes.includes(file.type)) {
 					alert('JPG, PNG, WEBP, GIF 형식의 이미지만 업로드 가능합니다.');
 					return;
 				}
 
-				//이메일 유효성 검사
+				// 이메일 유효성 검사
 				const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-				if (!emailRegex.test(mail)) {
+				if (!emailRegex.test(directorEmail)) {
 					alert('올바른 이메일 형식이 아닙니다.');
 					return;
 				}
-				if (invoice && !emailRegex.test(invoice)) {
+				if (invoiceEmail && !emailRegex.test(invoiceEmail)) {
 					alert('세금계산서 이메일이 올바르지 않습니다.');
 					return;
 				}
 
-				//이미지 처리 및 저장
+				// 이미지 처리 및 저장
 				const reader = new FileReader();
 				reader.onload = function () {
 					const base64Image = reader.result;
 
 					const data = {
-						name,
-						mail,
-						info,
-						invoice,
-						bank,
-						account,
+						directorName,
+						directorEmail,
+						directorInfo,
+						invoiceEmail,
+						bankName,
+						accountNumber,
 						accountName,
-						image: base64Image,
 					};
 
 					localStorage.setItem('projectDirector', JSON.stringify(data));
-
-					// 확인용 콘솔 출력 (디버깅용)
 					console.log('저장된 대표자 데이터:', data);
 
-					// 유효성 통과 → 다음 페이지로 이동
-					window.location.href = './create_proj.html'; // 다음 페이지 경로로 교체
+					window.location.href = './proj_policy.html';
 				};
 				reader.readAsDataURL(file);
+			});
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')) || {};
+
+				const directorNameInput = document.getElementById('directorName');
+				const accountNameInput = document.getElementById('accountName');
+
+				if (loggedInUser.name) {
+					directorNameInput.value = loggedInUser.name;
+					accountNameInput.value = loggedInUser.name;
+					directorNameInput.readOnly = true;
+					accountNameInput.readOnly = true;
+					directorNameInput.style.backgroundColor = '#f0f0f0';
+					accountNameInput.style.backgroundColor = '#f0f0f0';
+				}
 			});
 		</script>
 

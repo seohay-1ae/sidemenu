@@ -335,7 +335,7 @@ const headerHTML = `
   <!-- 모바일버전 -->
 <div class="navbar_main" id="mobile">
   <div class="nav_logo">
-    <a href="../mainpage/main_public.html"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
+    <a href="../mainpage/main.html"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
   </div>
   <div class="navbar_burger">
   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -351,11 +351,11 @@ const headerHTML = `
       <a href="#" id="mobile-notice">공지사항 ▾</a>
       <div class="submenu">
         <a href="../notice/notice.html">공지사항</a>
-        <a href="#">브랜드스토리</a>
-        <a href="#">정부지원정책</a>
+        <a href="../notice/brandstory.html">브랜드스토리</a>
+        <a href="../notice/govt_support.html">정부지원정책</a>
       </div>
       <a href="../product/product_list.html">상품</a>
-      <a href="#">견학/체험</a>
+      <a href="../experience/experience.html">견학/체험</a>
       <a href="../festival/festival_list.html">축제</a>
       <a href="../community/community.html">커뮤니티</a>
       <div class="navbar_burger_back">
@@ -370,7 +370,7 @@ const headerHTML = `
   <!-- 태블릿버전 -->
 <div class="navbar_main" id="tablet">
   <div class="nav_logo">
-    <a href="../mainpage/main_public.html"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
+    <a href="../mainpage/main.html"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
   </div>
   <div class="auth_buttons">
     <button onclick="location.href='../login_join/login.html'">로그인 / 회원가입</button>
@@ -386,11 +386,11 @@ const headerHTML = `
       <a href="#" id="tablet-notice">공지사항 ▾</a>
       <div class="submenu">
         <a href="../notice/notice.html">공지사항</a>
-        <a href="#">브랜드스토리</a>
-        <a href="#">정부지원정책</a>
+        <a href="../notice/brandstory.html">브랜드스토리</a>
+        <a href="../notice/govt_support.html">정부지원정책</a>
       </div>
       <a href="../product/product_list.html">상품</a>
-      <a href="#">견학/체험</a>
+      <a href="./experience/experience.html">견학/체험</a>
       <a href="../festival/festival_list.html">축제</a>
       <a href="../community/community.html">커뮤니티</a>
       <div class="navbar_burger_back">
@@ -405,17 +405,17 @@ const headerHTML = `
 <!-- PC 버전 -->
 <div class="navbar_main" id="pc">
   <div class="nav_logo">
-    <a href="../mainpage/main_public.html"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
+    <a href="../mainpage/main.html"><img src="../resources/logo.png" alt="SIDEMENU 로고" class="logo" /></a>
   </div>
   <div class="navbar_links">
     <a href="#" id="pc-notice">&nbsp공지사항 ▾&nbsp</a>
     <div class="submenu">
         <a href="../notice/notice.html">&nbsp&nbsp&nbsp&nbsp공지사항</a>
-        <a href="#">&nbsp브랜드스토리</a>
-        <a href="#">&nbsp정부지원정책</a>
+        <a href="../notice/brandstory.html">&nbsp브랜드스토리</a>
+        <a href="../notice/govt_support.html">&nbsp정부지원정책</a>
     </div>
     <a href="../product/product_list.html">&nbsp상품&nbsp&nbsp</a>
-    <a href="#">&nbsp견학/체험&nbsp&nbsp</a>
+    <a href="../experience/experience.html">&nbsp견학/체험&nbsp&nbsp</a>
     <a href="../festival/festival_list.html">&nbsp축제&nbsp&nbsp</a>
     <a href="../community/community.html">&nbsp커뮤니티&nbsp&nbsp</a>
   </div>

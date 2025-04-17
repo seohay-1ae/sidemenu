@@ -62,11 +62,6 @@ img {
 	height: auto;
 }
 
-a {
-	text-decoration: none;
-	color: inherit;
-}
-
 /* 기본 레이아웃 */
 .container {
 	max-width: 100%;

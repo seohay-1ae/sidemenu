@@ -307,20 +307,20 @@
 			document.querySelector('.next-button').addEventListener('click', function (e) {
 				e.preventDefault(); // 기본 이동 막기
 
-				const name = document.getElementById('makerName').value.trim();
-				const fileInput = document.getElementById('profileInput');
-				const file = fileInput.files[0];
-				const mail = document.getElementById('makerEmail').value.trim();
-				const tel = document.getElementById('makerTel').value.trim();
-				const page = document.getElementById('makerPage').value.trim();
-				const sns = document.getElementById('makerSns').value.trim();
+				const makerName = document.getElementById('makerName').value.trim();
+				const profileImg = document.getElementById('profileInput');
+				const file = profileImg.files[0];
+				const makerMail = document.getElementById('makerEmail').value.trim();
+				const makerTel = document.getElementById('makerTel').value.trim();
+				const makerPage = document.getElementById('makerPage').value.trim();
+				const makerSns = document.getElementById('makerSns').value.trim();
 
-				if (!name || !file || !mail || !tel) {
+				if (!makerName || !file || !makerMail || !makerTel) {
 					let missing = [];
-					if (!name) missing.push('메이커명');
+					if (!makerName) missing.push('메이커명');
 					if (!file) missing.push('프로필 이미지');
-					if (!mail) missing.push('이메일');
-					if (!tel) missing.push('전화번호');
+					if (!makerMail) missing.push('이메일');
+					if (!makerTel) missing.push('전화번호');
 					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
 					return;
 				}
@@ -334,14 +334,14 @@
 
 				//이메일 유효성 검사
 				const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-				if (!emailRegex.test(mail)) {
+				if (!emailRegex.test(makerMail)) {
 					alert('올바른 이메일 형식이 아닙니다.');
 					return;
 				}
 
 				//전화번호 유효성 검사
 				const telRegex = /^\d{3}-\d{4}-\d{4}$/;
-				if (!telRegex.test(tel)) {
+				if (!telRegex.test(makerTel)) {
 					alert('전화번호 형식이 올바르지 않습니다. 예: 010-1234-5678');
 					return;
 				}
@@ -352,12 +352,11 @@
 					const base64Image = reader.result;
 
 					const data = {
-						name,
-						image: base64Image,
-						mail,
-						tel,
-						page,
-						sns,
+						makerName,
+						makerMail,
+						makerTel,
+						makerPage,
+						makerSns,
 					};
 
 					localStorage.setItem('projectMaker', JSON.stringify(data));

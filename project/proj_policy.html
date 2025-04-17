@@ -500,6 +500,14 @@
 			</div>
 		</main>
 		<script>
+			// 🔧 이미지 필드 제거 유틸 함수
+			function removeImageFields(obj, fields = ['thumbnail', 'productImg', 'profileInput', 'bankbookInput']) {
+				const newObj = { ...obj };
+				fields.forEach(field => delete newObj[field]);
+				return newObj;
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
 			// 사이드바 파일을 불러와서 div에 삽입
 			if (window.innerWidth >= 1024) {
 				fetch('sidebar.html')
@@ -525,10 +533,36 @@
 					return;
 				}
 
-				// ✅ 알림 띄우고, 확인 누르면 이동
+
+
+// 🗂 localStorage에서 데이터 가져오기
+const projInfo = JSON.parse(localStorage.getItem('projectInfo') || '{}');
+const projStory = JSON.parse(localStorage.getItem('projectStory') || '{}');
+const projRewards = JSON.parse(localStorage.getItem('projectRewards') || '[]');
+const projMaker = JSON.parse(localStorage.getItem('projectMaker') || '{}');
+const projDirector = JSON.parse(localStorage.getItem('projectDirector') || '{}');
+
+// 📅 날짜 생성
+const today = new Date();
+const formattedDate = today.toISOString().split('T')[0];
+
+// 📦 최종 저장용 데이터 (이미지 제외!)
+const finalProjectData = {
+	...removeImageFields(projInfo),
+	...removeImageFields(projStory),
+	...removeImageFields(projMaker),
+	...removeImageFields(projDirector),
+	projectRewards: projRewards.map(({ name, price, deliveryType }) => ({ name, price, deliveryType })),
+	applyDate: formattedDate,
+};
+
+// 💾 최종 데이터 저장
+localStorage.setItem('final_project_data', JSON.stringify(finalProjectData));
+
 				alert('신청이 완료되었습니다.');
-				window.location.href = './proj_reward.html';
+				window.location.href = '../mypage/mypage.html';
 			});
+		});
 		</script>
 
 		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->

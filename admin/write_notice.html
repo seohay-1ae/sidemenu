@@ -57,8 +57,8 @@
 			<h2>공지사항 작성</h2>
 			<input type="text" id="title" placeholder="제목" />
 			<textarea id="content" rows="5" placeholder="내용"></textarea>
+			<a href="./admin_notice.html" class="back-button">공지사항 목록으로</a>
 			<button id="submit-notice">등록</button>
-			<a href="/admin/admin_notice.html" class="back-button">공지사항 목록으로</a>
 		</div>
 
 		<script>
@@ -79,7 +79,7 @@
 				localStorage.setItem('notices', JSON.stringify(notices));
 
 				alert('공지사항이 등록되었습니다.');
-				window.location.href = '/admin/admin_notice.html'; // 공지사항 목록으로 이동
+				window.location.href = './admin_notice.html'; // 공지사항 목록으로 이동
 			});
 		</script>
 	</body>
