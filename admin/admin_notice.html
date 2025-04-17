@@ -81,9 +81,6 @@
 				cursor: pointer;
 				margin-left: 10px;
 			}
-			.active-link {
-				color: #0a8b11 !important; /* 활성화된 항목 색상 */
-			}
 		</style>
 	</head>
 	<body>
@@ -125,18 +122,12 @@
 				</div>
 			</div>
 		</main>
-		<script src="./admin_sidebar.js"></script>
-		<script>
-			// 사이드바 로드 완료 후, 페이지 내 특정 항목 스타일 변경
-			document.addEventListener('DOMContentLoaded', function () {
-				// 사이드바 HTML이 로드된 후 활성화할 항목 선택
-				const adminCategory = document.querySelector('.sidebar .admin_notice');
-				if (adminCategory) {
-					adminCategory.classList.add('active-link'); // "공지사항 등록" 항목 활성화
-				}
-			});
 
-			// ✅ 공지사항 목록 렌더링
+		<!-- admin_sidebar.js 로드 -->
+		<script src="./admin_sidebar.js"></script>
+
+		<script>
+			// 공지사항 목록 렌더링
 			const notices = JSON.parse(localStorage.getItem('notices')) || [];
 			const noticeList = document.getElementById('notice-list');
 			const baseCount = noticeList.querySelectorAll('tr').length;

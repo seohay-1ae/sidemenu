@@ -541,23 +541,31 @@ const projStory = JSON.parse(localStorage.getItem('projectStory') || '{}');
 const projRewards = JSON.parse(localStorage.getItem('projectRewards') || '[]');
 const projMaker = JSON.parse(localStorage.getItem('projectMaker') || '{}');
 const projDirector = JSON.parse(localStorage.getItem('projectDirector') || '{}');
+const regId = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
 
 // 📅 날짜 생성
 const today = new Date();
-const formattedDate = today.toISOString().split('T')[0];
+			today.setHours(today.getHours() + 9); // UTC 기준 시간에 9시간 더해서 한국 시간으로 변환
+			const formattedDate = today.toISOString().split('T')[0]; // 날짜 부분만 추출 (yyyy-mm-dd)
 
 // 📦 최종 저장용 데이터 (이미지 제외!)
-const finalProjectData = {
+const newProject = {
 	...removeImageFields(projInfo),
 	...removeImageFields(projStory),
 	...removeImageFields(projMaker),
 	...removeImageFields(projDirector),
+	...removeImageFields(regId),
 	projectRewards: projRewards.map(({ name, price, deliveryType }) => ({ name, price, deliveryType })),
 	applyDate: formattedDate,
+	status: '대기' // ✅ 기본 상태 추가
 };
 
-// 💾 최종 데이터 저장
-localStorage.setItem('final_project_data', JSON.stringify(finalProjectData));
+// 🔄 기존 데이터 불러오고 새 항목 추가
+const existingProjects = JSON.parse(localStorage.getItem('final_project_data')) || [];
+existingProjects.push(newProject);
+
+// 💾 저장
+localStorage.setItem('final_project_data', JSON.stringify(existingProjects));
 
 				alert('신청이 완료되었습니다.');
 				window.location.href = '../mypage/mypage.html';

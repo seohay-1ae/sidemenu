@@ -169,6 +169,17 @@
 				height: auto;
 				border-radius: 12px;
 			}
+			.review {
+				border: 1px solid #eee;
+				border-radius: 8px;
+				padding: 12px 16px;
+				margin-bottom: 12px;
+				background-color: #f9f9f9;
+			}
+			.review h4 {
+				margin: 0 0 6px;
+				color: #2b6653;
+			}
 
 			@media (max-width: 768px) {
 				.top-section {
@@ -244,11 +255,13 @@
 			</div>
 
 			<div class="tab-content" id="review">
-				<!-- 후기 탭 빈 페이지 -->
+				<div id="reviewsList"></div>
+				<!-- 여기에 후기들이 표시됩니다. -->
 			</div>
 		</div>
 
 		<script>
+			//탭 토글
 			function showTab(tabId) {
 				const tabs = document.querySelectorAll('.tab-content');
 				tabs.forEach((tab) => tab.classList.remove('active'));
@@ -283,6 +296,9 @@
 				const priceMatch = selectedOptionText.match(/(\d[\d,]*)원/);
 				const price = priceMatch ? priceMatch[1] : '';
 
+				// ✅ 상품 ID 가져오기 (예: 1, 2, 3)
+				const productId = 'musket';
+
 				// ✅ localStorage에 저장
 				const productData = {
 					tag, // 카테고리 태그
@@ -291,6 +307,7 @@
 					estimatedDate, // 예상 출고일
 					selectedOption: productNameOnly, // 옵션명 (가격 제외)
 					price, // 옵션 가격만 추출
+					productId,
 				};
 
 				localStorage.setItem('selectedProduct', JSON.stringify(productData));
@@ -298,6 +315,32 @@
 				// 선택된 상품 처리
 				location.href = './product_payment.html'; // 여기에 원하는 링크 넣기
 			}
+
+			// 후기탭
+			$(document).ready(function () {
+				const productId = 'musket'; // 고정 상품 ID
+
+				// 로컬스토리지에서 해당 상품의 후기들 불러오기
+				let reviews = JSON.parse(localStorage.getItem('reviews_' + productId)) || [];
+
+				// 후기 목록이 있을 경우
+				if (reviews.length > 0) {
+					let reviewsHtml = reviews
+						.map(function (review) {
+							return `
+                <div class="review">
+                    <h4>${review.title}</h4>
+                    <p>${review.content}</p>
+                </div>
+            `;
+						})
+						.join('');
+
+					$('#reviewsList').html(reviewsHtml);
+				} else {
+					$('#reviewsList').html('<p>등록된 후기가 없습니다.</p>');
+				}
+			});
 		</script>
 		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
 		<script defer src="../common/header3.js"></script>

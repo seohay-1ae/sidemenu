@@ -119,11 +119,15 @@
 			<h3>관리자 페이지</h3>
 			<ul>
 				<li><a href="./admin_notice.html" class="admin_notice">공지사항 등록</a></li>
-				<li><a href="#" class="admin_report">게시물 신고 목록</a></li>
-				<li><a href="#" class="admin_funding_reg">펀딩 등록 신청</a></li>
-				<li><a href="#" class="admin_des_prod">축제 상품 연동</a></li>
+				<li><a href="./admin_report.html" class="admin_report">게시물 신고 목록</a></li>
+				<li><a href="./admin_funding_reg.html" class="admin_funding_reg">펀딩 등록 신청</a></li>
+				<li><a href="./admin_fes_prod.html" class="admin_des_prod">축제 상품 연동</a></li>
 				<li><a href="#" class="proj_director">샘플</a></li>
 				<li><a href="#" class="proj_policy">샘플</a></li>
+			</ul>
+			<!-- 로그아웃 버튼 -->
+			<ul>
+				<li><a href="#" id="logout-btn">로그아웃</a></li>
 			</ul>
 		</div>
 	`;
@@ -134,6 +138,7 @@
 
 		const hamburger = document.querySelector('.hamburger');
 		const sidebar = document.getElementById('sidebar');
+		const logoutBtn = document.getElementById('logout-btn');
 
 		if (hamburger && sidebar) {
 			// 햄버거 클릭 시 사이드바 열기/닫기 + 아이콘 변경
@@ -155,12 +160,17 @@
 			});
 		}
 
-		// "공지사항 등록" 항목 활성화
-		document.addEventListener('DOMContentLoaded', function () {
-			const adminNoticeLink = document.querySelector('.sidebar .admin_notice');
-			if (adminNoticeLink) {
-				adminNoticeLink.classList.add('active-link');
-			}
-		});
+		// 로그아웃 버튼 클릭 시
+		if (logoutBtn) {
+			logoutBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+
+				// loggedInUser 정보 삭제
+				localStorage.removeItem('loggedInUser');
+
+				// main.html로 이동
+				window.location.href = '../mainpage/main.html';
+			});
+		}
 	}
 })();

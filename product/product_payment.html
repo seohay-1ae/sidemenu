@@ -208,17 +208,21 @@
 			const paymentMethod = document
 				.querySelector('input[name="pay"]:checked')
 				?.parentElement?.textContent.trim();
-			const today = new Date().toISOString().slice(0, 10);
+			const today = new Date();
+			today.setHours(today.getHours() + 9); // UTC 기준 시간에 9시간 더해서 한국 시간으로 변환
+			const formattedDate = today.toISOString().split('T')[0]; // 날짜 부분만 추출 (yyyy-mm-dd)
 			const finalAmount = product.price?.replace(/,/g, '');
 
 			const supportData = {
-				supporter,
+				supporter, //유저정보
 				product,
+				productId: product.productId, // productId를 포함
 				postcode,
 				address,
 				paymentMethod,
-				supportDate: today,
+				supportDate: formattedDate,
 				finalAmount,
+				reviewWritten: false, // ✅ 이 줄 추가!
 			};
 
 			// 🔥 유저 ID별로 저장 (누적)

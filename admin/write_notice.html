@@ -65,17 +65,28 @@
 			$('#submit-notice').click(function () {
 				const title = $('#title').val().trim();
 				const content = $('#content').val().trim();
-				const date = new Date().toISOString().split('T')[0];
+				const today = new Date();
+				today.setHours(today.getHours() + 9); // UTC 기준 시간에 9시간 더해서 한국 시간으로 변환
+				const formattedDate = today.toISOString().split('T')[0]; // 날짜 부분만 추출 (yyyy-mm-dd)
 
 				if (!title || !content) {
 					alert('모든 항목을 입력해주세요.');
 					return;
 				}
 
-				const notice = { title, content, date };
+				// 기존 공지사항 목록을 불러오기
 				const notices = JSON.parse(localStorage.getItem('notices')) || [];
 
-				notices.push(notice);
+				// 순차적인 'no' 값을 추가 (현재 저장된 공지사항의 길이를 기준으로 +1)
+				const newNotice = {
+					no: notices.length + 1, // 현재 저장된 공지사항 수 + 1
+					title: title,
+					content: content,
+					date: formattedDate,
+				};
+
+				// 공지사항 목록에 새 공지 추가
+				notices.push(newNotice);
 				localStorage.setItem('notices', JSON.stringify(notices));
 
 				alert('공지사항이 등록되었습니다.');

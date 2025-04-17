@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="../common/styles.css" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>축제 목록</title>
+		<title>축제 상품 연동</title>
 		<style>
 			body {
 				display: flex;
@@ -14,14 +14,8 @@
 			}
 			.layout {
 				display: flex;
-				width: 100%;
-				margin-bottom: 0px; /* 두 main-wrapper 사이 여백 */
-			}
-			#sidebar-container {
-				flex-shrink: 0;
-				width: 13vw;
-				min-width: 200px;
-				max-width: 600px;
+				min-height: 100vh;
+				flex: 1;
 			}
 			.main-wrapper {
 				display: flex;
@@ -33,15 +27,16 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				padding: 20px 0;
+				padding: 2rem 0;
 			}
 			.container {
 				width: 90%;
-				margin: 100px auto;
+				margin: 10rem 0;
 				background: #ffffff;
 				padding: 20px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 				border-radius: 10px;
+				overflow-x: auto;
 			}
 			.header {
 				display: flex;
@@ -56,25 +51,80 @@
 				width: 100%;
 				border-collapse: collapse;
 				text-align: center;
+				table-layout: fixed;
 			}
 			th,
 			td {
 				border: 1px solid #ccc;
 				padding: 8px;
+				word-break: break-word;
 			}
 			th {
 				background-color: #f1c40f;
 				color: #000;
 			}
-			.btn-approve {
-				background-color: #f1c40f;
+			.btn-approve,
+			.btn-setting {
+				background-color: red;
 				border: none;
 				padding: 5px 10px;
 				cursor: pointer;
 				font-weight: bold;
+				color: white;
 			}
 			input[type='checkbox'] {
 				transform: scale(1.2);
+			}
+			@media (min-width: 481px) and (max-width: 1024px) {
+				.wrapper {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					margin: 2rem 5rem !important;
+				}
+			}
+			@media (max-width: 768px) {
+				table {
+					font-size: 14px;
+				}
+			}
+			@media (min-width: 481px) {
+				.main-wrapper {
+					margin-left: 15vw;
+				}
+			}
+			@media (max-width: 480px) {
+				.main-wrapper {
+					margin-left: 0;
+				}
+			}
+
+			/* 💡 모달 스타일 */
+			#popup-overlay {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: 999;
+			}
+
+			#popup-modal {
+				display: none;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background: #fff;
+				padding: 20px;
+				z-index: 1000;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+				width: 80%;
+				max-width: 600px;
 			}
 		</style>
 	</head>
@@ -83,66 +133,39 @@
 			<div class="layout">
 				<!-- 사이드바 삽입 -->
 				<div id="sidebar-container"></div>
-				<!-- 세로로 쌓이는 wrapper -->
+
 				<div class="wrapper">
-					<!-- 첫 번째 컨테이너 -->
 					<div class="container">
 						<div class="header">
-							<h3>축제 목록</h3>
+							<h3>축제 상품 연동</h3>
 						</div>
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox" /></th>
-									<th>축제ID</th>
 									<th>축제명</th>
 									<th>장소</th>
-									<th>시작일</th>
-									<th>종료일</th>
+									<th>축제시작일</th>
+									<th>축제종료일</th>
 									<th>관리</th>
-									<th>최종수정일</th>
+									<th>업데이트일</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" /></td>
-									<td>fruit_gp</td>
-									<td>영천과일축제</td>
-									<td>영천</td>
+									<td>봄꽃축제</td>
+									<td>서울</td>
+									<td>2025-04-01</td>
+									<td>2025-04-10</td>
+									<td><button class="btn-setting">설정</button></td>
+									<td>2025-04-10</td>
+								</tr>
+								<tr>
+									<td>불꽃놀이</td>
+									<td>부산</td>
+									<td>2025-05-05</td>
+									<td>2025-05-06</td>
+									<td><button class="btn-setting">설정</button></td>
 									<td>2025-04-17</td>
-									<td>2025-10-22</td>
-									<td><button class="btn-approve">승인</button></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
 								</tr>
 							</tbody>
 						</table>
@@ -150,123 +173,123 @@
 				</div>
 			</div>
 		</main>
+
+		<!-- 💡 모달 오버레이 & 팝업 -->
+		<div id="popup-overlay"></div>
+		<div id="popup-modal">
+			<h3 style="margin-top: 0">상품 연동 관리</h3>
+			<table style="width: 100%; border-collapse: collapse; text-align: center">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="select-all" /></th>
+						<th>상품ID</th>
+						<th>상품명</th>
+						<th>카테고리</th>
+						<th>상품종류</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>PD001-A</td>
+						<td>무슨딸기</td>
+						<td>과일</td>
+						<td>딸기</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>PD002-A</td>
+						<td>무슨딸기</td>
+						<td>과일</td>
+						<td>딸기</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>PD003-B</td>
+						<td>무슨딸기</td>
+						<td>과일</td>
+						<td>딸기</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>PD004-A</td>
+						<td>무슨딸기</td>
+						<td>과일</td>
+						<td>딸기</td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="text-align: right; margin-top: 10px">
+				<button id="connect-products" style="padding: 5px 10px; margin-right: 5px">연동하기</button>
+				<button id="close-popup" style="padding: 5px 10px">닫기</button>
+			</div>
+		</div>
+
+		<script src="./admin_sidebar.js"></script>
+		<script>
+			let currentRow;
+			let festivalProductStates = {}; // 축제별 체크박스 상태 저장 객체
+
+			// 설정 버튼 클릭 시 모달 열기
+			$(document).on('click', '.btn-setting', function () {
+				currentRow = $(this).closest('tr'); // 현재 클릭한 행 저장
+				const festivalName = currentRow.find('td').eq(0).text(); // 축제명 가져오기 (첫 번째 열)
+
+				// 해당 축제의 체크박스 상태 불러오기 (없으면 빈 배열)
+				const selectedProducts = festivalProductStates[festivalName] || [];
+
+				// 체크박스 상태 설정
+				$('#popup-modal tbody input[type="checkbox"]').each(function () {
+					const productId = $(this).closest('tr').find('td').eq(1).text(); // 상품ID
+					$(this).prop('checked', selectedProducts.includes(productId)); // 해당 상품ID가 체크되었으면 체크박스 선택
+				});
+
+				// 모달 보이기
+				$('#popup-overlay').show();
+				$('#popup-modal').show();
+			});
+
+			// 모달 닫기 (오버레이 또는 닫기 버튼)
+			$('#close-popup, #popup-overlay').on('click', function () {
+				$('#popup-modal').hide();
+				$('#popup-overlay').hide();
+			});
+
+			// 전체 선택 체크박스
+			$('#select-all').on('change', function () {
+				const isChecked = $(this).is(':checked');
+				$('#popup-modal tbody input[type="checkbox"]').prop('checked', isChecked);
+			});
+
+			// 연동하기 버튼 클릭 시
+			$('#connect-products').on('click', function () {
+				// 체크된 상품ID 배열 생성
+				const selectedProducts = [];
+				$('#popup-modal tbody input[type="checkbox"]:checked').each(function () {
+					const productId = $(this).closest('tr').find('td').eq(1).text();
+					selectedProducts.push(productId);
+				});
+
+				// 축제명 (모달에 연결된 축제명)
+				const festivalName = currentRow.find('td').eq(0).text();
+
+				// 해당 축제의 체크 상태 저장
+				festivalProductStates[festivalName] = selectedProducts;
+
+				// KST 기준 오늘 날짜 계산
+				const today = new Date();
+				today.setHours(today.getHours() + 9);
+				const formattedDate = today.toISOString().split('T')[0];
+
+				// 업데이트일 컬럼 변경
+				currentRow.find('td').last().text(formattedDate);
+
+				alert('설정이 완료되었습니다.');
+
+				// 모달 닫기
+				$('#popup-modal').hide();
+				$('#popup-overlay').hide();
+			});
+		</script>
 	</body>
-</html>
-<!-- 두 번째 컨테이너 -->
-<div class="container">
-	<div class="header">
-		<h3>상품 목록</h3>
-	</div>
-	<table>
-		<thead>
-			<tr>
-				<th><input type="checkbox" /></th>
-				<th>상품ID</th>
-				<th>카테고리</th>
-				<th>상품종류</th>
-				<th>가격</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" /></td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-</div>
-</div>
-</main>
-
-<script>
-// 사이드바 불러오기
-if (window.innerWidth >= 1024) {
-fetch('admin_sidebar.html')
-.then((response) => response.text())
-.then((data) => {
-	document.getElementById('sidebar-container').innerHTML = data;
-
-	const projInfoLink = document.querySelector('.sidebar .admin_festival');
-	if (projInfoLink) {
-		projInfoLink.style.color = '#0a8b11';
-	}
-})
-.catch((error) => console.error('사이드바를 불러오는 데 실패했습니다:', error));
-}
-
-// 승인 버튼 클릭 시 최종수정일 업데이트 및 알림
-document.addEventListener('DOMContentLoaded', () => {
-const approveButtons = document.querySelectorAll('.btn-approve');
-
-approveButtons.forEach((button) => {
-button.addEventListener('click', () => {
-	const today = new Date();
-	const yyyy = today.getFullYear();
-	const mm = String(today.getMonth() + 1).padStart(2, '0');
-	const dd = String(today.getDate()).padStart(2, '0');
-	const formattedDate = `${yyyy}-${mm}-${dd}`;
-
-	const row = button.closest('tr');
-	const lastModifiedCell = row.querySelector('td:last-child');
-	lastModifiedCell.textContent = formattedDate;
-
-	alert('승인되었습니다.');
-});
-});
-});
-document.addEventListener('DOMContentLoaded', () => {
-const approveButtons = document.querySelectorAll('.btn-approve');
-
-approveButtons.forEach((button) => {
-button.addEventListener('click', () => {
-	const today = new Date();
-	const yyyy = today.getFullYear();
-	const mm = String(today.getMonth() + 1).padStart(2, '0');
-	const dd = String(today.getDate()).padStart(2, '0');
-	const formattedDate = `${yyyy}-${mm}-${dd}`;
-
-	const row = button.closest('tr');
-	const lastModifiedCell = row.querySelector('td:last-child');
-	lastModifiedCell.textContent = formattedDate;
-
-	// 상품 목록 테이블의 첫 번째 <tbody> > <tr> 찾기
-	const productTable = document.querySelectorAll('table')[1]; // 두 번째 테이블
-	const firstProductRow = productTable.querySelector('tbody tr');
-
-	// 데이터 입력
-	const cells = firstProductRow.querySelectorAll('td');
-	cells[1].textContent = '영천';
-	cells[2].textContent = '과일';
-	cells[3].textContent = '사과';
-	cells[4].textContent = '3000';
-});
-});
-});
-</script>
-</body>
 </html>
