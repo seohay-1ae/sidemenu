@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mypage</title>
+    <link rel="stylesheet" href="mypage.css" />
+  </head>
+  <body>
+    <h3>마이페이지</h3>
+    <div class="mypage-container">
+      <!-- 좌측 프로필 섹션 -->
+      <div class="profile-section">
+        <img src="admin.png" alt="Profile Image" class="profile-image" />
+        <p class="profile-name">Admin</p>
+        <p class="profile-email">test@gmail.com</p>
+        <a href="main.html" class="logout-button" >로그아웃</a>
+      </div>
+
+      <!-- 우측 테이블 섹션 -->
+      <div class="tables-section">
+        <!-- 구매내역정보 테이블 -->
+        <div class="table-container">
+          <h3>구매내역 정보</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>상품이름</th>
+                <th>사용금액</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>yyyy-mm-dd</td>
+                    <td>#####</td>
+                    <td>##### <a href="review.html" class="review-button">후기 작성</a></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 펀딩신청정보 테이블 -->
+        <div class="table-container">
+          <h3>펀딩신청정보</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>상품이름</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+          
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
