@@ -145,7 +145,14 @@
 				color: #888;
 				margin-top: 40px;
 			}
+			#slideBanner {
+				width: 1134px;
+			}
 
+			#mainCards {
+				box-sizing: content-box;
+				width: 955px;
+			}
 			@media (max-width: 1024px) {
 				.gallery-wrapper {
 					width: 95%;
@@ -189,7 +196,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="slideBanner">
 			<div id="slider01" class="gallery-wrapper">
 				<ul class="gallery-list">
 					<li>
@@ -218,7 +225,7 @@
 			</div>
 		</div>
 		<div class="wrapper">
-			<div class="container">
+			<div class="container" id="mainCards">
 				<div class="grid" id="productGrid">
 					<!-- 과일 카드 -->
 					<div class="card" data-category="fruit">
