@@ -10,7 +10,6 @@
 		<style>
 			/* 기존 스타일 유지 */
 			body {
-				font-family: 'Segoe UI', sans-serif;
 				background: #f7f7f7;
 				margin: 0;
 				padding: 20px;
@@ -51,8 +50,7 @@
 				font-size: 1rem;
 			}
 			input,
-			textarea,
-			button {
+			textarea {
 				width: 100%;
 				padding: 10px;
 				margin-top: 8px;
@@ -60,13 +58,16 @@
 				border-radius: 6px;
 				font-size: 14px;
 			}
+
 			button {
 				background-color: #1c7c61;
 				color: white;
 				font-weight: bold;
 				cursor: pointer;
-				transition: background 0.2s;
+				border-radius: 6px;
+				font-size: 14px;
 			}
+
 			button:hover {
 				background-color: #145d48;
 			}
@@ -76,6 +77,7 @@
 				align-items: flex-start;
 				gap: 10px;
 			}
+
 			.checkbox-group label {
 				display: flex;
 				align-items: center;
