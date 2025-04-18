@@ -7,18 +7,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>게시글 상세보기</title>
 		<style>
+			html {
+				height: 100%;
+			}
 			body {
 				background-color: #f4f4f4;
 				padding: 20px;
+				height: 100%;
 			}
 			.container {
-				max-width: 600px;
-				margin-top: 100px;
+				margin: auto;
 				background: white;
 				padding: 20px;
 				border-radius: 10px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-				position: relative;
 			}
 			.post-title {
 				font-size: 1.5rem;
@@ -48,7 +50,7 @@
 			.comment-input {
 				width: 100%;
 				padding: 10px;
-				margin: 10px 0;
+				margin: 12px 0 25px 0;
 				border-radius: 5px;
 				border: 1px solid #ccc;
 				font-size: 1rem;
@@ -98,6 +100,27 @@
 				top: 10px;
 				right: 20px; /* 오른쪽 상단에 위치 */
 				background-color: #0a8b11;
+			}
+
+			@media (min-width: 1024px) {
+				.container {
+					width: 925px;
+					margin: 100px auto 550px auto;
+				}
+				.back-button {
+					top: 218px;
+					right: 165px; /* 오른쪽 상단에 위치 */
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					width: 795px;
+					margin: 200px auto 550px auto;
+				}
+				.back-button {
+					top: 315px;
+					right: 78px; /* 오른쪽 상단에 위치 */
+				}
 			}
 		</style>
 	</head>

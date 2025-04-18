@@ -72,53 +72,88 @@
 				color: #666;
 				margin: 0;
 			}
+			.govPolicy {
+				font-size: 30px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				border-bottom: 2px solid #0000002f;
+				padding-bottom: 10px;
+			}
+			@media (min-width: 1024px) {
+				.container {
+					width: 955px;
+					margin: 30px auto 90px auto;
+				}
+				.card-container {
+					gap: 80px; /* 카드 간 간격 */
+				}
+				.supportfund-card {
+					width: 380px;
+					height: 230px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					width: 830px;
+					margin: 30px auto 90px auto;
+				}
+				.card-container {
+					gap: 46px; /* 카드 간 간격 */
+				}
+				.supportfund-card {
+					width: 390px;
+					height: 250px;
+				}
+			}
 		</style>
 	</head>
 
 	<body>
-		<h3>정부지원정책 신청하기</h3>
-		<p>정부에서 지원하는 농촌지원정책을 확인하세요.</p>
-		<div class="card-container">
-			<a
-				href="https://www.greendaero.go.kr/svc/rfph/cpif/front/frtHome.do"
-				class="supportfund-card"
-			>
-				<div class="card-content">
-					<h2>귀농창업자금</h2>
-					<p>접수기간: 자금 소진시까지</p>
-					<p>신청자격: 사이트에서 확인하세요</p>
-				</div>
-			</a>
+		<div class="container">
+			<div class="govPolicy">정부지원정책 신청하기</div>
+			<p style="margin-bottom: 40px">정부에서 지원하는 농촌지원정책을 확인하세요.</p>
+			<div class="card-container">
+				<a
+					href="https://www.greendaero.go.kr/svc/rfph/cpif/front/frtHome.do"
+					class="supportfund-card"
+				>
+					<div class="card-content">
+						<h2>귀농창업자금</h2>
+						<p>접수기간: 자금 소진시까지</p>
+						<p>신청자격: 사이트에서 확인하세요</p>
+					</div>
+				</a>
 
-			<a href="https://www.rda.go.kr/young/content/custom0201.do" class="supportfund-card">
-				<div class="card-content">
-					<h2>청년농업인 영농정착 지원사업</h2>
-					<p>접수기간: 자금 소진시까지</p>
-					<p>신청자격: 사이트에서 확인하세요</p>
-				</div>
-			</a>
+				<a href="https://www.rda.go.kr/young/content/custom0201.do" class="supportfund-card">
+					<div class="card-content">
+						<h2>청년농업인 영농정착 지원사업</h2>
+						<p>접수기간: 자금 소진시까지</p>
+						<p>신청자격: 사이트에서 확인하세요</p>
+					</div>
+				</a>
 
-			<a
-				href="https://www.smartfarmkorea.net/contents/view.do?menuId=M1102010103"
-				class="supportfund-card"
-			>
-				<div class="card-content">
-					<h2>스마트팜 종합자금</h2>
-					<p>접수기간: 자금 소진시까지</p>
-					<p>신청자격: 사이트에서 확인하세요</p>
-				</div>
-			</a>
+				<a
+					href="https://www.smartfarmkorea.net/contents/view.do?menuId=M1102010103"
+					class="supportfund-card"
+				>
+					<div class="card-content">
+						<h2>스마트팜 종합자금</h2>
+						<p>접수기간: 자금 소진시까지</p>
+						<p>신청자격: 사이트에서 확인하세요</p>
+					</div>
+				</a>
 
-			<a
-				href="https://www.smartfarmkorea.net/charge/supBusinessList.do?menuId=M11020301"
-				class="supportfund-card"
-			>
-				<div class="card-content">
-					<h2>스마트팜 보조지원사업</h2>
-					<p>접수기간: 자금 소진시까지</p>
-					<p>신청자격: 사이트에서 확인하세요</p>
-				</div>
-			</a>
+				<a
+					href="https://www.smartfarmkorea.net/charge/supBusinessList.do?menuId=M11020301"
+					class="supportfund-card"
+				>
+					<div class="card-content">
+						<h2>스마트팜 보조지원사업</h2>
+						<p>접수기간: 자금 소진시까지</p>
+						<p>신청자격: 사이트에서 확인하세요</p>
+					</div>
+				</a>
+			</div>
 		</div>
 		<script defer src="../common/header3.js"></script>
 		<script defer src="../common/footer2.js"></script>

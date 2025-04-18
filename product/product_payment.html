@@ -19,13 +19,14 @@
 				justify-content: space-between;
 				align-items: flex-start;
 				gap: 20px;
+				margin-top: 70px;
 			}
 			.container {
 				flex: 2;
 			}
 			.container_1 {
 				flex: 1;
-				margin-top: 1028px;
+				margin-top: 778px;
 			}
 			.section {
 				margin-bottom: 50px;
@@ -51,7 +52,6 @@
 			}
 			input,
 			textarea {
-				width: 100%;
 				padding: 10px;
 				margin-top: 8px;
 				border: 1px solid #ccc;
@@ -84,6 +84,42 @@
 				gap: 8px;
 				font-size: 14px;
 			}
+			#postcode {
+				width: 70%;
+			}
+			#address {
+				width: 70%;
+			}
+			@media (min-width: 1024px) {
+				.wrapper {
+					box-sizing: content-box;
+					width: 1000px;
+					margin-left: 145px;
+				}
+				.container {
+					box-sizing: content-box;
+				}
+				.container_1 {
+					box-sizing: content-box;
+					width: 400px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.wrapper {
+					box-sizing: content-box;
+					width: 830px;
+					margin-left: 50px;
+					margin-bottom: 50px;
+				}
+				.container {
+					box-sizing: content-box;
+					width: 600px;
+				}
+				.container_1 {
+					box-sizing: content-box;
+					width: 400px;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -115,9 +151,11 @@
 				<!-- 배송지 -->
 				<div class="section">
 					<div class="section-title">배송지</div>
-					<input type="text" id="postcode" placeholder="우편번호" readonly />
-					<input type="text" id="address" placeholder="배송지 주소 입력" readonly />
-					<button type="button" onclick="execDaumPostcode()">주소 검색</button>
+					<input type="text" id="postcode" placeholder="우편번호" readonly /><br />
+					<input type="text" id="address" placeholder="배송지 주소 입력" readonly /><br />
+					<button type="button" style="margin-top: 15px" onclick="execDaumPostcode()">
+						주소 검색
+					</button>
 				</div>
 
 				<!-- 결제 수단 -->
@@ -134,11 +172,11 @@
 				<!-- 최종 후원 금액 -->
 				<div class="section1">
 					<div class="section-title">최종 후원 금액</div>
-					<p id="finalAmountDisplay"></p>
+					<p id="finalAmountDisplay" style="margin-bottom: 10px"></p>
 					<div class="checkbox-group">
 						<label><input type="checkbox" /> 개인정보 제 3자 동의</label>
 					</div>
-					<button onclick="submitSupport()">후원하기</button>
+					<button style="margin-top: 15px" onclick="submitSupport()">후원하기</button>
 				</div>
 			</div>
 		</div>

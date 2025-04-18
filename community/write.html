@@ -13,7 +13,6 @@
 				padding: 20px;
 			}
 			.container {
-				max-width: 600px;
 				margin: auto;
 				background: white;
 				padding: 20px;
@@ -23,7 +22,6 @@
 			}
 			input,
 			textarea {
-				width: 100%;
 				padding: 10px;
 				margin: 10px 0;
 				border-radius: 5px;
@@ -48,16 +46,53 @@
 				background-color: #0a8b11;
 				font-size: 0.9rem; /* 폰트 크기 줄임 */
 			}
+			#image {
+				margin-bottom: 30px;
+			}
+			@media (min-width: 1024px) {
+				.container {
+					width: 925px;
+					height: 400px;
+					margin: 100px auto 500px auto;
+				}
+				#submit-post {
+					position: relative;
+					right: -835px;
+					top: 20px;
+				}
+				#back-button {
+					position: absolute;
+					right: 940px;
+					top: 585px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					width: 800px;
+					height: 425px;
+					margin: 50px auto 500px auto;
+				}
+				#submit-post {
+					position: relative;
+					right: -723px;
+					top: 20px;
+				}
+				#back-button {
+					position: absolute;
+					right: 728px;
+					top: 549px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<h2>글쓰기</h2>
-			<input type="text" id="title" placeholder="제목" />
-			<textarea id="content" rows="5" placeholder="내용"></textarea>
-			<input type="file" id="image" accept="image/*" />
+			<input type="text" id="title" placeholder="제목" style="width: 95%" />
+			<textarea id="content" rows="5" placeholder="내용" style="width: 95%"></textarea>
+			<input type="file" id="image" accept="image/*" style="width: 95%" />
+			<a href="./community.html" class="back-button" id="back-button">커뮤니티로 돌아가기</a>
 			<button id="submit-post">등록</button>
-			<a href="./community.html" class="back-button">커뮤니티로 돌아가기</a>
 		</div>
 		<script>
 			$('#submit-post').click(function () {

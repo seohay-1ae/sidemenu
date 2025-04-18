@@ -49,7 +49,7 @@
 
 				/* 내용 텍스트 스타일 */
 				section p {
-					font-size: 16px;
+					/* font-size: 16px; */
 					line-height: 1.6; /* 줄 간격 */
 					margin-bottom: 15px; /* 단락 간 간격 */
 				}
@@ -79,10 +79,23 @@
 					font-weight: bold;
 					color: #007bff; /* 강조 색상 (파란색) */
 				}
+				@media (min-width: 1024px) {
+					#banner{
+						width: 100%;
+						margin-top: 0;
+						height: 350px;
+					}
+      }
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .container {
+          width: 795px;
+          margin: 200px auto;
+        }
+      }
 			</style>
 		</head>
 		<body>
-			<img src="../resources/brandstory.jpg" alt="브랜드스토리 이미지" width="1600" height="300" />
+			<img src="../resources/brandstory.jpg" alt="브랜드스토리 이미지" id="banner"/>
 			<br />
 			<section>
 				<h1>창립 배경과 동기</h1>
