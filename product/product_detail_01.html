@@ -19,14 +19,7 @@
 			}
 
 			body {
-				margin: 0;
-				padding: 0;
-				background-color: #fff;
 				color: #222;
-			}
-
-			.container {
-				margin: 0 auto;
 			}
 
 			.tag-wrapper {
@@ -198,83 +191,88 @@
 					width: 100%;
 				}
 			}
-			@media (min-width: 1024px) {
-				.container {
-					box-sizing: content-box;
-					width: 960px;
-					padding-top: 30px;
-					padding-bottom: 60px;
-					margin-top: 30px;
-				}
-			}
+
 			@media (min-width: 768px) and (max-width: 1023px) {
 				.container {
-					box-sizing: content-box;
-					width: 845px;
-					padding-top: 30px;
-					padding-bottom: 50px;
-					margin-top: 30px;
+					width: 830px;
+					margin-bottom: 60px;
+					padding: 0;
+				}
+			}
+			@media (min-width: 1024px) {
+				.container {
+					width: 960px;
+					padding: 0;
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<div class="tag">과일</div>
-			<div class="title">달콤한 별빛샤인머스켓</div>
+		<div class="page-container">
+			<main class="page-content">
+				<!-- 본문 내용 -->
 
-			<div class="top-section">
-				<div class="image-box">
-					<img src="../resources/product_detail_thumbnail_musket.png" alt="대표 이미지" />
-				</div>
+				<div class="container">
+					<div class="tag">과일</div>
+					<div class="title">달콤한 별빛샤인머스켓</div>
 
-				<div class="info-box">
-					<div><i class="fa-solid fa-gift"></i><strong>펀딩제품</strong></div>
-					<div class="label">모인금액</div>
-					<div class="value">1,500,000원 <span style="font-size: 16px">150%</span></div>
-					<div class="label">남은시간</div>
-					<div class="value">30일</div>
-					<div class="divider"></div>
-					<div class="label-sub">목표금액</div>
-					<div class="value-sub">1,000,000원</div>
+					<div class="top-section">
+						<div class="image-box">
+							<img src="../resources/product_detail_thumbnail_musket.png" alt="대표 이미지" />
+						</div>
 
-					<div class="label-sub">펀딩기간</div>
-					<div class="value-sub">2025.04.01 ~ 2025.05.15</div>
+						<div class="info-box">
+							<div><i class="fa-solid fa-gift"></i><strong>펀딩제품</strong></div>
+							<div class="label">모인금액</div>
+							<div class="value">1,500,000원 <span style="font-size: 16px">150%</span></div>
+							<div class="label">남은시간</div>
+							<div class="value">30일</div>
+							<div class="divider"></div>
+							<div class="label-sub">목표금액</div>
+							<div class="value-sub">1,000,000원</div>
 
-					<div class="label-sub">결제일자</div>
-					<div class="value-sub">목표금액 달성시 2025.05.15</div>
+							<div class="label-sub">펀딩기간</div>
+							<div class="value-sub">2025.04.01 ~ 2025.05.15</div>
 
-					<div class="label-sub">예상출고일</div>
-					<div class="value-sub" id="startDelivery">2025.05.20</div>
+							<div class="label-sub">결제일자</div>
+							<div class="value-sub">목표금액 달성시 2025.05.15</div>
 
-					<div class="select-box">
-						<select id="productSelect">
-							<option value="" selected disabled>-상품선택-</option>
-							<option value="1">샤인머스켓 2수(400g*2) 9,900원</option>
-							<option value="2">샤인머스켓[상품] 4~5수(2kg) 29,900원</option>
-							<option value="3">샤인머스켓[특품] 2~4수(2kg) 39,900원</option>
-						</select>
+							<div class="label-sub">예상출고일</div>
+							<div class="value-sub" id="startDelivery">2025.05.20</div>
 
-						<button class="btn-support" onclick="handleSupport()">후원하기</button>
+							<div class="select-box">
+								<select id="productSelect">
+									<option value="" selected disabled>-상품선택-</option>
+									<option value="1">샤인머스켓 2수(400g*2) 9,900원</option>
+									<option value="2">샤인머스켓[상품] 4~5수(2kg) 29,900원</option>
+									<option value="3">샤인머스켓[특품] 2~4수(2kg) 39,900원</option>
+								</select>
+
+								<button class="btn-support" onclick="handleSupport()">후원하기</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="tabs">
+						<span onclick="showTab('detail')">스마트팜/상품 소개</span>
+						<span onclick="showTab('review')">후기</span>
+					</div>
+
+					<div class="tab-content active" id="detail">
+						<img src="../resources/product_detail_musket1.png" alt="상세 이미지" />
+					</div>
+
+					<div class="tab-content" id="review">
+						<div id="reviewsList"></div>
+						<!-- 여기에 후기들이 표시됩니다. -->
 					</div>
 				</div>
-			</div>
-
-			<div class="tabs">
-				<span onclick="showTab('detail')">스마트팜/상품 소개</span>
-				<span onclick="showTab('review')">후기</span>
-			</div>
-
-			<div class="tab-content active" id="detail">
-				<img src="../resources/product_detail_musket1.png" alt="상세 이미지" />
-			</div>
-
-			<div class="tab-content" id="review">
-				<div id="reviewsList"></div>
-				<!-- 여기에 후기들이 표시됩니다. -->
-			</div>
+			</main>
 		</div>
 
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 		<script>
 			//탭 토글
 			function showTab(tabId) {
@@ -357,8 +355,5 @@
 				}
 			});
 		</script>
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

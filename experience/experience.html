@@ -124,32 +124,18 @@
 				border-bottom: 2px solid #0000002f;
 				padding-bottom: 10px;
 				width: 960px;
-				margin-left: 20px;
 			}
 			@media (min-width: 1024px) {
-				.container {
-					width: 1000px;
-					margin-top: 10px;
-					padding-top: 20px;
-				}
 				.company-container {
 					padding: 0;
-					width: 1000px;
-					margin-left: 20px;
+					width: 980px;
 					margin-bottom: 85px;
 				}
 			}
 			@media (min-width: 768px) and (max-width: 1023px) {
-				.container {
-					width: 900px;
-					margin-top: 10px;
-					padding-top: 20px;
-					margin-left: 48px;
-				}
 				.company-container {
 					padding: 0;
 					width: 900px;
-					margin-left: 20px;
 					margin-bottom: 85px;
 				}
 				.experience {
@@ -159,7 +145,6 @@
 					border-bottom: 2px solid #0000002f;
 					padding-bottom: 10px;
 					width: 840px;
-					margin-left: 20px;
 				}
 				.company-card {
 					position: relative; /* 오버레이를 위해 상대 위치 설정 */
@@ -172,85 +157,91 @@
 					display: flex;
 					flex-direction: column; /* 세로로 정렬 */
 					justify-content: row-reverse; /* 내용과 버튼 사이 간격 조정 */
-					width: 365px;
-					height: 365px; /* 카드 높이 (화면에 맞게 조정) */
+					width: 363px;
+					height: 363px; /* 카드 높이 (화면에 맞게 조정) */
 				}
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="experience">견학 / 체험</div>
-			<div class="company-container">
-				<div class="company-card card-1">
-					<div class="company-content">
-						<p>업체이름: FARM8 아카데미</p>
-						<p>상품 종류: 상추</p>
-						<p>위치: 서울특별시</p>
-						<a href="https://farm8.co.kr/" class="button">견학신청</a>
-					</div>
-				</div>
+		<div class="page-container">
+			<main class="page-content">
+				<!-- 본문 내용 -->
 
-				<div class="company-card card-2">
-					<div class="company-content">
-						<p>업체이름: 그린몬스터즈</p>
-						<p>상품 종류: 오이</p>
-						<p>위치: 충청남도 보령시</p>
-						<a href="https://www.greenmonsters.online/experience" class="button">견학신청</a>
-					</div>
-				</div>
-				<div class="company-card card-3">
-					<div class="company-content">
-						<p>업체이름: 대전팜 둥구나무</p>
-						<p>상품 종류: 토마토</p>
-						<p>위치: 대전광역시</p>
-						<a href="https://daejeonfarm.com/" class="button">견학신청</a>
-					</div>
-				</div>
-				<div class="company-card card-4">
-					<div class="company-content">
-						<p>업체이름: 위릴팜</p>
-						<p>상품 종류: 딸기</p>
-						<p>위치: 울산광역시</p>
-						<a href="http://www.werealfarm.co.kr/screen/hp/" class="button">견학신청</a>
-					</div>
-				</div>
-				<div class="company-card card-5">
-					<div class="company-content">
-						<p>업체이름: 마음농장</p>
-						<p>상품 종류: 딸기</p>
-						<p>위치: 남양주시</p>
-						<a href="http://maumfarm.co.kr/#HOME" class="button">견학신청</a>
-					</div>
-				</div>
+				<div class="container">
+					<div class="experience">견학 / 체험</div>
+					<div class="company-container">
+						<div class="company-card card-1">
+							<div class="company-content">
+								<p>업체이름: FARM8 아카데미</p>
+								<p>상품 종류: 상추</p>
+								<p>위치: 서울특별시</p>
+								<a href="https://farm8.co.kr/" class="button">견학신청</a>
+							</div>
+						</div>
 
-				<div class="company-card card-6">
-					<div class="company-content">
-						<p>업체이름: 모두의 농장</p>
-						<p>상품 종류: 버섯</p>
-						<p>위치: 용인시</p>
-						<a href="https://blog.naver.com/good_mush" class="button">견학신청</a>
-					</div>
-				</div>
+						<div class="company-card card-2">
+							<div class="company-content">
+								<p>업체이름: 그린몬스터즈</p>
+								<p>상품 종류: 오이</p>
+								<p>위치: 충청남도 보령시</p>
+								<a href="https://www.greenmonsters.online/experience" class="button">견학신청</a>
+							</div>
+						</div>
+						<div class="company-card card-3">
+							<div class="company-content">
+								<p>업체이름: 대전팜 둥구나무</p>
+								<p>상품 종류: 토마토</p>
+								<p>위치: 대전광역시</p>
+								<a href="https://daejeonfarm.com/" class="button">견학신청</a>
+							</div>
+						</div>
+						<div class="company-card card-4">
+							<div class="company-content">
+								<p>업체이름: 위릴팜</p>
+								<p>상품 종류: 딸기</p>
+								<p>위치: 울산광역시</p>
+								<a href="http://www.werealfarm.co.kr/screen/hp/" class="button">견학신청</a>
+							</div>
+						</div>
+						<div class="company-card card-5">
+							<div class="company-content">
+								<p>업체이름: 마음농장</p>
+								<p>상품 종류: 딸기</p>
+								<p>위치: 남양주시</p>
+								<a href="http://maumfarm.co.kr/#HOME" class="button">견학신청</a>
+							</div>
+						</div>
 
-				<div class="company-card card-7">
-					<div class="company-content">
-						<p>업체이름: 땡큐베리팜</p>
-						<p>상품 종류: 포도</p>
-						<p>위치: 화성시</p>
-						<a href="https://thankyouvery.modoo.at/" class="button">견학신청</a>
+						<div class="company-card card-6">
+							<div class="company-content">
+								<p>업체이름: 모두의 농장</p>
+								<p>상품 종류: 버섯</p>
+								<p>위치: 용인시</p>
+								<a href="https://blog.naver.com/good_mush" class="button">견학신청</a>
+							</div>
+						</div>
+
+						<div class="company-card card-7">
+							<div class="company-content">
+								<p>업체이름: 땡큐베리팜</p>
+								<p>상품 종류: 포도</p>
+								<p>위치: 화성시</p>
+								<a href="https://thankyouvery.modoo.at/" class="button">견학신청</a>
+							</div>
+						</div>
+						<div class="company-card card-8">
+							<div class="company-content">
+								<p>업체이름: 어여비주말농장</p>
+								<p>상품 종류: 샤인머스켓</p>
+								<p>위치: 의왕시</p>
+								<a href="https://ayeobi.com/" class="button">견학신청</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="company-card card-8">
-					<div class="company-content">
-						<p>업체이름: 어여비주말농장</p>
-						<p>상품 종류: 샤인머스켓</p>
-						<p>위치: 의왕시</p>
-						<a href="https://ayeobi.com/" class="button">견학신청</a>
-					</div>
-				</div>
-			</div>
+			</main>
 		</div>
 	</body>
 	<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->

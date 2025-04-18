@@ -199,135 +199,159 @@
 			}
 			@media (min-width: 768px) and (max-width: 1023px) {
 				#slideBanner {
-					padding-top: 20px;
 					margin: auto;
 					width: 700px;
 					padding-bottom: 50px;
+					padding-top: 0;
 				}
 				#mainCards {
 					box-sizing: content-box;
-					width: 870px;
+					width: 840px;
+					padding-bottom: 50px;
+				}
+			}
+			@media (min-width: 1024px) {
+				#slideBanner {
+					margin: auto;
+					width: 850px;
 					padding-bottom: 70px;
+					padding-top: 0;
+				}
+				#mainCards {
+					padding: 0;
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="container" id="slideBanner">
-			<div id="slider01" class="gallery-wrapper">
-				<ul class="gallery-list">
-					<li>
-						<img src="../resources/main_banner01.png" alt="main_banner01" />
-					</li>
-					<li>
-						<img src="../resources/main_banner02.png" alt="main_banner02" />
-					</li>
-					<li>
-						<img src="../resources/main_banner03.png" alt="main_banner03" />
-					</li>
-					<li>
-						<img src="../resources/main_banner04.png" alt="main_banner04" />
-					</li>
-				</ul>
-				<a class="btn-prev" href="#none">◀</a>
-				<a class="btn-next" href="#none">▶</a>
+		<div class="page-container">
+			<main class="page-content">
+				<!-- 본문 내용 -->
+				<div class="container">
+					<div class="container1" id="slideBanner">
+						<div id="slider01" class="gallery-wrapper">
+							<ul class="gallery-list">
+								<li>
+									<img src="../resources/main_banner01.png" alt="main_banner01" />
+								</li>
+								<li>
+									<img src="../resources/main_banner02.png" alt="main_banner02" />
+								</li>
+								<li>
+									<img src="../resources/main_banner03.png" alt="main_banner03" />
+								</li>
+								<li>
+									<img src="../resources/main_banner04.png" alt="main_banner04" />
+								</li>
+							</ul>
+							<a class="btn-prev" href="#none">◀</a>
+							<a class="btn-next" href="#none">▶</a>
 
-				<div class="ctrl-box">
-					<a href="#none" class="active"><i class="bullet">1</i></a>
-					<a href="#none"><i class="bullet">2</i></a>
-					<a href="#none"><i class="bullet">3</i></a>
-					<a href="#none"><i class="bullet">4</i></a>
-					<button type="button" class="btn-ctrl auto">정지</button>
+							<div class="ctrl-box">
+								<a href="#none" class="active"><i class="bullet">1</i></a>
+								<a href="#none"><i class="bullet">2</i></a>
+								<a href="#none"><i class="bullet">3</i></a>
+								<a href="#none"><i class="bullet">4</i></a>
+								<button type="button" class="btn-ctrl auto">정지</button>
+							</div>
+						</div>
+					</div>
+					<div class="wrapper">
+						<div class="container1" id="mainCards">
+							<div class="grid" id="productGrid">
+								<!-- 과일 카드 -->
+								<div class="card" data-category="fruit">
+									<a href="../product/product_detail_01.html?productId='musket'">
+										<img src="../resources/musket.png" alt="이미지01" />
+									</a>
+									<div class="progress">150% 달성</div>
+									<div class="title">[별빛영천포도밭] 달콤한 별빛샤인머스켓 (씨 없는 포도)</div>
+									<div class="info-box">
+										<div class="info-item">150만+</div>
+										<div class="info-item">30일 남음</div>
+									</div>
+								</div>
+								<div class="card" data-category="fruit">
+									<a href="../product/product_detail_02.html?productId='apple'">
+										<img src="../resources/apple.png" alt="이미지02" />
+									</a>
+									<div class="progress">80% 달성</div>
+									<div class="title">
+										[영천햇살사과농장] 따뜻한 햇살 속에서 자란 당도 1등급 사과
+									</div>
+									<div class="info-box">
+										<div class="info-item">80만+</div>
+										<div class="info-item">27일 남음</div>
+									</div>
+								</div>
+								<div class="card" data-category="fruit">
+									<a href="#"><img src="../resources/grape.png" alt="이미지03" /></a>
+									<div class="progress">95% 달성</div>
+									<div class="title">[달콤한송산이야기] 송산햇살속 달콤샤인-프리미엄 선물박스</div>
+									<div class="info-box">
+										<div class="info-item">95만+</div>
+										<div class="info-item">9일 남음</div>
+									</div>
+								</div>
+								<div class="card" data-category="fruit">
+									<a href="#"><img src="../resources/tangerin.png" alt="이미지04" /></a>
+									<div class="progress">205% 달성</div>
+									<div class="title">[제주바람귤밭] 바람이 키운 달콤한 귤 이야기</div>
+									<div class="info-box">
+										<div class="info-item">205만+</div>
+										<div class="info-item">25일 남음</div>
+									</div>
+								</div>
+
+								<div class="card" data-category="fruit">
+									<a href="#"><img src="../resources/strawberry.png" alt="이미지05" /></a>
+									<div class="progress">135% 달성</div>
+									<div class="title">
+										[논산딸기뜰] 당도 가득, 사랑 가득 - 논산딸기뜰 프리미엄 딸기
+									</div>
+									<div class="info-box">
+										<div class="info-item">135만+</div>
+										<div class="info-item">15일 남음</div>
+									</div>
+								</div>
+								<div class="card" data-category="fruit">
+									<a href="#"><img src="../resources/melon.png" alt="이미지06" /></a>
+									<div class="progress">300% 달성</div>
+									<div class="title">[수신햇살멜론농장] 청정한 수신에서 자란 달콤한 멜론</div>
+									<div class="info-box">
+										<div class="info-item">300만+</div>
+										<div class="info-item">6일 남음</div>
+									</div>
+								</div>
+								<div class="card" data-category="fruit">
+									<a href="#"><img src="../resources/tomato.png" alt="이미지07" /></a>
+									<div class="progress">95% 달성</div>
+									<div class="title">[퇴촌토마토뜰] 퇴촌에서 갓 수확한 방울토마토</div>
+									<div class="info-box">
+										<div class="info-item">95만+</div>
+										<div class="info-item">13일 남음</div>
+									</div>
+								</div>
+								<div class="card" data-category="fruit">
+									<a href="#"><img src="../resources/persimmon.png" alt="이미지08" /></a>
+									<div class="progress">175% 달성</div>
+									<div class="title">[영천감이야기] 시간과 햇살이 만든 반시 한 알의 이야기</div>
+									<div class="info-box">
+										<div class="info-item">175만+</div>
+										<div class="info-item">34일 남음</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="no-data" id="noData" style="display: none">현재 상품이 없습니다.</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			</main>
 		</div>
-		<div class="wrapper">
-			<div class="container" id="mainCards">
-				<div class="grid" id="productGrid">
-					<!-- 과일 카드 -->
-					<div class="card" data-category="fruit">
-						<a href="../product/product_detail_01.html?productId='musket'">
-							<img src="../resources/musket.png" alt="이미지01" />
-						</a>
-						<div class="progress">150% 달성</div>
-						<div class="title">[별빛영천포도밭] 달콤한 별빛샤인머스켓 (씨 없는 포도)</div>
-						<div class="info-box">
-							<div class="info-item">150만+</div>
-							<div class="info-item">30일 남음</div>
-						</div>
-					</div>
-					<div class="card" data-category="fruit">
-						<a href="../product/product_detail_02.html?productId='apple'">
-							<img src="../resources/apple.png" alt="이미지02" />
-						</a>
-						<div class="progress">80% 달성</div>
-						<div class="title">[영천햇살사과농장] 따뜻한 햇살 속에서 자란 당도 1등급 사과</div>
-						<div class="info-box">
-							<div class="info-item">80만+</div>
-							<div class="info-item">27일 남음</div>
-						</div>
-					</div>
-					<div class="card" data-category="fruit">
-						<a href="#"><img src="../resources/grape.png" alt="이미지03" /></a>
-						<div class="progress">95% 달성</div>
-						<div class="title">[달콤한송산이야기] 송산햇살속 달콤샤인-프리미엄 선물박스</div>
-						<div class="info-box">
-							<div class="info-item">95만+</div>
-							<div class="info-item">9일 남음</div>
-						</div>
-					</div>
-					<div class="card" data-category="fruit">
-						<a href="#"><img src="../resources/tangerin.png" alt="이미지04" /></a>
-						<div class="progress">205% 달성</div>
-						<div class="title">[제주바람귤밭] 바람이 키운 달콤한 귤 이야기</div>
-						<div class="info-box">
-							<div class="info-item">205만+</div>
-							<div class="info-item">25일 남음</div>
-						</div>
-					</div>
-
-					<div class="card" data-category="fruit">
-						<a href="#"><img src="../resources/strawberry.png" alt="이미지05" /></a>
-						<div class="progress">135% 달성</div>
-						<div class="title">[논산딸기뜰] 당도 가득, 사랑 가득 - 논산딸기뜰 프리미엄 딸기</div>
-						<div class="info-box">
-							<div class="info-item">135만+</div>
-							<div class="info-item">15일 남음</div>
-						</div>
-					</div>
-					<div class="card" data-category="fruit">
-						<a href="#"><img src="../resources/melon.png" alt="이미지06" /></a>
-						<div class="progress">300% 달성</div>
-						<div class="title">[수신햇살멜론농장] 청정한 수신에서 자란 달콤한 멜론</div>
-						<div class="info-box">
-							<div class="info-item">300만+</div>
-							<div class="info-item">6일 남음</div>
-						</div>
-					</div>
-					<div class="card" data-category="fruit">
-						<a href="#"><img src="../resources/tomato.png" alt="이미지07" /></a>
-						<div class="progress">95% 달성</div>
-						<div class="title">[퇴촌토마토뜰] 퇴촌에서 갓 수확한 방울토마토</div>
-						<div class="info-box">
-							<div class="info-item">95만+</div>
-							<div class="info-item">13일 남음</div>
-						</div>
-					</div>
-					<div class="card" data-category="fruit">
-						<a href="#"><img src="../resources/persimmon.png" alt="이미지08" /></a>
-						<div class="progress">175% 달성</div>
-						<div class="title">[영천감이야기] 시간과 햇살이 만든 반시 한 알의 이야기</div>
-						<div class="info-box">
-							<div class="info-item">175만+</div>
-							<div class="info-item">34일 남음</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="no-data" id="noData" style="display: none">현재 상품이 없습니다.</div>
-			</div>
-		</div>
-
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 		<script>
 			var JUI = JUI || {};
 			!(function (param) {
@@ -335,7 +359,7 @@
 					$ = param.jQ;
 
 				JUI.slider = function (selector, options) {
-					var container = $(selector),
+					var container1 = $(selector),
 						config = {
 							speed: 400,
 							isSelected: 'active',
@@ -343,7 +367,7 @@
 							duration: 2500,
 						};
 
-					if (!container.length) {
+					if (!container1.length) {
 						return;
 					}
 
@@ -352,10 +376,10 @@
 					$.extend(config, options);
 
 					function setting() {
-						detect.$listBox = container.find('.gallery-list');
+						detect.$listBox = container1.find('.gallery-list');
 						detect.$lists = detect.$listBox.children('li');
 						detect.width = detect.$listBox.width();
-						detect.$indicate = container.find('.ctrl-box a');
+						detect.$indicate = container1.find('.ctrl-box a');
 						detect.view = '.gallery-list';
 						detect.indicate = '.ctrl-box a';
 						detect.prev = '.btn-prev';
@@ -493,8 +517,5 @@
 				slider.resize();
 			});
 		</script>
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

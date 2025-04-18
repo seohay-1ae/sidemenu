@@ -2,11 +2,19 @@
 
 const headerHTML = `
   <style>
+  ul {
+  list-style-type: none;  /* 기본 점 제거 */
+  padding: 0;
+  margin: 0;
+}
   .logo {
       height: 2.8rem;
       margin-left:2rem;
       margin-right:2rem;
   }
+      li {
+  margin-bottom: 10px;
+}
 
   .navbar_main {
     background-color:#e7f5e1;
@@ -190,20 +198,21 @@ const headerHTML = `
       padding: 0 2rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: flex-start;
       transform: translateX(100%);  /* 메뉴 숨김 */
       z-index: 999;
       color: #ffffff;
       transition: transform 0.3s ease;
+      padding-top:130px;
     }
 
     .navbar_menu a {
       position: relative;
       color: #ffffff;
-      font-size: 1.5rem;
-      margin-left: 1rem;
-      margin-bottom: 3rem;
+      font-size: 40px;  // 카테고리 폰트크기
+      margin-left: 20px;
+      margin-bottom: 90px; // 카테고리 사이 간격
       text-decoration: none;
     }
 
@@ -218,17 +227,26 @@ const headerHTML = `
   
    /* 모바일 및 태블릿 클릭 이벤트를 위한 submenu 설정 */
     .submenu {
-      display: none;
-      margin-bottom:10px;
+      display: block !important;
+      padding-left: 30px;  /* 하위 메뉴 들여쓰기 */
+      margin-bottom:40px;
     }
     
     .submenu a{
-      font-size: 20px;
+      font-size: 30px;
       color:rgb(37, 58, 126);
       margin:15px;
+      display: block;
+    }
+    #tabletNotice{
+      margin-bottom:0;
+    }
+    ul li a {
+      color: #333;
+      text-decoration: none;
+      display: block;
     }
   }
-
     /* 모바일 (~ 767px) */
   @media (max-width: 767px)
   {
@@ -317,7 +335,7 @@ const headerHTML = `
   
    /* 모바일 및 태블릿 클릭 이벤트를 위한 submenu 설정 */
     .submenu {
-      display: none;
+      display: block !important;
       background-color: #f4f4f4;
       padding:0;
       margin:0;
@@ -330,6 +348,9 @@ const headerHTML = `
       margin:15px;
     }
   }
+    .submenu.active {
+  display: block;
+}
   </style>
 
   <!-- 모바일버전 -->
@@ -382,17 +403,26 @@ const headerHTML = `
     </svg>
   </div>
   <div class="navbar_overlay">
-    <div class="navbar_menu">
-      <a href="#" id="tablet-notice">공지사항 ▾</a>
-      <div class="submenu">
-        <a href="../notice/notice.html">공지사항</a>
-        <a href="../notice/brandstory.html">브랜드스토리</a>
-        <a href="../notice/govt_support.html">정부지원정책</a>
-      </div>
-      <a href="../product/product_list.html">상품</a>
-      <a href="../experience/experience.html">견학/체험</a>
-      <a href="../festival/festival_list.html">축제</a>
-      <a href="../community/community.html">커뮤니티</a>
+   <div class="navbar_menu">
+    <!-- 공지사항 항목은 하위 리스트로 -->
+    <ul>
+      <li>
+        <a href="#" id="tabletNotice">공지사항</a>
+        <ul class="submenu">
+          <li><a href="../notice/notice.html"> - 공지사항</a></li>
+          <li><a href="../notice/brandstory.html"> - 브랜드스토리</a></li>
+          <li><a href="../notice/govt_support.html"> - 정부지원정책</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- 나머지 메뉴 항목들은 단순한 링크로 -->
+    <ul>
+      <li><a href="../product/product_list.html">상품</a></li>
+      <li><a href="../experience/experience.html">견학/체험</a></li>
+      <li><a href="../festival/festival_list.html">축제</a></li>
+      <li><a href="../community/community.html">커뮤니티</a></li>
+    </ul>
       <div class="navbar_burger_back">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
           <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
@@ -464,25 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		tabletBack.addEventListener('click', () => {
 			tabletMenu.classList.remove('active');
 			tabletOverlay.classList.remove('active');
-		});
-	}
-
-	// 📄 공지사항 submenu 토글 (모바일/태블릿)
-	const tabletNotice = document.getElementById('tablet-notice');
-	const tabletSubmenu = tabletNotice ? tabletNotice.nextElementSibling : null;
-
-	const mobileNotice = document.getElementById('mobile-notice');
-	const mobileSubmenu = mobileNotice ? mobileNotice.nextElementSibling : null;
-
-	if (tabletNotice && tabletSubmenu) {
-		tabletNotice.addEventListener('click', () => {
-			tabletSubmenu.classList.toggle('active');
-		});
-	}
-
-	if (mobileNotice && mobileSubmenu) {
-		mobileNotice.addEventListener('click', () => {
-			mobileSubmenu.classList.toggle('active');
 		});
 	}
 

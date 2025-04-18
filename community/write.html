@@ -8,17 +8,12 @@
 		<title>글쓰기</title>
 		<style>
 			body {
-				font-family: 'Arial', sans-serif;
 				background-color: #f4f4f4;
-				padding: 20px;
 			}
 			.container {
-				margin: auto;
 				background: white;
-				padding: 20px;
 				border-radius: 10px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-				margin-top: 100px;
 			}
 			input,
 			textarea {
@@ -38,7 +33,6 @@
 			}
 			.back-button {
 				color: white;
-				margin-top: 10px;
 				padding: 10px 20px;
 				border-radius: 8px;
 				text-decoration: none;
@@ -49,51 +43,52 @@
 			#image {
 				margin-bottom: 30px;
 			}
+
 			@media (min-width: 1024px) {
 				.container {
-					width: 925px;
+					width: 915px;
 					height: 400px;
-					margin: 100px auto 500px auto;
+					padding: 20px;
 				}
-				#submit-post {
-					position: relative;
-					right: -835px;
-					top: 20px;
-				}
-				#back-button {
-					position: absolute;
-					right: 940px;
-					top: 585px;
+				.buttons {
+					display: flex;
+					gap: 660px;
 				}
 			}
 			@media (min-width: 768px) and (max-width: 1023px) {
 				.container {
 					width: 800px;
 					height: 425px;
-					margin: 50px auto 500px auto;
+					padding: 20px;
 				}
-				#submit-post {
-					position: relative;
-					right: -723px;
-					top: 20px;
-				}
-				#back-button {
-					position: absolute;
-					right: 728px;
-					top: 549px;
+				.buttons {
+					display: flex;
+					gap: 555px;
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<h2>글쓰기</h2>
-			<input type="text" id="title" placeholder="제목" style="width: 95%" />
-			<textarea id="content" rows="5" placeholder="내용" style="width: 95%"></textarea>
-			<input type="file" id="image" accept="image/*" style="width: 95%" />
-			<a href="./community.html" class="back-button" id="back-button">커뮤니티로 돌아가기</a>
-			<button id="submit-post">등록</button>
+		<div class="page-container">
+			<main class="page-content">
+				<!-- 본문 내용 -->
+
+				<div class="container">
+					<h2>글쓰기</h2>
+					<input type="text" id="title" placeholder="제목" style="width: 95%" />
+					<textarea id="content" rows="5" placeholder="내용" style="width: 95%"></textarea>
+					<input type="file" id="image" accept="image/*" style="width: 95%" />
+					<div class="buttons">
+						<a href="./community.html" class="back-button" id="back-button">커뮤니티로 돌아가기</a>
+						<button id="submit-post" style="font-size: 14.4px">등록</button>
+					</div>
+				</div>
+			</main>
 		</div>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
+
 		<script>
 			$('#submit-post').click(function () {
 				const title = $('#title').val().trim();
@@ -143,8 +138,5 @@
 				}
 			});
 		</script>
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

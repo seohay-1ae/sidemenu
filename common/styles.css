@@ -10,8 +10,22 @@
 }
 
 /* 기본 폰트 크기 설정 (반응형) */
-html {
+html,
+body {
 	height: 100%; /* 화면 전체 높이 사용 */
+	margin: 0;
+	padding: 0;
+}
+
+.page-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.page-content {
+	flex: 1;
+	/* margin-top: 81.8px; 헤더 높이만큼 밀어줌 */
 }
 
 /* 기본 스타일 - 모바일 퍼스트 */
@@ -85,14 +99,27 @@ img {
 	p {
 		font-size: 25px;
 	}
-}
-html,
-body {
-	min-height: 1394px;
-}
-@media (min-width: 1024px) {
+	.container {
+		margin-top: 60px;
+		padding: 0px 70px;
+	}
 	html,
 	body {
-		min-height: 897px;
+		height: 100%; /* 화면 전체 높이 사용 */
+		margin: 0;
+		padding: 0;
+	}
+}
+@media (min-width: 1024px) {
+	.container {
+		padding: 0px 160px;
+		margin-top: 70px;
+		margin-bottom: 70px;
+	}
+	html,
+	body {
+		height: 100%; /* 화면 전체 높이 사용 */
+		margin: 0;
+		padding: 0;
 	}
 }

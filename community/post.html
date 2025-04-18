@@ -7,18 +7,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>게시글 상세보기</title>
 		<style>
-			html {
-				height: 100%;
-			}
 			body {
 				background-color: #f4f4f4;
-				padding: 20px;
-				height: 100%;
 			}
 			.container {
-				margin: auto;
 				background: white;
-				padding: 20px;
 				border-radius: 10px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			}
@@ -48,7 +41,7 @@
 				margin-top: 30px;
 			}
 			.comment-input {
-				width: 100%;
+				width: 95%;
 				padding: 10px;
 				margin: 12px 0 25px 0;
 				border-radius: 5px;
@@ -71,7 +64,6 @@
 				border-radius: 8px;
 				font-weight: bold;
 				cursor: pointer;
-				float: right;
 			}
 			.comment-list {
 				margin-top: 20px;
@@ -96,7 +88,6 @@
 				text-decoration: none;
 				font-size: 1rem;
 				font-weight: bold;
-				position: absolute;
 				top: 10px;
 				right: 20px; /* 오른쪽 상단에 위치 */
 				background-color: #0a8b11;
@@ -105,46 +96,75 @@
 			@media (min-width: 1024px) {
 				.container {
 					width: 925px;
-					margin: 100px auto 550px auto;
+					padding: 20px;
 				}
 				.back-button {
-					top: 218px;
-					right: 165px; /* 오른쪽 상단에 위치 */
+					position: absolute;
+					top: 155px;
+					right: 175px; /* 오른쪽 상단에 위치 */
+				}
+				.buttons {
+					display: flex;
+					gap: 708px;
+					align-items: center; /* 수직 정렬 */
 				}
 			}
 			@media (min-width: 768px) and (max-width: 1023px) {
 				.container {
 					width: 795px;
-					margin: 200px auto 550px auto;
+					padding: 20px;
 				}
 				.back-button {
-					top: 315px;
-					right: 78px; /* 오른쪽 상단에 위치 */
+					position: absolute;
+					top: 155px;
+					right: 110px; /* 오른쪽 상단에 위치 */
+				}
+				.buttons {
+					display: flex;
+					gap: 600px;
+					align-items: center; /* 수직 정렬 */
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<h2 class="post-title" id="post-title"></h2>
-			<div class="post-author" id="post-author"></div>
-			<div class="post-date" id="post-date"></div>
-			<div class="post-content" id="post-content"></div>
-			<div class="post-image" id="post-image"></div>
+		<div class="page-container">
+			<main class="page-content">
+				<!-- 본문 내용 -->
 
-			<!-- 댓글 섹션 -->
-			<div class="comment-section">
-				<h4>댓글</h4>
-				<input type="text" id="comment" class="comment-input" placeholder="댓글을 작성해주세요." />
-				<button id="submit-comment" class="comment-button">댓글 작성</button>
-				<button id="report-post" class="report-post">게시물 신고</button>
-				<div class="comment-list" id="comment-list"></div>
-			</div>
+				<div class="container">
+					<h2 class="post-title" id="post-title"></h2>
+					<div class="post-author" id="post-author"></div>
+					<div class="post-date" id="post-date"></div>
+					<div class="post-content" id="post-content"></div>
+					<div class="post-image" id="post-image"></div>
 
-			<!-- 커뮤니티 페이지로 돌아가는 버튼 -->
-			<a href="./community.html" class="back-button">커뮤니티로 돌아가기</a>
+					<!-- 댓글 섹션 -->
+					<div class="comment-section">
+						<h4>댓글</h4>
+						<input
+							type="text"
+							id="comment"
+							class="comment-input"
+							placeholder="댓글을 작성해주세요."
+						/>
+						<div class="buttons">
+							<button id="submit-comment" class="comment-button">댓글 작성</button>
+							<button id="report-post" class="report-post">게시물 신고</button>
+						</div>
+						<div class="comment-list" id="comment-list"></div>
+					</div>
+
+					<!-- 커뮤니티 페이지로 돌아가는 버튼 -->
+					<div class="parent">
+						<a href="./community.html" class="back-button">커뮤니티로 돌아가기</a>
+					</div>
+				</div>
+			</main>
 		</div>
-
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 		<script>
 			$(document).ready(function () {
 				// URL에서 index 파라미터 추출 (몇 번째 게시글인지)
@@ -238,9 +258,5 @@
 				}
 			});
 		</script>
-
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

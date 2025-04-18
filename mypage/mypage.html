@@ -7,46 +7,38 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>mypage</title>
 		<style>
-			h3 {
-				font-size: 25px;
-				font-weight: bold;
-				text-align: left;
-				margin-bottom: 60px;
-				color: #222;
-			}
-			.mypage-container {
-				display: flex;
-				gap: 20px;
-				padding: 20px;
-				max-width: 1000px;
-				margin: 0 auto;
-			}
 			.profile-section {
-				width: 200px;
+				display: flex;
+				justify-content: center; /* 가로 중앙 정렬 */
+				align-items: center; /* 세로 중앙 정렬 */
+				flex-direction: row;
+				margin: 0 auto; /* 블록 요소 중앙 정렬 */
 				padding: 20px;
 				border: 1px solid #ddd;
 				border-radius: 10px;
+				background-color: #f9f9f9;
+				gap: 20px;
+				width: fit-content; /* 내용 크기만큼 너비 설정 */
+			}
+			.profile-info {
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				background-color: #f9f9f9;
+				justify-content: center;
+				gap: 5px;
 			}
 			.profile-image {
 				width: 100px;
 				height: 100px;
 				border-radius: 1%;
-				margin-bottom: 15px;
 			}
 			.profile-name {
 				font-size: 18px;
 				font-weight: bold;
-				margin: 5px 0;
 				color: #333;
 			}
-			.profile-email {
+			.profile-tel {
 				font-size: 14px;
 				color: #666;
-				margin-bottom: 20px;
 			}
 			.logout-button {
 				background-color: #007bff;
@@ -56,7 +48,6 @@
 				color: white;
 				font-size: 14px;
 				cursor: pointer;
-				width: 100%;
 				text-align: center;
 				text-decoration: none;
 			}
@@ -122,49 +113,71 @@
 				background-color: #007bff;
 				color: white;
 			}
+			.myPageTitle {
+				font-size: 30px;
+				font-weight: 700;
+				margin-bottom: 20px;
+				border-bottom: 2px solid #0000002f;
+				padding-bottom: 10px;
+			}
+			.profile-section {
+				margin-bottom: 40px;
+			}
+			.tables-section {
+				margin-bottom: 40px;
+			}
 		</style>
 	</head>
 	<body>
-		<h3>마이페이지</h3>
-		<div class="mypage-container">
-			<div class="profile-section">
-				<img src="../resources/profile.png" alt="Profile Image" class="profile-image" />
-				<p id="profile-name" class="profile-name"></p>
-				<p id="profile-tel" class="profile-tel"></p>
-				<button class="logout-button">로그아웃</button>
-			</div>
+		<div class="page-container">
+			<main class="page-content">
+				<!-- 본문 내용 -->
+				<div class="container">
+					<div class="myPageTitle">마이페이지</div>
 
-			<div class="tables-section">
-				<div class="table-container">
-					<h3>구매내역 정보</h3>
-					<table class="purchase-table">
-						<thead>
-							<tr>
-								<th>날짜</th>
-								<th>상품이름</th>
-								<th>총 금액</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>
+					<div class="profile-section">
+						<img src="../resources/profile.png" alt="Profile Image" class="profile-image" />
+						<div class="profile-info">
+							<p id="profile-name" class="profile-name"></p>
+							<p id="profile-tel" class="profile-tel"></p>
+							<button class="logout-button">로그아웃</button>
+						</div>
+					</div>
 
-				<div class="table-container">
-					<h3>펀딩신청정보</h3>
-					<table class="funding-table">
-						<thead>
-							<tr>
-								<th>날짜</th>
-								<th>상품이름</th>
-								<th>상태</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
+					<div class="tables-section">
+						<div class="table-container">
+							<h3>구매내역 정보</h3>
+							<table class="purchase-table">
+								<thead>
+									<tr>
+										<th>날짜</th>
+										<th>상품이름</th>
+										<th>총 금액</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="table-container">
+						<h3>펀딩신청정보</h3>
+						<table class="funding-table">
+							<thead>
+								<tr>
+									<th>날짜</th>
+									<th>상품이름</th>
+									<th>상태</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+			</main>
 		</div>
-
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 		<script>
 			$(document).ready(function () {
 				const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -265,8 +278,5 @@
 				});
 			});
 		</script>
-
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>
