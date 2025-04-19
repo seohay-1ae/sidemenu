@@ -244,9 +244,21 @@
 				}
 
 				const supporter = JSON.parse(localStorage.getItem('loggedInUser')) || {};
+				// ✅ 로그인 여부 확인
+				if (!supporter.id) {
+					alert('로그인 후 이용 가능합니다.');
+					return;
+				}
+
 				const product = JSON.parse(localStorage.getItem('selectedProduct')) || {};
 				const postcode = document.getElementById('postcode').value;
 				const address = document.getElementById('address').value;
+				// ✅ 배송지 필수 입력 체크
+				if (!postcode || !address) {
+					alert('배송지를 입력해 주세요.');
+					return;
+				}
+
 				const paymentMethod = document
 					.querySelector('input[name="pay"]:checked')
 					?.parentElement?.textContent.trim();
