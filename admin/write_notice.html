@@ -8,12 +8,10 @@
 		<title>공지사항(관리자) 글쓰기</title>
 		<style>
 			body {
-				font-family: 'Arial', sans-serif;
 				background-color: #f4f4f4;
 				padding: 20px;
 			}
 			.container {
-				max-width: 600px;
 				margin: auto;
 				background: white;
 				padding: 20px;
@@ -23,7 +21,7 @@
 			}
 			input,
 			textarea {
-				width: 100%;
+				width: 95%;
 				padding: 10px;
 				margin: 10px 0;
 				border-radius: 5px;
@@ -41,7 +39,6 @@
 			}
 			.back-button {
 				color: white;
-				margin-top: 10px;
 				padding: 10px 20px;
 				border-radius: 8px;
 				text-decoration: none;
@@ -50,6 +47,25 @@
 				font-size: 0.9rem;
 				display: inline-block;
 			}
+			.buttons {
+				display: flex;
+			}
+			@media (min-width: 1024px) {
+				.container {
+					width: 980px;
+				}
+				.buttons {
+					gap: 740px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					width: 730px;
+				}
+				.buttons {
+					gap: 510px;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -57,8 +73,10 @@
 			<h2>공지사항 작성</h2>
 			<input type="text" id="title" placeholder="제목" />
 			<textarea id="content" rows="5" placeholder="내용"></textarea>
-			<a href="./admin_notice.html" class="back-button">공지사항 목록으로</a>
-			<button id="submit-notice">등록</button>
+			<div class="buttons">
+				<a href="./admin_notice.html" class="back-button">공지사항 목록으로</a>
+				<button id="submit-notice" style="font-size: 14.4px">등록</button>
+			</div>
 		</div>
 
 		<script>

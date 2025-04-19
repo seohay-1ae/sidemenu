@@ -11,6 +11,11 @@
 			box-sizing: border-box;
 			text-decoration: none;
 		}
+		
+		html, body {
+    height: 100%; /* 추가 */
+    margin: 0;
+		}
 
 		/* 햄버거 메뉴 버튼 */
 		.hamburger {
@@ -27,8 +32,6 @@
 			top: 0;
 			left: 0;
 			width: 15vw;
-			min-width: 200px;
-			max-width: 600px;
 			height: 100%;
 			background-color: #b9b9b9;
 			color: white;
@@ -94,8 +97,23 @@
 			}
 		}
 
+		@media (min-width: 768px) and (max-width: 1023px) {
+      .sidebar {
+			width: 19vw;
+			}
+			.main-wrapper {
+			margin-left: 19vw;
+			}
+			.hamburger {
+				display: none;
+			}
+			.close-btn {
+				display: none;
+			}
+		}
+
 		/* 태블릿과 PC에서는 사이드바 항상 보이게 */
-		@media (min-width: 481px) {
+		@media (min-width: 1024px) {
 			.hamburger {
 				display: none;
 			}
@@ -104,7 +122,6 @@
 			}
 			.main-wrapper {
 				margin-left: 15vw;
-				min-width: 200px;
 			}
 		}
 	`;
@@ -122,8 +139,6 @@
 				<li><a href="./admin_report.html" class="admin_report">게시물 신고 목록</a></li>
 				<li><a href="./admin_funding_reg.html" class="admin_funding_reg">펀딩 등록 신청</a></li>
 				<li><a href="./admin_fes_prod.html" class="admin_des_prod">축제 상품 연동</a></li>
-				<li><a href="#" class="proj_director">샘플</a></li>
-				<li><a href="#" class="proj_policy">샘플</a></li>
 			</ul>
 			<!-- 로그아웃 버튼 -->
 			<ul>

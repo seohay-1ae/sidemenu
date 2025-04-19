@@ -12,26 +12,14 @@
 				flex-direction: column;
 				min-height: 100vh;
 			}
-			.layout {
-				display: flex;
-				min-height: 100vh;
-				flex: 1;
-			}
+
 			.main-wrapper {
 				display: flex;
 				flex-direction: column;
-				width: 100%;
-			}
-			.wrapper {
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				padding: 2rem 0;
 			}
 			.container {
 				width: 90%;
-				margin: 10rem 0;
+				margin: 0;
 				background: #ffffff;
 				padding: 20px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -57,7 +45,9 @@
 			td {
 				border: 1px solid #ccc;
 				padding: 8px;
-				word-break: break-word; /* ✅ 추가 */
+				white-space: nowrap; /* 텍스트는 한 줄로 유지 */
+				overflow: hidden; /* 넘친 내용은 숨김 */
+				text-overflow: ellipsis; /* 넘친 부분은 "..."으로 표시 */
 			}
 			th {
 				background-color: #f1c40f;
@@ -74,77 +64,88 @@
 			input[type='checkbox'] {
 				transform: scale(1.2);
 			}
-			@media (min-width: 481px) and (max-width: 1024px) {
-				.wrapper {
-					width: 100%;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					margin: 2rem 5rem !important;
-				}
-			}
 			@media (max-width: 768px) {
 				table {
 					font-size: 14px;
 				}
 			}
-			@media (min-width: 481px) {
+			@media (max-width: 768px) {
 				.main-wrapper {
-					margin-left: 15vw; /* 또는 min-width 기준으로 200px */
+					margin-left: 0; /* 모바일에서는 사이드바 밀리지 않도록 설정 */
 				}
 			}
-			@media (max-width: 480px) {
-				.main-wrapper {
-					margin-left: 0;
+
+			@media (max-width: 1023px) and (min-width: 768px) {
+				.container {
+					width: 730px;
+					margin: auto;
+					margin-top: 120px;
+				}
+			}
+
+			@media (min-width: 1024px) {
+				.container {
+					margin: auto;
+					margin-top: 120px;
+					width: 980px;
 				}
 			}
 		</style>
 	</head>
 	<body>
 		<main class="main-wrapper">
-			<div class="layout">
-				<!-- 사이드바 삽입 -->
-				<div id="sidebar-container"></div>
+			<!-- 사이드바 삽입 -->
+			<div id="sidebar-container"></div>
 
-				<!-- 세로로 쌓이는 wrapper -->
-				<div class="wrapper">
-					<!-- 첫 번째 컨테이너 -->
-					<div class="container">
-						<div class="header">
-							<h3>게시물 신고</h3>
-						</div>
-						<table>
-							<thead>
-								<tr>
-									<th><input type="checkbox" id="select-all" /></th>
-									<!-- ✅ 변경 -->
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일자</th>
-									<th>신고횟수</th>
-									<th>관리</th>
-								</tr>
-							</thead>
-							<tbody id="post-list">
-								<!-- 게시물 목록은 JavaScript로 동적으로 추가됩니다 -->
-							</tbody>
-						</table>
-						<button
-							id="delete-selected"
-							style="
-								margin-top: 10px;
-								background-color: #e74c3c;
-								color: white;
-								padding: 10px 15px;
-								border: none;
-								border-radius: 5px;
-								cursor: pointer;
-							"
-						>
-							선택 삭제
-						</button>
-					</div>
+			<!-- 첫 번째 컨테이너 -->
+			<div class="container">
+				<div class="header">
+					<h3>게시물 신고</h3>
 				</div>
+				<table>
+					<colgroup>
+						<!-- 첫 번째 열 (체크박스) -->
+						<col style="width: 3%" />
+						<!-- 두 번째 열 (제목) -->
+						<col style="width: 23%" />
+						<!-- 세 번째 열 (작성자) -->
+						<col style="width: 9%" />
+						<!-- 네 번째 열 (작성일자) -->
+						<col style="width: 8%" />
+						<!-- 다섯 번째 열 (신고횟수) -->
+						<col style="width: 6%" />
+						<!-- 여섯 번째 열 (관리) -->
+						<col style="width: 5%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th><input type="checkbox" id="select-all" /></th>
+							<!-- ✅ 변경 -->
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일자</th>
+							<th>신고횟수</th>
+							<th>관리</th>
+						</tr>
+					</thead>
+					<tbody id="post-list">
+						<!-- 게시물 목록은 JavaScript로 동적으로 추가됩니다 -->
+					</tbody>
+				</table>
+				<button
+					id="delete-selected"
+					style="
+						margin-top: 10px;
+						background-color: #e74c3c;
+						color: white;
+						padding: 10px 15px;
+						border: none;
+						border-radius: 5px;
+						cursor: pointer;
+					"
+				>
+					선택 삭제
+				</button>
 			</div>
 		</main>
 		<script src="./admin_sidebar.js"></script>

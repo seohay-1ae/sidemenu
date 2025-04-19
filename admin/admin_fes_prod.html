@@ -12,31 +12,19 @@
 				flex-direction: column;
 				min-height: 100vh;
 			}
-			.layout {
-				display: flex;
-				min-height: 100vh;
-				flex: 1;
-			}
+
 			.main-wrapper {
 				display: flex;
 				flex-direction: column;
-				width: 100%;
-			}
-			.wrapper {
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				padding: 2rem 0;
 			}
 			.container {
 				width: 90%;
-				margin: 10rem 0;
+				margin: 0;
 				background: #ffffff;
 				padding: 20px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 				border-radius: 10px;
-				overflow-x: auto;
+				overflow-x: auto; /* ✅ 추가 */
 			}
 			.header {
 				display: flex;
@@ -57,7 +45,9 @@
 			td {
 				border: 1px solid #ccc;
 				padding: 8px;
-				word-break: break-word;
+				white-space: nowrap; /* 텍스트는 한 줄로 유지 */
+				overflow: hidden; /* 넘친 내용은 숨김 */
+				text-overflow: ellipsis; /* 넘친 부분은 "..."으로 표시 */
 			}
 			th {
 				background-color: #f1c40f;
@@ -75,28 +65,30 @@
 			input[type='checkbox'] {
 				transform: scale(1.2);
 			}
-			@media (min-width: 481px) and (max-width: 1024px) {
-				.wrapper {
-					width: 100%;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					margin: 2rem 5rem !important;
-				}
-			}
 			@media (max-width: 768px) {
 				table {
 					font-size: 14px;
 				}
 			}
-			@media (min-width: 481px) {
+			@media (max-width: 768px) {
 				.main-wrapper {
-					margin-left: 15vw;
+					margin-left: 0; /* 모바일에서는 사이드바 밀리지 않도록 설정 */
 				}
 			}
-			@media (max-width: 480px) {
-				.main-wrapper {
-					margin-left: 0;
+
+			@media (max-width: 1023px) and (min-width: 768px) {
+				.container {
+					width: 730px;
+					margin: auto;
+					margin-top: 120px;
+				}
+			}
+
+			@media (min-width: 1024px) {
+				.container {
+					margin: auto;
+					margin-top: 120px;
+					width: 980px;
 				}
 			}
 
@@ -130,47 +122,57 @@
 	</head>
 	<body>
 		<main class="main-wrapper">
-			<div class="layout">
-				<!-- 사이드바 삽입 -->
-				<div id="sidebar-container"></div>
+			<!-- 사이드바 삽입 -->
+			<div id="sidebar-container"></div>
 
-				<div class="wrapper">
-					<div class="container">
-						<div class="header">
-							<h3>축제 상품 연동</h3>
-						</div>
-						<table>
-							<thead>
-								<tr>
-									<th>축제명</th>
-									<th>장소</th>
-									<th>축제시작일</th>
-									<th>축제종료일</th>
-									<th>관리</th>
-									<th>업데이트일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>봄꽃축제</td>
-									<td>서울</td>
-									<td>2025-04-01</td>
-									<td>2025-04-10</td>
-									<td><button class="btn-setting">설정</button></td>
-									<td>2025-04-10</td>
-								</tr>
-								<tr>
-									<td>불꽃놀이</td>
-									<td>부산</td>
-									<td>2025-05-05</td>
-									<td>2025-05-06</td>
-									<td><button class="btn-setting">설정</button></td>
-									<td>2025-04-17</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+			<div class="container">
+				<div class="header">
+					<h3>축제 상품 연동</h3>
 				</div>
+				<table>
+					<colgroup>
+						<!-- 첫 번째 열 (축제명) -->
+						<col style="width: 17%" />
+						<!-- 두 번째 열 (장소) -->
+						<col style="width: 10%" />
+						<!-- 세 번째 열 (축제시작일) -->
+						<col style="width: 9%" />
+						<!-- 네 번째 열 (축제종료일) -->
+						<col style="width: 9%" />
+						<!-- 다섯 번째 열 (관리) -->
+						<col style="width: 5%" />
+						<!-- 여섯 번째 열 (업데이트일) -->
+						<col style="width: 9%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>축제명</th>
+							<th>장소</th>
+							<th>축제시작일</th>
+							<th>축제종료일</th>
+							<th>관리</th>
+							<th>업데이트일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>봄꽃축제</td>
+							<td>서울</td>
+							<td>2025-04-01</td>
+							<td>2025-04-10</td>
+							<td><button class="btn-setting">설정</button></td>
+							<td>2025-04-10</td>
+						</tr>
+						<tr>
+							<td>불꽃놀이</td>
+							<td>부산</td>
+							<td>2025-05-05</td>
+							<td>2025-05-06</td>
+							<td><button class="btn-setting">설정</button></td>
+							<td>2025-04-17</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</main>
 

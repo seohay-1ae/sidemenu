@@ -16,48 +16,31 @@
 			.main-wrapper {
 				flex: 1;
 				display: flex;
-				flex-direction: column;
-			}
-			/* 전체 레이아웃: 사이드바 + 콘텐츠 */
-			.layout {
-				display: flex;
-				min-height: 100vh; /* 푸터 밀림 방지 */
-				flex: 1;
+				flex-direction: row; /* 사이드바 + 콘텐츠 수평 정렬 */
+				min-height: 100vh;
 			}
 			/* 사이드바 */
 			#sidebar-container {
 				flex-shrink: 0; /* 줄어들지 않게 고정 */
-				width: 13vw;
-				min-width: 200px;
-				max-width: 600px;
-			}
-			.wrapper {
-				/* body에 정렬하면 전체 레이아웃 꼬이므로 wrapper로 감싸서 그 안에 컨텐츠를 넣고 정렬, footer는 wrapper 밖에 */
-				flex: 1; /* 남은 공간을 채움 (푸터 밀어내기 용도) */
-				display: flex;
-				flex-direction: column;
-				align-items: center; /* 가운데 정렬 */
-				padding: 20px;
-				margin-top: 100px;
-			}
-			.container {
-				width: 100%; /* 페이지 전체 너비 차지 */
-				margin: 3rem 2rem;
-				padding: 0 2rem;
 			}
 			h2 {
 				padding: 2rem 1rem;
 			}
-			.input-data label,
+			.input-data label {
+				min-width: 10rem;
+				max-width: 15rem;
+				margin: 0;
+				font-size: 1.5rem;
+			}
 			.input-data input,
 			.input-data select,
 			.input-data textarea {
-				font-size: 1.5rem; /* 필요에 따라 1.2rem, 1.3rem 등으로 조절 가능 */
-			}
-			.input-data label {
-				min-width: 10rem;
-				max-width: 20rem;
-				margin: 0;
+				flex: 1; /* 이거 추가! */
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				font-size: 1.5rem;
+				box-sizing: border-box; /* 패딩 포함해서 너비 계산 */
 			}
 			.input-data input,
 			.input-data select {
@@ -229,92 +212,100 @@
 					font-size: 0.85rem;
 				}
 			}
+			@media (min-width: 1024px) {
+				.container {
+					padding: 0;
+					width: 970px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					margin: 60px auto auto 68px;
+					padding: 0;
+					width: 840px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<main class="main-wrapper">
-			<div class="layout">
-				<!-- 사이드바를 삽입할 위치 -->
-				<div id="sidebar-container"></div>
-				<!-- 전체 콘텐츠를 감싸는 wrapper -->
-				<div class="wrapper">
-					<div class="container">
-						<div class="route">
-							<p>프로젝트 생성 > <span style="color: #0a8b11">대표자 정보</span></p>
-						</div>
-						<div class="now-page">
-							<h2>대표자 정보</h2>
-						</div>
-						<div class="input-data">
-							<div class="director-name">
-								<label for="directorName">대표자명 <span class="required">*</span></label>
-								<input
-									type="text"
-									id="directorName"
-									required
-									placeholder="대표자명을 입력하세요."
-								/>
-							</div>
-							<div class="director-email">
-								<label for="directorEmail">대표자 이메일 <span class="required">*</span></label>
-								<input
-									type="email"
-									id="directorEmail"
-									required
-									placeholder="이메일을 입력하세요."
-								/>
-							</div>
-							<div class="director-info">
-								<label for="directorInfo"
-									>주민등록번호 or 사업자번호 <span class="required">*</span></label
-								>
-								<input
-									type="text"
-									id="directorInfo"
-									required
-									placeholder="주민등록번호 or 사업자번호를 입력하세요."
-								/>
-							</div>
-							<div class="invoice-email">
-								<label for="invoiceEmail">세금계산서 발행 이메일 (선택)</label>
-								<input type="email" id="invoiceEmail" placeholder="이메일을 입력하세요." />
-							</div>
-							<div class="bank-info">
-								<label for="bankInfo">은행명<span class="required">*</span></label>
-								<input type="text" id="bankInfo" required placeholder="은행명" />
-							</div>
-							<div class="account-number">
-								<label for="accountNumber">계좌번호<span class="required">*</span></label>
-								<input
-									type="text"
-									id="accountNumber"
-									required
-									placeholder="특수문자(-) 없이 숫자만 입력해주세요."
-								/>
-							</div>
-							<div class="account-name">
-								<label for="accountName">예금주명<span class="required">*</span></label>
-								<input
-									type="text"
-									id="accountName"
-									required
-									placeholder="예금주명은 계좌의 예금주와 동일하게 입력해주세요."
-								/>
-							</div>
-							<div class="bankbook">
-								<label for="bankbookInput">통장사본 <span class="required">*</span></label>
-								<input type="file" id="bankbookInput" accept="image/*" required />
-							</div>
-						</div>
-						<!-- 이전/다음 버튼 추가 -->
-						<div class="button-container">
-							<a href="./proj_maker.html" class="button prev-button">이전</a>
-							<button type="button" class="button next-button">다음</button>
-						</div>
+			<!-- 사이드바를 삽입할 위치 -->
+			<div id="sidebar-container"></div>
+
+			<div class="container">
+				<div class="route">
+					<p>프로젝트 생성 > <span style="color: #0a8b11">대표자 정보</span></p>
+				</div>
+				<div class="now-page">
+					<h2>대표자 정보</h2>
+				</div>
+				<div class="input-data">
+					<div class="director-name">
+						<label for="directorName">대표자명 <span class="required">*</span></label>
+						<input type="text" id="directorName" required placeholder="대표자명을 입력하세요." />
 					</div>
+					<div class="director-email">
+						<label for="directorEmail">대표자 이메일 <span class="required">*</span></label>
+						<input type="email" id="directorEmail" required placeholder="이메일을 입력하세요." />
+					</div>
+					<div class="director-info">
+						<label for="directorInfo"
+							>주민등록번호 or<br />
+							사업자번호 <span class="required">*</span></label
+						>
+						<input
+							type="text"
+							id="directorInfo"
+							required
+							placeholder="주민등록번호 or 사업자번호를 입력하세요."
+						/>
+					</div>
+					<div class="invoice-email">
+						<label for="invoiceEmail"
+							>세금계산서 발행<br />
+							이메일 (선택)</label
+						>
+						<input type="email" id="invoiceEmail" placeholder="이메일을 입력하세요." />
+					</div>
+					<div class="bank-info">
+						<label for="bankInfo">은행명<span class="required">*</span></label>
+						<input type="text" id="bankInfo" required placeholder="은행명" />
+					</div>
+					<div class="account-number">
+						<label for="accountNumber">계좌번호<span class="required">*</span></label>
+						<input
+							type="text"
+							id="accountNumber"
+							required
+							placeholder="특수문자(-) 없이 숫자만 입력해주세요."
+						/>
+					</div>
+					<div class="account-name">
+						<label for="accountName">예금주명<span class="required">*</span></label>
+						<input
+							type="text"
+							id="accountName"
+							required
+							placeholder="예금주명은 계좌의 예금주와 동일하게 입력해주세요."
+						/>
+					</div>
+					<div class="bankbook">
+						<label for="bankbookInput">통장사본 <span class="required">*</span></label>
+						<input type="file" id="bankbookInput" accept="image/*" required />
+					</div>
+				</div>
+				<!-- 이전/다음 버튼 추가 -->
+				<div class="button-container">
+					<a href="./proj_maker.html" class="button prev-button">이전</a>
+					<button type="button" class="button next-button">다음</button>
 				</div>
 			</div>
 		</main>
+		<!-- footer 위치는 여기! -->
+		<footer id="footer"></footer>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 		<script>
 			// 사이드바 파일을 불러와서 div에 삽입
 			if (window.innerWidth >= 1024) {
@@ -424,9 +415,5 @@
 				}
 			});
 		</script>
-
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

@@ -16,52 +16,35 @@
 			.main-wrapper {
 				flex: 1;
 				display: flex;
-				flex-direction: column;
-			}
-			/* 전체 레이아웃: 사이드바 + 콘텐츠 */
-			.layout {
-				display: flex;
-				min-height: 100vh; /* 푸터 밀림 방지 */
-				flex: 1;
+				flex-direction: row; /* 사이드바 + 콘텐츠 수평 정렬 */
+				min-height: 100vh;
 			}
 			/* 사이드바 */
 			#sidebar-container {
 				flex-shrink: 0; /* 줄어들지 않게 고정 */
-				width: 13vw;
-				min-width: 200px;
-				max-width: 600px;
-			}
-			.wrapper {
-				/* body에 정렬하면 전체 레이아웃 꼬이므로 wrapper로 감싸서 그 안에 컨텐츠를 넣고 정렬, footer는 wrapper 밖에 */
-				flex: 1; /* 남은 공간을 채움 (푸터 밀어내기 용도) */
-				display: flex;
-				flex-direction: column;
-				align-items: center; /* 가운데 정렬 */
-				padding: 20px;
-				margin-top: 100px;
-			}
-			.input-data .project-story > div {
-				flex-direction: column;
-				align-items: stretch;
-				width: 100%;
-			}
-			.container {
-				width: 100%; /* 페이지 전체 너비 차지 */
-				margin: 3rem 2rem;
-				padding: 0 2rem;
 			}
 			h2 {
 				padding: 2rem 1rem;
 			}
-			.input-data label,
-			.input-data input,
-			.input-data select,
-			.input-data textarea {
-				font-size: 1.5rem; /* 필요에 따라 1.2rem, 1.3rem 등으로 조절 가능 */
-			}
 			.input-data label {
 				min-width: 10rem;
 				max-width: 15rem;
+				margin: 0;
+				font-size: 1.5rem;
+			}
+			.input-data input,
+			.input-data select,
+			.input-data textarea {
+				flex: 1; /* 이거 추가! */
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				font-size: 1.5rem;
+				box-sizing: border-box; /* 패딩 포함해서 너비 계산 */
+			}
+			.input-data label {
+				min-width: 10rem;
+				max-width: 20rem;
 				margin: 0;
 			}
 			.input-data input,
@@ -112,12 +95,7 @@
 				background-color: #0a8b11;
 			}
 
-			/* .input-data > div {
-				display: flex;
-				align-items: center;
-				gap: 10px;
-				margin-bottom: 20px;
-			} */
+
 
 			.required {
 				color: red; /* 빨간색으로 표시 */
@@ -146,6 +124,7 @@
 				line-height: 1.6;
 				margin-top:1rem;
 				font-size: clamp(0.85rem, 1vw + 0.5rem, 1rem);
+				box-sizing: border-box; /* 패딩 포함한 너비 계산 */
 			}
 			.checkbox-wrapper {
 				display: inline-flex;
@@ -180,12 +159,7 @@
 					flex-direction: column;
 					align-items: stretch;
 				}
-				/* .input-data > div {
-					display: flex;
-					flex-direction: column;
-					align-items: stretch;
-					width: 100%;
-				} */
+			
 				.input-data > div > label {
 					margin-bottom: 0;
 					display: inline;
@@ -211,15 +185,25 @@
 					font-size: 0.85rem;
 				}
 			}
+			@media (min-width: 1024px) {
+				.container {
+					padding: 0;
+					width: 970px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					margin: 60px auto auto 68px;
+					padding: 0;
+					width: 840px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<main class="main-wrapper">
-			<div class="layout">
 				<!-- 사이드바를 삽입할 위치 -->
 				<div id="sidebar-container"></div>
-				<!-- 전체 콘텐츠를 감싸는 wrapper -->
-				<div class="wrapper">
 					<div class="container">
 						<div class="route">
 							<p>프로젝트 생성 > <span style="color: #0a8b11">정책</span></p>
@@ -231,9 +215,7 @@
 							<div class="input-data">
 								<div class="project-story">
 									<div>
-										<label for="projectStory"
-											>서비스 이용 동의 <span class="required">*</span></label
-										>
+										<label for="projectStory">서비스 이용 동의 <span class="required">*</span></label>
 										<div class="terms-box">
 											<h3>제1조 (목적)</h3>
 											<p>
@@ -495,10 +477,13 @@
 								</div>
 							</div>
 						</form>
-					</div>
 				</div>
-			</div>
-		</main>
+			</main>
+		<!-- footer 위치는 여기! -->
+		<footer id="footer"></footer>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 		<script>
 			// 🔧 이미지 필드 제거 유틸 함수
 			function removeImageFields(obj, fields = ['thumbnail', 'productImg', 'profileInput', 'bankbookInput']) {
@@ -533,48 +518,42 @@
 					return;
 				}
 
+				// 🗂 localStorage에서 데이터 가져오기
+				const projInfo = JSON.parse(localStorage.getItem('projectInfo') || '{}');
+				const projStory = JSON.parse(localStorage.getItem('projectStory') || '{}');
+				const projRewards = JSON.parse(localStorage.getItem('projectRewards') || '[]');
+				const projMaker = JSON.parse(localStorage.getItem('projectMaker') || '{}');
+				const projDirector = JSON.parse(localStorage.getItem('projectDirector') || '{}');
+				const regId = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
 
+				// 📅 날짜 생성
+				const today = new Date();
+							today.setHours(today.getHours() + 9); // UTC 기준 시간에 9시간 더해서 한국 시간으로 변환
+							const formattedDate = today.toISOString().split('T')[0]; // 날짜 부분만 추출 (yyyy-mm-dd)
 
-// 🗂 localStorage에서 데이터 가져오기
-const projInfo = JSON.parse(localStorage.getItem('projectInfo') || '{}');
-const projStory = JSON.parse(localStorage.getItem('projectStory') || '{}');
-const projRewards = JSON.parse(localStorage.getItem('projectRewards') || '[]');
-const projMaker = JSON.parse(localStorage.getItem('projectMaker') || '{}');
-const projDirector = JSON.parse(localStorage.getItem('projectDirector') || '{}');
-const regId = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+				// 📦 최종 저장용 데이터 (이미지 제외!)
+				const newProject = {
+					...removeImageFields(projInfo),
+					...removeImageFields(projStory),
+					...removeImageFields(projMaker),
+					...removeImageFields(projDirector),
+					...removeImageFields(regId),
+					projectRewards: projRewards.map(({ name, price, deliveryType }) => ({ name, price, deliveryType })),
+					applyDate: formattedDate,
+					status: '대기' // ✅ 기본 상태 추가
+				};
 
-// 📅 날짜 생성
-const today = new Date();
-			today.setHours(today.getHours() + 9); // UTC 기준 시간에 9시간 더해서 한국 시간으로 변환
-			const formattedDate = today.toISOString().split('T')[0]; // 날짜 부분만 추출 (yyyy-mm-dd)
+				// 🔄 기존 데이터 불러오고 새 항목 추가
+				const existingProjects = JSON.parse(localStorage.getItem('final_project_data')) || [];
+				existingProjects.push(newProject);
 
-// 📦 최종 저장용 데이터 (이미지 제외!)
-const newProject = {
-	...removeImageFields(projInfo),
-	...removeImageFields(projStory),
-	...removeImageFields(projMaker),
-	...removeImageFields(projDirector),
-	...removeImageFields(regId),
-	projectRewards: projRewards.map(({ name, price, deliveryType }) => ({ name, price, deliveryType })),
-	applyDate: formattedDate,
-	status: '대기' // ✅ 기본 상태 추가
-};
+				// 💾 저장
+				localStorage.setItem('final_project_data', JSON.stringify(existingProjects));
 
-// 🔄 기존 데이터 불러오고 새 항목 추가
-const existingProjects = JSON.parse(localStorage.getItem('final_project_data')) || [];
-existingProjects.push(newProject);
-
-// 💾 저장
-localStorage.setItem('final_project_data', JSON.stringify(existingProjects));
-
-				alert('신청이 완료되었습니다.');
-				window.location.href = '../mypage/mypage.html';
-			});
-		});
+								alert('신청이 완료되었습니다.');
+								window.location.href = '../mypage/mypage.html';
+							});
+						});
 		</script>
-
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

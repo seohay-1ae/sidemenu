@@ -16,48 +16,31 @@
 			.main-wrapper {
 				flex: 1;
 				display: flex;
-				flex-direction: column;
-			}
-			/* 전체 레이아웃: 사이드바 + 콘텐츠 */
-			.layout {
-				display: flex;
-				min-height: 100vh; /* 푸터 밀림 방지 */
-				flex: 1;
+				flex-direction: row; /* 사이드바 + 콘텐츠 수평 정렬 */
+				min-height: 100vh;
 			}
 			/* 사이드바 */
 			#sidebar-container {
 				flex-shrink: 0; /* 줄어들지 않게 고정 */
-				width: 13vw;
-				min-width: 200px;
-				max-width: 600px;
 			}
-			.wrapper {
-				/* body에 정렬하면 전체 레이아웃 꼬이므로 wrapper로 감싸서 그 안에 컨텐츠를 넣고 정렬, footer는 wrapper 밖에 */
-				flex: 1; /* 남은 공간을 채움 (푸터 밀어내기 용도) */
-				display: flex;
-				flex-direction: column;
-				align-items: center; /* 가운데 정렬 */
-				padding: 20px;
-				margin-top: 100px;
-			}
-			.container {
-				width: 100%; /* 페이지 전체 너비 차지 */
-				margin: 3rem 2rem;
-				padding:0 2rem;
-			}
-			h2{
+			h2 {
 				padding: 2rem 1rem;
 			}
-			.input-data label,
+			.input-data label {
+				min-width: 10rem;
+				max-width: 15rem;
+				margin: 0;
+				font-size: 1.5rem;
+			}
 			.input-data input,
 			.input-data select,
 			.input-data textarea {
-				font-size: 1.5rem; /* 필요에 따라 1.2rem, 1.3rem 등으로 조절 가능 */
-			}
-			.input-data label {
-				min-width: 8rem;;
-				max-width: 15rem;
-				margin: 0;
+				flex: 1; /* 이거 추가! */
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				font-size: 1.5rem;
+				box-sizing: border-box; /* 패딩 포함해서 너비 계산 */
 			}
 			.input-data input,
 			.input-data select {
@@ -66,7 +49,7 @@
 				border: 1px solid #ccc;
 				border-radius: 4px;
 			}
-			.input-data input[type="file"] {
+			.input-data input[type='file'] {
 				padding: 8px;
 			}
 			textarea {
@@ -87,7 +70,7 @@
 			}
 			.button {
 				flex: 0 0 auto;
-				width:auto;
+				width: auto;
 				padding: 0.7rem 3rem;
 				font-size: 1.1rem;
 				text-align: center;
@@ -98,7 +81,7 @@
 				text-decoration: none;
 				white-space: nowrap; /* 줄바꿈 방지 */
 				display: inline-block; /* 버튼 영역을 명확히 넓혀줘 */
-				cursor: pointer;       /* 마우스 올렸을 때 포인터로 변경 */
+				cursor: pointer; /* 마우스 올렸을 때 포인터로 변경 */
 			}
 			.button.prev-button {
 				background-color: #999; /* 이전은 회색톤 */
@@ -106,7 +89,7 @@
 			.button.next-button {
 				background-color: #0a8b11;
 			}
-			
+
 			.input-data > div {
 				display: flex;
 				align-items: center;
@@ -115,7 +98,7 @@
 				flex-wrap: nowrap;
 			}
 			.required {
-        color: red; /* 빨간색으로 표시 */
+				color: red; /* 빨간색으로 표시 */
 			}
 			.delivery-type {
 				display: flex;
@@ -123,7 +106,7 @@
 				gap: 10px;
 				margin-bottom: 20px;
 			}
-			.radio-item input[type="radio"] {
+			.radio-item input[type='radio'] {
 				transform: scale(1.5); /* 1.0이 기본, 1.5는 150% */
 				cursor: pointer;
 			}
@@ -150,23 +133,23 @@
 				align-items: center;
 				gap: 6px; /* input과 원 사이 간격 */
 				width: 100%; /* 부모 요소의 가로 너비에 맞춰 확장 */
-				max-width:2000px;
+				max-width: 2000px;
 			}
 
 			.amount-wrapper input {
- 		  	/* flex: 1; 입력 박스가 가능한 공간을 다 차지하도록 설정 */
-    		min-width: 0; /* 입력 박스의 최소 너비를 제한 */
+				/* flex: 1; 입력 박스가 가능한 공간을 다 차지하도록 설정 */
+				min-width: 0; /* 입력 박스의 최소 너비를 제한 */
 				width: 100%; /* 100% 너비로 설정 */
 				flex-grow: 1; /* 남은 공간을 모두 채우도록 설정 */
 			}
 
-      /* input 태그들의 공통 스타일 */
-      .input-data input {
-          width: 100%;
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-      }
+			/* input 태그들의 공통 스타일 */
+			.input-data input {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+			}
 			.unit-label {
 				margin-left: 4px;
 				white-space: nowrap; /* 줄바꿈 방지 */
@@ -221,27 +204,37 @@
 					font-size: 0.9rem;
 					padding: 8px;
 				}
-				h2{
-					font-size:1.65rem;
+				h2 {
+					font-size: 1.65rem;
 					padding: 1rem 0.3rem;
 				}
-				.route p{
-					font-size:0.85rem;
+				.route p {
+					font-size: 0.85rem;
+				}
+			}
+			@media (min-width: 1024px) {
+				.container {
+					padding: 0;
+					width: 970px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1023px) {
+				.container {
+					margin: 60px auto auto 68px;
+					padding: 0;
+					width: 840px;
 				}
 			}
 		</style>
 	</head>
 	<body>
 		<main class="main-wrapper">
-		<div class="layout">
 			<!-- 사이드바를 삽입할 위치 -->
-	<div id="sidebar-container"></div>
-		<!-- 전체 콘텐츠를 감싸는 wrapper -->
-		<div class="wrapper">
-			
+			<div id="sidebar-container"></div>
+
 			<div class="container">
 				<div class="route">
-					<p>프로젝트 생성 > <span style="color: #0a8b11;">리워드 추가</span></p>
+					<p>프로젝트 생성 > <span style="color: #0a8b11">리워드 추가</span></p>
 				</div>
 				<div class="now-page">
 					<h2>리워드 추가</h2>
@@ -262,148 +255,148 @@
 						<label for="deliveryPost">배송 여부 <span class="required">*</span></label>
 						<div class="radio-wrapper">
 							<div class="radio-item">
-								<input type="radio" id="deliveryPost" name="deliveryType" value="post" required/>
+								<input type="radio" id="deliveryPost" name="deliveryType" value="post" required />
 								<label for="deliveryPost">&nbsp;택배</label>
 							</div>
-							<div class="radio-item">	
+							<div class="radio-item">
 								<input type="radio" id="deliveryMail" name="deliveryType" value="mail" />
 								<label for="deliveryMail">&nbsp;메일 발송</label>
 							</div>
 						</div>
 					</div>
 				</div>
-					<!-- 이전/다음 버튼 추가 -->
-					<div class="button-container">
-						<a href="./proj_story.html" class="button prev-button">이전</a>
-						<button type="button" class="button add-button">추가</button>
-						<button type="button" class="button next-button">다음</button>
-					</div>
-					<h3>추가된 리워드 목록</h3>
-<div id="rewardPreviewList" style="margin-bottom: 20px;"></div>
-						</div>
-					</div>
+				<!-- 이전/다음 버튼 추가 -->
+				<div class="button-container">
+					<a href="./proj_story.html" class="button prev-button">이전</a>
+					<button type="button" class="button add-button">추가</button>
+					<button type="button" class="button next-button">다음</button>
 				</div>
+				<h3>추가된 리워드 목록</h3>
+				<div id="rewardPreviewList" style="margin-bottom: 20px"></div>
 			</div>
-		</div>
-	</div>
-	</main>
-	<script>
-		if (window.innerWidth >= 1024) {
-			fetch('sidebar.html')
-				.then(response => response.text())
-				.then(data => {
-					document.getElementById('sidebar-container').innerHTML = data;
-					const projInfoLink = document.querySelector('.sidebar .proj_reward');
-					if (projInfoLink) {
-						projInfoLink.style.color = '#0a8b11';
+		</main>
+		<!-- footer 위치는 여기! -->
+		<footer id="footer"></footer>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
+		<script>
+			if (window.innerWidth >= 1024) {
+				fetch('sidebar.html')
+					.then((response) => response.text())
+					.then((data) => {
+						document.getElementById('sidebar-container').innerHTML = data;
+						const projInfoLink = document.querySelector('.sidebar .proj_reward');
+						if (projInfoLink) {
+							projInfoLink.style.color = '#0a8b11';
+						}
+					})
+					.catch((error) => console.error('사이드바 로드 실패:', error));
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+				const amountInput = document.getElementById('rewardPrice');
+
+				// 숫자 입력 콤마 포맷
+				amountInput.addEventListener('input', function () {
+					const cursorPosition = this.selectionStart;
+					const originalLength = this.value.length;
+					let value = this.value.replace(/[^0-9]/g, '');
+
+					if (!value) {
+						this.value = '';
+						return;
 					}
-				})
-				.catch(error => console.error('사이드바 로드 실패:', error));
-		}
-	
-		document.addEventListener('DOMContentLoaded', function () {
-			const amountInput = document.getElementById('rewardPrice');
-	
-			// 숫자 입력 콤마 포맷
-			amountInput.addEventListener('input', function () {
-				const cursorPosition = this.selectionStart;
-				const originalLength = this.value.length;
-				let value = this.value.replace(/[^0-9]/g, '');
-	
-				if (!value) {
-					this.value = '';
-					return;
-				}
-	
-				this.value = Number(value).toLocaleString('ko-KR');
-				const newLength = this.value.length;
-				this.selectionEnd = cursorPosition + (newLength - originalLength);
-			});
-	
-			function renderRewardPreview() {
-				const previewList = document.getElementById('rewardPreviewList');
-				const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
-	
-				if (rewards.length === 0) {
-					previewList.innerHTML = '<p>추가된 리워드가 없습니다.</p>';
-					return;
-				}
-	
-				previewList.innerHTML = rewards.map((reward, index) => `
+
+					this.value = Number(value).toLocaleString('ko-KR');
+					const newLength = this.value.length;
+					this.selectionEnd = cursorPosition + (newLength - originalLength);
+				});
+
+				function renderRewardPreview() {
+					const previewList = document.getElementById('rewardPreviewList');
+					const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
+
+					if (rewards.length === 0) {
+						previewList.innerHTML = '<p>추가된 리워드가 없습니다.</p>';
+						return;
+					}
+
+					previewList.innerHTML = rewards
+						.map(
+							(reward, index) => `
 					<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 5px; position: relative; border-radius: 6px;">
 						<strong>${reward.rewardName}</strong> - ${Number(reward.price).toLocaleString('ko-KR')}원 
 						(${reward.deliveryType === 'post' ? '택배' : '메일 발송'})
 						<button onclick="deleteReward(${index})"
 							style="position: absolute; right: 10px; top: 10px; border: none; background: red; color: white; border-radius: 3px; cursor: pointer;">X</button>
 					</div>
-				`).join('');
-			}
-	
-			window.deleteReward = function (index) {
-				const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
-				rewards.splice(index, 1);
-				localStorage.setItem('projectRewards', JSON.stringify(rewards));
-				renderRewardPreview();
-			};
-	
-			document.querySelector('.add-button').addEventListener('click', function () {
-				const priceRaw = document.getElementById('rewardPrice').value;
-				const price = priceRaw.replace(/,/g, '');
-				const rewardName = document.getElementById('rewardName').value.trim();
-				const deliveryType = document.querySelector('input[name="deliveryType"]:checked');
-	
-				if (!price || !rewardName || !deliveryType) {
-					const missing = [];
-					if (!price) missing.push('금액');
-					if (!rewardName) missing.push('리워드명');
-					if (!deliveryType) missing.push('배송여부');
-					alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
-					return;
+				`,
+						)
+						.join('');
 				}
-	
-				const newReward = {
-					price,
-					rewardName,
-					deliveryType: deliveryType.value,
-				};
-	
-				const existingData = JSON.parse(localStorage.getItem('projectRewards')) || [];
-				if (existingData.some(r => r.rewardName === rewardName)) {
-					alert('이미 동일한 이름의 리워드가 존재합니다.');
-					return;
-				}
-	
-				existingData.push(newReward);
-				localStorage.setItem('projectRewards', JSON.stringify(existingData));
-				alert('리워드가 추가되었습니다.');
-	
-				document.getElementById('rewardPrice').value = '';
-				document.getElementById('rewardName').value = '';
-				document.querySelectorAll('input[name="deliveryType"]').forEach(r => r.checked = false);
-	
-				renderRewardPreview();
-			});
-	
-			// 다음 페이지로 이동
-			document.querySelector('.next-button').addEventListener('click', function (e) {
-				e.preventDefault();
-				const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
-				if (rewards.length === 0) {
-					alert('최소 하나 이상의 리워드를 추가해주세요.');
-					return;
-				}
-				window.location.href = './proj_maker.html';
-			});
-	
-			// 미리보기 표시
-			renderRewardPreview();
-		});
-	</script>
-	
-	
 
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
-</body>
+				window.deleteReward = function (index) {
+					const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
+					rewards.splice(index, 1);
+					localStorage.setItem('projectRewards', JSON.stringify(rewards));
+					renderRewardPreview();
+				};
+
+				document.querySelector('.add-button').addEventListener('click', function () {
+					const priceRaw = document.getElementById('rewardPrice').value;
+					const price = priceRaw.replace(/,/g, '');
+					const rewardName = document.getElementById('rewardName').value.trim();
+					const deliveryType = document.querySelector('input[name="deliveryType"]:checked');
+
+					if (!price || !rewardName || !deliveryType) {
+						const missing = [];
+						if (!price) missing.push('금액');
+						if (!rewardName) missing.push('리워드명');
+						if (!deliveryType) missing.push('배송여부');
+						alert(`다음 항목을 입력해주세요:\n${missing.join('\n')}`);
+						return;
+					}
+
+					const newReward = {
+						price,
+						rewardName,
+						deliveryType: deliveryType.value,
+					};
+
+					const existingData = JSON.parse(localStorage.getItem('projectRewards')) || [];
+					if (existingData.some((r) => r.rewardName === rewardName)) {
+						alert('이미 동일한 이름의 리워드가 존재합니다.');
+						return;
+					}
+
+					existingData.push(newReward);
+					localStorage.setItem('projectRewards', JSON.stringify(existingData));
+					alert('리워드가 추가되었습니다.');
+
+					document.getElementById('rewardPrice').value = '';
+					document.getElementById('rewardName').value = '';
+					document
+						.querySelectorAll('input[name="deliveryType"]')
+						.forEach((r) => (r.checked = false));
+
+					renderRewardPreview();
+				});
+
+				// 다음 페이지로 이동
+				document.querySelector('.next-button').addEventListener('click', function (e) {
+					e.preventDefault();
+					const rewards = JSON.parse(localStorage.getItem('projectRewards')) || [];
+					if (rewards.length === 0) {
+						alert('최소 하나 이상의 리워드를 추가해주세요.');
+						return;
+					}
+					window.location.href = './proj_maker.html';
+				});
+
+				// 미리보기 표시
+				renderRewardPreview();
+			});
+		</script>
+	</body>
 </html>
