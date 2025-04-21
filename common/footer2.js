@@ -43,7 +43,7 @@ const footerHTML = `
       display: inline;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 750px) {
       .footer {
         padding: 0.75rem;
         font-size: 0.625rem;
@@ -71,7 +71,7 @@ const footerHTML = `
       }
     }
 
-    @media (min-width: 768px) and (max-width: 1023px) {
+    @media (min-width: 750px) and (max-width: 1023px) {
       .footer {
         padding: 1rem;
         font-size: 0.875rem;
@@ -88,6 +88,9 @@ const footerHTML = `
 
       .pc-tablet-only {
         display: inline;
+      }
+      .footer p {
+        font-size: 15px;
       }
     }
 

@@ -167,7 +167,7 @@
 				}
 			}
 
-			@media (max-width: 768px) {
+			@media (max-width: 750px) {
 				.gallery-wrapper {
 					border-width: 3px;
 				}
@@ -197,17 +197,33 @@
 					margin-top: 10px;
 				}
 			}
-			@media (min-width: 768px) and (max-width: 1023px) {
+			@media (min-width: 750px) and (max-width: 1023px) {
+				.container {
+					width: 630px;
+					margin: 70px auto auto auto;
+					padding: 0;
+				}
 				#slideBanner {
 					margin: auto;
-					width: 700px;
-					padding-bottom: 50px;
+					width: 450px;
+					padding-bottom: 30px;
 					padding-top: 0;
 				}
 				#mainCards {
 					box-sizing: content-box;
-					width: 840px;
-					padding-bottom: 50px;
+					margin: 0;
+					padding: 0 0 50px 0;
+					width: 630px;
+				}
+				.wrapper {
+					width: 630px;
+				}
+
+				.grid {
+					display: grid;
+					width: 630px;
+					grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+					gap: 20px;
 				}
 			}
 			@media (min-width: 1024px) {

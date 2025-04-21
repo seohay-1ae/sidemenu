@@ -59,7 +59,7 @@ const headerHTML = `
 
   .submenu {
     display: none;
-    background-color: #f4f4f4;
+    // background-color: #f4f4f4;
     padding: 0;
     margin: 0;
     margin-bottom: 10px;
@@ -123,6 +123,7 @@ const headerHTML = `
      /* 세부 메뉴 링크 스타일 */
     .submenu {
       position: absolute;
+      background-color: #f4f4f4;
       top: 130%;
       left: 0;
       width: 105px;
@@ -154,8 +155,8 @@ const headerHTML = `
     }
   }
 
-  /* 태블릿 (768px ~ 1023px) */
-  @media (max-width: 1023px) and (min-width: 768px) 
+  /* 태블릿 (750px ~ 1023px) */
+  @media (max-width: 1023px) and (min-width: 750px) 
   {
 
     #pc {
@@ -235,7 +236,6 @@ const headerHTML = `
     
     .submenu a{
       font-size: 30px;
-      color:rgb(37, 58, 126);
       margin:15px;
       display: block;
     }
@@ -248,8 +248,8 @@ const headerHTML = `
       display: block;
     }
   }
-    /* 모바일 (~ 767px) */
-  @media (max-width: 767px)
+    /* 모바일 (~ 750px) */
+  @media (max-width: 750px)
   {
     #pc, #tablet{
     display:none;
@@ -337,15 +337,13 @@ const headerHTML = `
    /* 모바일 및 태블릿 클릭 이벤트를 위한 submenu 설정 */
     .submenu {
       display: block !important;
-      background-color: #f4f4f4;
       padding:0;
       margin:0;
-      margin-bottom:10px;
+      margin-bottom:30px;
     }
     
     .submenu a{
       font-size: 0.7rem;
-      color:rgb(37, 58, 126);
       margin:15px;
     }
   }

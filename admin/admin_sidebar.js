@@ -97,12 +97,12 @@
 			}
 		}
 
-		@media (min-width: 768px) and (max-width: 1023px) {
+		@media (min-width: 750px) and (max-width: 1023px) {
       .sidebar {
-			width: 19vw;
+			width: 25vw;
 			}
 			.main-wrapper {
-			margin-left: 19vw;
+			margin-left: 25vw;
 			}
 			.hamburger {
 				display: none;

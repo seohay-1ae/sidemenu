@@ -86,18 +86,18 @@ img {
 	margin: auto;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 750px) and (max-width: 1023px) {
 	h1 {
-		font-size: 53px;
+		font-size: 50px;
 	}
 	h2 {
-		font-size: 43px;
+		font-size: 41px;
 	}
 	h3 {
-		font-size: 34px;
+		font-size: 32px;
 	}
 	p {
-		font-size: 25px;
+		font-size: 23px;
 	}
 	.container {
 		margin-top: 60px;
