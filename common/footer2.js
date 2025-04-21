@@ -92,6 +92,9 @@ const footerHTML = `
     }
 
     @media (min-width: 1024px) {
+      p{
+        font-size: 14px;}
+      
       .footer-container {
         flex-direction: row;
         gap: 1.5rem;
