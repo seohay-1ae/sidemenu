@@ -93,10 +93,11 @@ const headerHTML = `
     .navbar_links a {
       text-decoration: none;
       color: #000;
-      margin-right: 0.2rem;
+      margin-right: 15px;
       font-weight: 600;
       position: relative;
-      padding: 0.3rem 0;
+      padding: 10px 0;
+      font-size:23px;
     }
 
     .navbar_links a:last-child {
@@ -122,15 +123,15 @@ const headerHTML = `
      /* 세부 메뉴 링크 스타일 */
     .submenu {
       position: absolute;
-      top: 115%;
+      top: 130%;
       left: 0;
-      width: 25%;
+      width: 105px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       padding: 10px;
     }
     
     .submenu a {
-    font-size:70%;
+    font-size:16px;
     margin:0;
     }
     
@@ -403,7 +404,7 @@ const headerHTML = `
     </svg>
   </div>
   <div class="navbar_overlay">
-   <div class="navbar_menu">
+    <div class="navbar_menu">
     <!-- 공지사항 항목은 하위 리스트로 -->
     <ul>
       <li>
@@ -440,9 +441,9 @@ const headerHTML = `
   <div class="navbar_links">
     <a href="#" id="pc-notice">&nbsp공지사항 ▾&nbsp</a>
     <div class="submenu">
-        <a href="../notice/notice.html">&nbsp&nbsp&nbsp&nbsp공지사항</a>
-        <a href="../notice/brandstory.html">&nbsp브랜드스토리</a>
-        <a href="../notice/govt_support.html">&nbsp정부지원정책</a>
+        <a href="../notice/notice.html">&nbsp&nbsp&nbsp&nbsp&nbsp공지사항</a>
+        <a href="../notice/brandstory.html">&nbsp&nbsp브랜드스토리</a>
+        <a href="../notice/govt_support.html">&nbsp&nbsp정부지원정책</a>
     </div>
     <a href="../product/product_list.html">&nbsp상품&nbsp&nbsp</a>
     <a href="../experience/experience.html">&nbsp견학/체험&nbsp&nbsp</a>
@@ -461,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.body.insertAdjacentHTML('afterbegin', headerHTML);
 
 	// 로그인/회원가입 버튼 처리
-	updateAuthButtons(); // ← 이거 중요!!
+	updateAuthButtons();
 
 	// 📱 모바일 요소
 	const mobileBurger = document.querySelector('#mobile .navbar_burger');
