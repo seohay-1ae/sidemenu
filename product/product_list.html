@@ -117,7 +117,12 @@
 			}
 			@media (min-width: 1024px) {
 				.container {
-					width: 960px;
+					width: 1075px;
+				}
+				.grid {
+					display: grid;
+					grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
+					gap: 30px;
 				}
 			}
 		</style>
