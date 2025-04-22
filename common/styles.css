@@ -5,31 +5,49 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	box-sizing: content-box;
 	text-decoration: none;
 }
 
 /* 기본 폰트 크기 설정 (반응형) */
-html {
-	font-size: clamp(16px, 1.25vw, 50px); /* 1rem 기준 유동 크기 */
+html,
+body {
 	height: 100%; /* 화면 전체 높이 사용 */
+	margin: 0;
+	padding: 0;
+}
+
+.page-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.page-content {
+	flex: 1;
+	/* margin-top: 81.8px; 헤더 높이만큼 밀어줌 */
 }
 
 /* 기본 스타일 - 모바일 퍼스트 */
 body {
 	font-family: 'Noto Sans KR', sans-serif !important;
-	font-size: clamp(1rem, 1.4vw, 2rem); /* 16px ~ 20px */
 	line-height: 1.5;
-	padding: 1rem;
+	margin-top: 33px;
 	height: 100%; /* 화면 전체 높이 사용 */
 }
 
 h1 {
-	font-size: clamp(2rem, 4vw, 3rem); /* 32px ~ 60px */
+	font-size: 44px;
 }
 
 h2 {
-	font-size: clamp(1.5rem, 3vw, 2.5rem); /* 24px ~ 50px */
+	font-size: 34px;
+}
+h3 {
+	font-size: 25px;
+}
+p {
+	font-size: 16px;
 }
 
 /* 공통 버튼 스타일 */
@@ -62,30 +80,46 @@ img {
 	height: auto;
 }
 
-a {
-	text-decoration: none;
-	color: inherit;
-}
-
 /* 기본 레이아웃 */
 .container {
 	max-width: 100%;
 	margin: auto;
-	padding: 0.5rem 1rem 2rem 1rem;
 }
 
-/* 태블릿 이상에서 컨테이너 너비 제한 */
-@media (min-width: 48rem) {
+@media (min-width: 750px) and (max-width: 1023px) {
+	h1 {
+		font-size: 50px;
+	}
+	h2 {
+		font-size: 41px;
+	}
+	h3 {
+		font-size: 32px;
+	}
+	p {
+		font-size: 23px;
+	}
 	.container {
-		max-width: 60rem; /* 960px */
-		padding: 7.5rem 5rem;
+		margin-top: 60px;
+		padding: 0px 70px;
+	}
+	html,
+	body {
+		height: 100%; /* 화면 전체 높이 사용 */
+		margin: 0;
+		padding: 0;
 	}
 }
-
-/* 데스크탑 이상에서 컨테이너 최대 너비 */
-@media (min-width: 64rem) {
+@media (min-width: 1024px) {
 	.container {
-		max-width: 75rem; /* 1200px */
-		padding: 2rem 2rem;
+		padding: 0px 160px;
+		margin-top: 70px;
+		margin-bottom: 70px;
+	}
+	html,
+	body {
+		height: 100%; /* 화면 전체 높이 사용 */
+		margin: 0;
+		padding: 0;
 	}
 }
