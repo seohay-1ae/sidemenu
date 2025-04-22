@@ -75,12 +75,25 @@
 						홈페이지 리뉴얼 안내는 다음과 같습니다.<br /><br />
 						관리자의 부재로 이 홈페이지는 자동으로 폭파합니다
 					</div>
-					<a href="./notice.html" class="back-btn">← 목록으로</a>
+					<a href="#" class="back-btn" onclick="goBack()">← 목록으로</a>
 				</div>
 			</main>
 		</div>
 		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
 		<script defer src="../common/header3.js"></script>
 		<script defer src="../common/footer2.js"></script>
+		<script>
+			function goBack() {
+				const storedUser = localStorage.getItem('loggedInUser');
+				if (storedUser) {
+					const user = JSON.parse(storedUser);
+					if (user.id === 'admin') {
+						location.href = '../admin/admin_notice.html';
+						return;
+					}
+				}
+				location.href = './notice.html';
+			}
+		</script>
 	</body>
 </html>
