@@ -130,7 +130,7 @@ const footerHTML = `
         </div>
         <div class="footer-section">
           <strong>회사명</strong> (주)SIDEMENU &nbsp; | &nbsp;
-          <strong>대표</strong> 윤서하 &nbsp; | &nbsp;
+          <strong>대표</strong> 심남희 &nbsp; | &nbsp;
           <span class="pc-tablet-only">
             <strong>주소</strong> 충청남도 천안시 동남구 대흥로 215 7층<br>
             <strong>통신판매업 신고번호</strong> 2025-천안동남-0000 &nbsp; | &nbsp;
@@ -138,7 +138,7 @@ const footerHTML = `
           <span class="mobile-only"><br></span>
           <strong>사업자등록번호</strong> 111-22-33333<br>
           <strong>대표번호</strong> 010-1111-2222 &nbsp; | &nbsp;
-          <strong>이메일주소</strong> mokash1ae@gmail.com
+          <strong>이메일주소</strong> sidemenu@gmail.com
         </div>
       </div>
       <p>
