@@ -96,6 +96,8 @@
 				z-index: 100;
 			}
 		}
+			#logout-btn{
+			font-weight:bold}
 
 		@media (min-width: 750px) and (max-width: 1023px) {
       .sidebar {
@@ -142,7 +144,7 @@
 			</ul>
 			<!-- 로그아웃 버튼 -->
 			<ul>
-				<li><a href="#" id="logout-btn">로그아웃</a></li>
+				<li><a href="#" id="logout-btn" style="color:#e74c3c">로그아웃</a></li>
 			</ul>
 		</div>
 	`;

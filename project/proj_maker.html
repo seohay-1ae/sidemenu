@@ -262,9 +262,9 @@
 						<input
 							type="tel"
 							id="makerTel"
-							pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+							pattern="^([0-9]{2,3})-?([0-9]{3,4})-?([0-9]{4})$"
 							required
-							placeholder="예: 010-1234-5678"
+							placeholder="예: 010-1234-5678 or 01012345678"
 						/>
 					</div>
 					<div class="maker-page">
@@ -342,9 +342,9 @@
 				}
 
 				//전화번호 유효성 검사
-				const telRegex = /^\d{3}-\d{4}-\d{4}$/;
+				const telRegex = /^(\d{2,3})-?(\d{3,4})-?(\d{4})$/;
 				if (!telRegex.test(makerTel)) {
-					alert('전화번호 형식이 올바르지 않습니다. 예: 010-1234-5678');
+					alert('전화번호 형식이 올바르지 않습니다. 예: 01012345678 또는 010-1234-5678');
 					return;
 				}
 

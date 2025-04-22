@@ -255,14 +255,16 @@
 			}
 
 			//날짜
-			const today = new Date().toISOString().split('T')[0];
+			const today = new Date();
+			today.setHours(today.getHours() + 9);
+			const formattedDate = today.toISOString().split('T')[0];
 
 			const startInput = document.getElementById('startDate');
 			const dueInput = document.getElementById('dueDate');
 
 			// 오늘 이후만 선택 가능하도록 초기 설정
-			startInput.setAttribute('min', today);
-			dueInput.setAttribute('min', today);
+			startInput.setAttribute('min', formattedDate);
+			dueInput.setAttribute('min', formattedDate);
 
 			// 시작일 바뀌면 종료일 최소값 재설정
 			startInput.addEventListener('change', function () {

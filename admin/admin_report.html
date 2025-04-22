@@ -24,7 +24,6 @@
 				padding: 20px;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 				border-radius: 10px;
-				overflow-x: auto; /* ✅ 추가 */
 			}
 			.header {
 				display: flex;
@@ -39,7 +38,6 @@
 				width: 100%;
 				border-collapse: collapse;
 				text-align: center;
-				table-layout: fixed; /* ✅ 추가 */
 			}
 			th,
 			td {
@@ -81,6 +79,27 @@
 					margin: auto;
 					margin-top: 120px;
 				}
+				.col-1 {
+					width: 4.5%;
+				}
+				.col-2 {
+					width: 10%;
+				}
+				.col-3 {
+					width: 5%;
+				}
+				.col-4 {
+					width: 8%;
+				}
+				.col-5 {
+					width: 6%;
+				}
+				.col-6 {
+					width: 6%;
+				}
+				.table-container {
+					overflow-x: scroll;
+				}
 			}
 
 			@media (min-width: 1024px) {
@@ -88,6 +107,24 @@
 					margin: auto;
 					margin-top: 120px;
 					width: 980px;
+				}
+				.col-1 {
+					width: 3%;
+				}
+				.col-2 {
+					width: 23%;
+				}
+				.col-3 {
+					width: 9%;
+				}
+				.col-4 {
+					width: 8%;
+				}
+				.col-5 {
+					width: 6%;
+				}
+				.col-6 {
+					width: 5%;
 				}
 			}
 		</style>
@@ -102,36 +139,38 @@
 				<div class="header">
 					<h3>게시물 신고</h3>
 				</div>
-				<table>
-					<colgroup>
-						<!-- 첫 번째 열 (체크박스) -->
-						<col style="width: 3%" />
-						<!-- 두 번째 열 (제목) -->
-						<col style="width: 23%" />
-						<!-- 세 번째 열 (작성자) -->
-						<col style="width: 9%" />
-						<!-- 네 번째 열 (작성일자) -->
-						<col style="width: 8%" />
-						<!-- 다섯 번째 열 (신고횟수) -->
-						<col style="width: 6%" />
-						<!-- 여섯 번째 열 (관리) -->
-						<col style="width: 5%" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th><input type="checkbox" id="select-all" /></th>
-							<!-- ✅ 변경 -->
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일자</th>
-							<th>신고횟수</th>
-							<th>관리</th>
-						</tr>
-					</thead>
-					<tbody id="post-list">
-						<!-- 게시물 목록은 JavaScript로 동적으로 추가됩니다 -->
-					</tbody>
-				</table>
+				<div class="table-container">
+					<table>
+						<colgroup>
+							<!-- 첫 번째 열 (체크박스) -->
+							<col class="col-1" />
+							<!-- 두 번째 열 (제목) -->
+							<col class="col-2" />
+							<!-- 세 번째 열 (작성자) -->
+							<col class="col-3" />
+							<!-- 네 번째 열 (작성일자) -->
+							<col class="col-4" />
+							<!-- 다섯 번째 열 (신고횟수) -->
+							<col class="col-5" />
+							<!-- 여섯 번째 열 (관리) -->
+							<col class="col-6" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th><input type="checkbox" id="select-all" /></th>
+								<!-- ✅ 변경 -->
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일자</th>
+								<th>신고횟수</th>
+								<th>관리</th>
+							</tr>
+						</thead>
+						<tbody id="post-list">
+							<!-- 게시물 목록은 JavaScript로 동적으로 추가됩니다 -->
+						</tbody>
+					</table>
+				</div>
 				<button
 					id="delete-selected"
 					style="

@@ -214,7 +214,7 @@ const headerHTML = `
       color: #ffffff;
       font-size: 40px;  // 카테고리 폰트크기
       margin-left: 20px;
-      margin-bottom: 90px; // 카테고리 사이 간격
+      margin-bottom: 30px; // 카테고리 사이 간격
       text-decoration: none;
     }
 

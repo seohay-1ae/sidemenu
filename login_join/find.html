@@ -162,7 +162,7 @@
 					<div class="form-group">
 						<label>휴대폰 번호</label>
 						<div class="input-row">
-							<input type="tel" id="id-phone" placeholder="휴대폰 번호" />
+							<input type="tel" id="id-phone" placeholder="휴대폰 번호 ( - 빼고 입력)" />
 							<button id="id-send-btn" onclick="sendIdCode()" disabled>인증번호 발송</button>
 						</div>
 					</div>
@@ -188,7 +188,7 @@
 					<div class="form-group">
 						<label>휴대폰 번호</label>
 						<div class="input-row">
-							<input type="tel" id="pw-phone" placeholder="휴대폰 번호" />
+							<input type="tel" id="pw-phone" placeholder="휴대폰 번호 ( - 빼고 입력)" />
 							<button id="pw-send-btn" onclick="sendPwCode()" disabled>인증번호 발송</button>
 						</div>
 					</div>
@@ -223,6 +223,15 @@
 			document.getElementById('pw-phone').addEventListener('input', function () {
 				document.getElementById('pw-send-btn').disabled = this.value.trim() === '';
 			});
+
+			//엔터 눌러도 제출
+			document.getElementById('id-code').addEventListener('keyup', function (e) {
+				if (e.key === 'Enter') verifyIdCode();
+			});
+			document.getElementById('pw-code').addEventListener('keyup', function (e) {
+				if (e.key === 'Enter') verifyPwCode();
+			});
+
 			let isIdVerified = false;
 			let isPwVerified = false;
 
@@ -233,19 +242,34 @@
 				if (tab === 'id') {
 					document.querySelector('.tab:nth-child(1)').classList.add('active');
 					document.getElementById('id-tab').style.display = 'block';
+					isPwVerified = false; // 인증 상태 초기화
 				} else {
 					document.querySelector('.tab:nth-child(2)').classList.add('active');
 					document.getElementById('pw-tab').style.display = 'block';
+					isIdVerified = false; // 인증 상태 초기화
 				}
 			}
 
 			// 인증번호 발송
 			function sendIdCode() {
+				//휴대폰번호 유효성 검사
+				const phone = document.getElementById('id-phone').value.trim();
+				const phoneRegex = /^\d{10,11}$/;
+				if (!phoneRegex.test(phone)) {
+					alert('올바른 휴대폰 번호를 입력해주세요.');
+					return;
+				}
 				document.getElementById('id-code').value = '1234';
 				alert('ID 찾기 인증번호가 발송되었습니다! (모의 발송)');
 			}
 
 			function sendPwCode() {
+				const phone = document.getElementById('pw-phone').value.trim();
+				const phoneRegex = /^\d{10,11}$/;
+				if (!phoneRegex.test(phone)) {
+					alert('올바른 휴대폰 번호를 입력해주세요.');
+					return;
+				}
 				document.getElementById('pw-code').value = '1234';
 				alert('PW 찾기 인증번호가 발송되었습니다! (모의 발송)');
 			}
@@ -256,6 +280,7 @@
 				if (code === '1234') {
 					isIdVerified = true;
 					alert('ID 찾기 인증이 완료되었습니다! (모의 인증)');
+					document.getElementById('id-send-btn').disabled = true;
 				} else {
 					alert('인증번호가 올바르지 않습니다.');
 				}
@@ -266,16 +291,13 @@
 				if (code === '1234') {
 					isPwVerified = true;
 					alert('PW 찾기 인증이 완료되었습니다! (모의 인증)');
+					document.getElementById('pw-send-btn').disabled = true;
 				} else {
 					alert('인증번호가 올바르지 않습니다.');
 				}
 			}
 
-			// 팝업 닫기
-			function closePopup() {
-				document.getElementById('popup').style.display = 'none';
-				window.location.href = './login.html';
-			}
+			let redirectToLogin = false; // 이동 여부 저장
 
 			// 아이디 찾기
 			function findId() {
@@ -298,8 +320,10 @@
 				const popupText = document.getElementById('popup-text');
 				if (user) {
 					popupText.innerText = `아이디는 "${user.id}" 입니다.`;
+					redirectToLogin = true;
 				} else {
 					popupText.innerText = `일치하는 사용자를 찾을 수 없습니다.`;
+					redirectToLogin = false;
 				}
 
 				document.getElementById('popup').style.display = 'flex';
@@ -326,11 +350,20 @@
 				const popupText = document.getElementById('popup-text');
 				if (user) {
 					popupText.innerText = `비밀번호는 "${user.password}" 입니다.`;
+					redirectToLogin = true;
 				} else {
 					popupText.innerText = `일치하는 사용자를 찾을 수 없습니다.`;
+					redirectToLogin = false;
 				}
 
 				document.getElementById('popup').style.display = 'flex';
+			}
+			// 팝업 닫기 (성공 시에만 이동)
+			function closePopup() {
+				document.getElementById('popup').style.display = 'none';
+				if (redirectToLogin) {
+					window.location.href = './login.html';
+				}
 			}
 		</script>
 	</body>

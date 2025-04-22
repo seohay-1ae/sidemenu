@@ -246,7 +246,9 @@
 			}
 
 			//날짜
-			const today = new Date().toISOString().split('T')[0];
+			const today = new Date();
+				today.setHours(today.getHours() + 9);
+				const formattedDate = today.toISOString().split('T')[0];
 
 			const startInput = document.getElementById('startDate');
 			const dueInput = document.getElementById('dueDate');
