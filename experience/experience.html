@@ -18,29 +18,28 @@
 
 			/* 회사 카드 스타일링 */
 			.company-card {
-				position: relative; /* 오버레이를 위해 상대 위치 설정 */
-				background-size: cover; /* 이미지가 카드를 꽉 채우도록 */
-				background-position: center; /* 이미지 중심 정렬 */
-				border: 1px solid #ddd; /* 테두리 */
-				border-radius: 10px; /* 둥근 모서리 */
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-				padding: 15px; /* 카드 내부 여백 */
+				position: relative;
+				background-size: cover;
+				background-position: center;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				padding: 15px;
 				display: flex;
-				flex-direction: column; /* 세로로 정렬 */
+				flex-direction: column;
 				width: 309px;
-				height: 309px; /* 카드 높이 (화면에 맞게 조정) */
+				height: 309px;
+
+				/* ✅ 애니메이션 효과 추가 */
+				transition:
+					transform 0.25s ease,
+					box-shadow 0.25s ease;
 			}
 
-			.company-card::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(0, 0, 0, 0.3); /* 약간 어두운 오버레이 */
-				border-radius: 10px;
-				z-index: 1; /* 오버레이가 배경 이미지 위, 콘텐츠 아래 */
+			/* ✅ 마우스 올렸을 때 효과 */
+			.company-card:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 			}
 
 			.card-1 {
@@ -100,16 +99,40 @@
 				border-bottom: 2px solid #0000002f;
 				padding-bottom: 10px;
 			}
+			/* 페이징 css추가 */
+			.pagination {
+				margin-top: 40px;
+				text-align: center;
+			}
+
+			.page-btn {
+				background-color: #e5e7eb;
+				color: #111827;
+				border: none;
+				padding: 8px 16px;
+				margin: 0 4px;
+				border-radius: 6px;
+				cursor: pointer;
+				font-weight: 600;
+				transition: background-color 0.3s;
+			}
+
+			.page-btn:hover {
+				background-color: #2b6653;
+				color: #fff;
+			}
+
 			@media (min-width: 1024px) {
 				.company-container {
 					padding: 0;
-					margin-bottom: 85px;
+					margin: 30px 0;
 				}
 				.company-card {
-					width: 263px;
-					height: 263px; /* 카드 높이 (화면에 맞게 조정) */
+					width: 425px;
+					height: 425px; /* 카드 높이 (화면에 맞게 조정) */
 				}
 			}
+
 			@media (min-width: 750px) and (max-width: 1023px) {
 				.company-container {
 					padding: 0;
@@ -134,8 +157,15 @@
 					padding: 15px; /* 카드 내부 여백 */
 					display: flex;
 					flex-direction: column; /* 세로로 정렬 */
-					width: 253px;
-					height: 253px; /* 카드 높이 (화면에 맞게 조정) */
+					width: 580px;
+					height: 580px; /* 카드 높이 (화면에 맞게 조정) */
+					margin-bottom: 15px;
+				}
+				.company-card p:first-child {
+					font-size: 30px; /* 조금 더 큰 글씨 */
+				}
+				.company-card p {
+					font-size: 25px; /* 글자 크기 */
 				}
 			}
 		</style>
@@ -215,10 +245,42 @@
 							</div>
 						</a>
 					</div>
+					<!-- 페이징 버튼 -->
+					<div class="pagination">
+						<button class="page-btn" data-page="1">1</button>
+						<button class="page-btn" data-page="2">2</button>
+						<button class="page-btn" data-page="3">3</button>
+						<button class="page-btn" data-page="4">4</button>
+						<button class="page-btn" data-page="5">5</button>
+					</div>
 				</div>
 			</main>
 		</div>
 	</body>
+	<!-- 페이징 스크립트 -->
+	<script>
+		$(document).ready(function () {
+			const itemsPerPage = 4;
+			const $cards = $('.company-card'); // 이 부분이 핵심!
+			const totalItems = $cards.length;
+			const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+			function showPage(page) {
+				$cards.hide();
+				const start = (page - 1) * itemsPerPage;
+				const end = start + itemsPerPage;
+				$cards.slice(start, end).show();
+			}
+
+			$('.page-btn').on('click', function () {
+				const page = parseInt($(this).data('page'));
+				showPage(page);
+			});
+
+			// 첫 페이지 초기 표시
+			showPage(1);
+		});
+	</script>
 	<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
 	<script defer src="../common/header3.js"></script>
 	<script defer src="../common/footer2.js"></script>

@@ -236,7 +236,11 @@
 						const row = `
 <tr>
 	<td>${supportDate}</td>
-	<td>${item.product.title}</td>
+	<td>
+  <a href="../product/product_detail_${item.product.productId}.html">
+    ${item.product.title}
+  </a>
+</td>
 	<td>${Number(item.finalAmount).toLocaleString()}원 ${tdContent}</td>
 </tr>
 		`;

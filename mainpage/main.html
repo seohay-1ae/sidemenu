@@ -99,6 +99,16 @@
 				padding: 15px;
 				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 				text-align: left;
+				/* 애니메이션 효과 추가 */
+				transition:
+					transform 0.25s ease,
+					box-shadow 0.25s ease;
+			}
+
+			/* 마우스 올렸을 때 효과 */
+			.card:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 			}
 
 			.card img {
@@ -278,7 +288,7 @@
 							<div class="grid" id="productGrid">
 								<!-- 과일 카드 -->
 								<div class="card" data-category="fruit">
-									<a href="../product/product_detail_01.html?productId='musket'">
+									<a href="../product/product_detail_musket.html?productId='musket'">
 										<img src="../resources/musket.png" alt="이미지01" />
 									</a>
 									<div class="progress">150% 달성</div>
@@ -289,7 +299,7 @@
 									</div>
 								</div>
 								<div class="card" data-category="fruit">
-									<a href="../product/product_detail_02.html?productId='apple'">
+									<a href="../product/product_detail_apple.html?productId='apple'">
 										<img src="../resources/apple.png" alt="이미지02" />
 									</a>
 									<div class="progress">80% 달성</div>

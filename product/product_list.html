@@ -44,6 +44,15 @@
 				padding: 15px;
 				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 				text-align: left;
+				/* 애니메이션 효과 추가 */
+				transition:
+					transform 0.25s ease,
+					box-shadow 0.25s ease;
+			}
+			/* 마우스 올렸을 때 효과 */
+			.card:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 			}
 
 			.card img {
@@ -97,6 +106,28 @@
 				color: #888;
 				margin-top: 40px;
 			}
+			/* 페이징 css추가 */
+			.pagination {
+				margin-top: 40px;
+				text-align: center;
+			}
+
+			.page-btn {
+				background-color: #e5e7eb;
+				color: #111827;
+				border: none;
+				padding: 8px 16px;
+				margin: 0 4px;
+				border-radius: 6px;
+				cursor: pointer;
+				font-weight: 600;
+				transition: background-color 0.3s;
+			}
+
+			.page-btn:hover {
+				background-color: #2b6653;
+				color: #fff;
+			}
 
 			@media (max-width: 750px) {
 				.tabs {
@@ -108,7 +139,7 @@
 				.grid {
 					display: grid;
 					grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
-					gap: 20px;
+					gap: 40px;
 				}
 				.container {
 					width: 600px;
@@ -145,7 +176,7 @@
 						<div class="grid" id="productGrid">
 							<!-- 과일 카드 -->
 							<div class="card" data-category="fruit">
-								<a href="../product/product_detail_01.html?productId='musket'">
+								<a href="../product/product_detail_musket.html?productId='musket'">
 									<img src="../resources/musket.png" alt="이미지01" />
 								</a>
 								<div class="progress">150% 달성</div>
@@ -156,7 +187,7 @@
 								</div>
 							</div>
 							<div class="card" data-category="fruit">
-								<a href="../product/product_detail_02.html?productId='apple'">
+								<a href="../product/product_detail_apple.html?productId='apple'">
 									<img src="../resources/apple.png" alt="이미지02" />
 								</a>
 								<div class="progress">80% 달성</div>
@@ -226,17 +257,71 @@
 
 						<div class="no-data" id="noData" style="display: none">현재 상품이 없습니다.</div>
 					</div>
+					<!-- 페이징 버튼 -->
+					<div class="pagination">
+						<button class="page-btn" data-page="1">1</button>
+						<button class="page-btn" data-page="2">2</button>
+					</div>
 				</div>
 			</main>
 		</div>
-		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
-		<script defer src="../common/header3.js"></script>
-		<script defer src="../common/footer2.js"></script>
-
 		<script>
 			const tabs = document.querySelectorAll('.tab');
-			const cards = document.querySelectorAll('.card');
+			const allCards = document.querySelectorAll('.card');
 			const noData = document.getElementById('noData');
+			let currentCategory = 'fruit'; // 기본값
+
+			const itemsPerPage = 4;
+			let filteredCards = [];
+
+			function showPage(page) {
+				filteredCards.forEach((card, index) => {
+					card.style.display =
+						index >= (page - 1) * itemsPerPage && index < page * itemsPerPage ? 'block' : 'none';
+				});
+			}
+
+			function updatePaginationButtons() {
+				const pagination = document.querySelector('.pagination');
+				pagination.innerHTML = '';
+
+				const totalPages = Math.ceil(filteredCards.length / itemsPerPage);
+
+				for (let i = 1; i <= totalPages; i++) {
+					const btn = document.createElement('button');
+					btn.classList.add('page-btn');
+					btn.textContent = i;
+					btn.dataset.page = i;
+					btn.addEventListener('click', () => {
+						showPage(i);
+					});
+					pagination.appendChild(btn);
+				}
+			}
+
+			function filterCards(category) {
+				currentCategory = category;
+				filteredCards = [];
+
+				let count = 0;
+				allCards.forEach((card) => {
+					const cardCategory = card.getAttribute('data-category');
+					const show = category === 'all' || cardCategory === category;
+
+					if (show) {
+						card.style.display = 'block';
+						filteredCards.push(card);
+						count++;
+					} else {
+						card.style.display = 'none';
+					}
+				});
+
+				noData.style.display = count === 0 ? 'block' : 'none';
+
+				updatePaginationButtons();
+				showPage(1); // 페이지 초기화
+			}
 
 			tabs.forEach((tab) => {
 				tab.addEventListener('click', () => {
@@ -245,21 +330,15 @@
 					tabs.forEach((t) => t.classList.remove('active'));
 					tab.classList.add('active');
 
-					let visibleCount = 0;
-					cards.forEach((card) => {
-						const cardCategory = card.getAttribute('data-category');
-						const show = category === 'all' || cardCategory === category;
-
-						card.style.display = show ? 'block' : 'none';
-						if (show) visibleCount++;
-					});
-
-					noData.style.display = visibleCount === 0 ? 'block' : 'none';
+					filterCards(category);
 				});
 			});
 
-			// 기본 과일 탭 강제 트리거
+			// 초기 실행 (과일 탭 기본 표시)
 			document.querySelector('.tab.active').click();
 		</script>
+		<!-- 공통 헤더 및 푸터 스크립트 로드 (바디 맨 아래에 삽입)-->
+		<script defer src="../common/header3.js"></script>
+		<script defer src="../common/footer2.js"></script>
 	</body>
 </html>

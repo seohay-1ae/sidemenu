@@ -235,7 +235,7 @@ const headerHTML = `
     }
     
     .submenu a{
-      font-size: 30px;
+      font-size: 27px;
       margin:15px;
       display: block;
     }

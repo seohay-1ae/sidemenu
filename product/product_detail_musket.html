@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="../common/styles.css" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>영천햇살사과농장</title>
+		<title>달콤한 별빛샤인머스켓</title>
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -14,10 +14,6 @@
 			referrerpolicy="no-referrer"
 		/>
 		<style>
-			* {
-				box-sizing: border-box;
-			}
-
 			body {
 				color: #222;
 			}
@@ -152,6 +148,18 @@
 			.tab-content.active {
 				display: block;
 			}
+			#tab-product {
+				border: solid 1px black;
+				border-radius: 5px;
+				border-bottom: none;
+				padding: 5px;
+			}
+			#tab-review {
+				border: solid 1px black;
+				border-radius: 5px;
+				border-bottom: none;
+				padding: 5px;
+			}
 
 			.tab-content img {
 				width: 100%;
@@ -170,24 +178,13 @@
 				margin: 0 0 6px;
 				color: #2b6653;
 			}
-			#tab-product {
-				border: solid 1px black;
-				border-radius: 5px;
-				border-bottom: none;
-				padding: 5px;
-			}
-			#tab-review {
-				border: solid 1px black;
-				border-radius: 5px;
-				border-bottom: none;
-				padding: 5px;
-			}
 			.tabs span.active {
 				background-color: #2b6653;
 				color: white;
 				padding: 5px 10px;
 				border-radius: 6px;
 			}
+
 			@media (max-width: 750px) {
 				.top-section {
 					flex-direction: column;
@@ -208,6 +205,7 @@
 					width: 100%;
 				}
 			}
+
 			@media (min-width: 750px) and (max-width: 1023px) {
 				.container {
 					width: 600px;
@@ -228,27 +226,28 @@
 		<div class="page-container">
 			<main class="page-content">
 				<!-- 본문 내용 -->
+
 				<div class="container">
 					<div class="tag">과일</div>
-					<div class="title">따뜻한 햇살 속에서 자란 당도 1등급 사과</div>
+					<div class="title">달콤한 별빛샤인머스켓</div>
 
 					<div class="top-section">
 						<div class="image-box">
-							<img src="../resources/product_detail_thumbnail_apple.png" alt="대표 이미지" />
+							<img src="../resources/product_detail_thumbnail_musket.png" alt="대표 이미지" />
 						</div>
 
 						<div class="info-box">
 							<div><i class="fa-solid fa-gift"></i><strong>펀딩제품</strong></div>
 							<div class="label">모인금액</div>
-							<div class="value">800,000원 <span style="font-size: 16px">80%</span></div>
+							<div class="value">1,500,000원 <span style="font-size: 16px">150%</span></div>
 							<div class="label">남은시간</div>
-							<div class="value">27일</div>
+							<div class="value">30일</div>
 							<div class="divider"></div>
 							<div class="label-sub">목표금액</div>
 							<div class="value-sub">1,000,000원</div>
 
 							<div class="label-sub">펀딩기간</div>
-							<div class="value-sub">2025.04.04 ~ 2025.05.15</div>
+							<div class="value-sub">2025.04.01 ~ 2025.05.15</div>
 
 							<div class="label-sub">결제일자</div>
 							<div class="value-sub">목표금액 달성시 2025.05.15</div>
@@ -259,9 +258,9 @@
 							<div class="select-box">
 								<select id="productSelect">
 									<option value="" selected disabled>-상품선택-</option>
-									<option value="1">영천 가정용 사과(B급사과) 15,000원</option>
-									<option value="2">영천 사과 실속형 35,000원</option>
-									<option value="3">영천 사과 프리미엄 특급 55,000원</option>
+									<option value="1">샤인머스켓 2수(400g*2) 9,900원</option>
+									<option value="2">샤인머스켓[상품] 4~5수(2kg) 29,900원</option>
+									<option value="3">샤인머스켓[특품] 2~4수(2kg) 39,900원</option>
 								</select>
 
 								<button class="btn-support" onclick="handleSupport()">후원하기</button>
@@ -270,14 +269,14 @@
 					</div>
 
 					<div class="tabs">
-						<span onclick="showTab('detail')" id="tab-product" class="active">
-							스마트팜/상품 소개</span
+						<span onclick="showTab('detail')" id="tab-product" class="active"
+							>스마트팜/상품 소개</span
 						>
 						<span onclick="showTab('review')" id="tab-review">후기</span>
 					</div>
 
 					<div class="tab-content active" id="detail">
-						<img src="../resources/product_detail_apple.png" alt="상세 이미지" />
+						<img src="../resources/product_detail_musket1.png" alt="상세 이미지" />
 					</div>
 
 					<div class="tab-content" id="review">
@@ -338,7 +337,7 @@
 				const price = priceMatch ? priceMatch[1] : '';
 
 				// ✅ 상품 ID 가져오기 (예: 1, 2, 3)
-				const productId = 'apple';
+				const productId = 'musket';
 
 				// ✅ localStorage에 저장
 				const productData = {
@@ -359,7 +358,7 @@
 
 			// 후기탭
 			$(document).ready(function () {
-				const productId = 'apple'; // 고정 상품 ID
+				const productId = 'musket'; // 고정 상품 ID
 
 				// 로컬스토리지에서 해당 상품의 후기들 불러오기
 				let reviews = JSON.parse(localStorage.getItem('reviews_' + productId)) || [];
