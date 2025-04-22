@@ -203,7 +203,7 @@
 								<td>2025-10-20</td>
 								<td>2025-10-22</td>
 								<td><button class="btn-setting">설정</button></td>
-								<td>2025-04-10</td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>제주 축제 감귤 박람회</td>
@@ -211,7 +211,7 @@
 								<td>2025-11-20</td>
 								<td>2025-11-24</td>
 								<td><button class="btn-setting">설정</button></td>
-								<td>2025-04-17</td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>천안 수신 멜론 축제</td>
@@ -219,7 +219,7 @@
 								<td>2025-06-01</td>
 								<td>2025-06-02</td>
 								<td><button class="btn-setting">설정</button></td>
-								<td>2025-04-17</td>
+								<td></td>
 							</tr>
 						</tbody>
 					</table>
@@ -232,6 +232,18 @@
 		<div id="popup-modal">
 			<h3 style="margin-top: 0">상품 연동 관리</h3>
 			<table style="width: 100%; border-collapse: collapse; text-align: center">
+				<colgroup>
+					<!-- 첫 번째 열 (체크박스) -->
+					<col class="col-1" />
+					<!-- 두 번째 열 (상품id) -->
+					<col class="col-2" />
+					<!-- 세 번째 열 (상품명) -->
+					<col class="col-3" />
+					<!-- 네 번째 열 (카테고리) -->
+					<col class="col-4" />
+					<!-- 다섯 번째 열 (상품종류) -->
+					<col class="col-5" />
+				</colgroup>
 				<thead>
 					<tr>
 						<th><input type="checkbox" id="select-all" /></th>
@@ -280,22 +292,37 @@
 
 		<script src="./admin_sidebar.js"></script>
 		<script>
+			let festivalProductStates = JSON.parse(localStorage.getItem('festivalProductStates')) || {}; // 축제별 체크박스 상태 저장 객체
+
+			$(document).ready(function () {
+				$('table tbody tr').each(function () {
+					const festivalName = $(this).find('td').eq(0).text();
+					const saved = festivalProductStates[festivalName];
+					if (saved && saved.updatedAt) {
+						$(this).find('td').last().text(saved.updatedAt);
+					}
+				});
+			});
+
 			let currentRow; // 현재 행
-			let festivalProductStates = {}; // 축제별 체크박스 상태 저장 객체
 
 			// 설정 버튼 클릭 시 모달 열기
 			$(document).on('click', '.btn-setting', function () {
+				console.log('설정 버튼 클릭됨'); // 이거 넣어보세요!
 				currentRow = $(this).closest('tr'); // 현재 클릭한 행 저장
 				const festivalName = currentRow.find('td').eq(0).text(); // 축제명 가져오기 (첫 번째 열)
 
 				// 해당 축제의 체크박스 상태 불러오기 (없으면 빈 배열)
-				const selectedProducts = festivalProductStates[festivalName] || [];
-
+				const saved = festivalProductStates[festivalName] || {
+					selectedProducts: [],
+					updatedAt: '',
+				};
+				const previouslySelected = saved.selectedProducts || [];
 				// 체크박스 상태 설정
 				$('#popup-modal tbody input[type="checkbox"]').each(function () {
 					// 현재 체크된 체크박스가 포함된 행을 찾아 두번째 셀을(상품id) 선택하고, 그 셀의 텍스트 내용을 가져옴
 					const productId = $(this).closest('tr').find('td').eq(1).text();
-					$(this).prop('checked', selectedProducts.includes(productId)); // 해당 상품ID가 체크되었으면 체크박스 선택 (체크박스 유지 로직)
+					$(this).prop('checked', previouslySelected.includes(productId)); // 해당 상품ID가 체크되었으면 체크박스 선택 (체크박스 유지 로직)
 				});
 
 				// 모달 보이기
@@ -324,16 +351,19 @@
 					selectedProducts.push(productId);
 				});
 
-				// 축제명 (모달에 연결된 축제명)
-				const festivalName = currentRow.find('td').eq(0).text();
-
-				// 해당 축제의 체크 상태 저장
-				festivalProductStates[festivalName] = selectedProducts;
-
 				// KST 기준 오늘 날짜 계산
 				const today = new Date();
 				today.setHours(today.getHours() + 9);
 				const formattedDate = today.toISOString().split('T')[0];
+
+				// 축제명 (모달에 연결된 축제명)
+				const festivalName = currentRow.find('td').eq(0).text();
+				// 해당 축제의 체크 상태 저장
+				festivalProductStates[festivalName] = {
+					selectedProducts,
+					updatedAt: formattedDate,
+				};
+				localStorage.setItem('festivalProductStates', JSON.stringify(festivalProductStates));
 
 				// 업데이트일 컬럼 변경
 				currentRow.find('td').last().text(formattedDate);
