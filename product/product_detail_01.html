@@ -152,6 +152,18 @@
 			.tab-content.active {
 				display: block;
 			}
+			#tab-product {
+				border: solid 1px black;
+				border-radius: 5px;
+				border-bottom: none;
+				padding: 5px;
+			}
+			#tab-review {
+				border: solid 1px black;
+				border-radius: 5px;
+				border-bottom: none;
+				padding: 5px;
+			}
 
 			.tab-content img {
 				width: 100%;
@@ -169,6 +181,12 @@
 			.review h4 {
 				margin: 0 0 6px;
 				color: #2b6653;
+			}
+			.tabs span.active {
+				background-color: #2b6653;
+				color: white;
+				padding: 5px 10px;
+				border-radius: 6px;
 			}
 
 			@media (max-width: 750px) {
@@ -255,8 +273,10 @@
 					</div>
 
 					<div class="tabs">
-						<span onclick="showTab('detail')">스마트팜/상품 소개</span>
-						<span onclick="showTab('review')">후기</span>
+						<span onclick="showTab('detail')" id="tab-product" class="active"
+							>스마트팜/상품 소개</span
+						>
+						<span onclick="showTab('review')" id="tab-review">후기</span>
 					</div>
 
 					<div class="tab-content active" id="detail">
@@ -280,6 +300,16 @@
 				const tabs = document.querySelectorAll('.tab-content');
 				tabs.forEach((tab) => tab.classList.remove('active'));
 				document.getElementById(tabId).classList.add('active');
+
+				const tabButtons = document.querySelectorAll('.tabs span');
+				tabButtons.forEach((btn) => btn.classList.remove('active'));
+
+				// 클릭한 탭에 active 클래스 추가
+				if (tabId === 'detail') {
+					document.getElementById('tab-product').classList.add('active');
+				} else if (tabId === 'review') {
+					document.getElementById('tab-review').classList.add('active');
+				}
 			}
 
 			function handleSupport() {
