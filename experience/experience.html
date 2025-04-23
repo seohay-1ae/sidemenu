@@ -121,7 +121,10 @@
 				background-color: #2b6653;
 				color: #fff;
 			}
-
+			.page-btn.active {
+				background-color: #2b6653;
+				color: white;
+			}
 			@media (min-width: 1024px) {
 				.company-container {
 					padding: 0;
@@ -274,8 +277,16 @@
 
 			$('.page-btn').on('click', function () {
 				const page = parseInt($(this).data('page'));
+
+				// 버튼 스타일 초기화 후 현재 버튼 활성화
+				$('.page-btn').removeClass('active');
+				$(this).addClass('active');
+
 				showPage(page);
 			});
+
+			// 초기 첫 페이지에 active 클래스 설정
+			$('.page-btn[data-page="1"]').addClass('active');
 
 			// 첫 페이지 초기 표시
 			showPage(1);

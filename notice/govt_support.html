@@ -93,6 +93,32 @@
 				border-bottom: 2px solid #0000002f;
 				padding-bottom: 10px;
 			}
+			/* 페이징 css추가 */
+			.pagination {
+				margin-top: 40px;
+				text-align: center;
+			}
+
+			.page-btn {
+				background-color: #e5e7eb;
+				color: #111827;
+				border: none;
+				padding: 8px 16px;
+				margin: 0 4px;
+				border-radius: 6px;
+				cursor: pointer;
+				font-weight: 600;
+				transition: background-color 0.3s;
+			}
+
+			.page-btn:hover {
+				background-color: #2b6653;
+				color: #fff;
+			}
+			.page-btn.active {
+				background-color: #2b6653;
+				color: white;
+			}
 
 			@media (min-width: 1024px) {
 				.card-container {
@@ -132,57 +158,70 @@
 				<div class="govPolicy">정부지원정책 신청하기</div>
 				<p style="margin-bottom: 40px">정부에서 지원하는 농촌지원정책을 확인하세요.</p>
 				<div class="card-container">
-					<a
+					<div class="card">
+						<a
 						href="https://www.greendaero.go.kr/svc/rfph/cpif/front/frtHome.do"
 						class="supportfund-card"
 						target="_blank"
 						style="background-image: url('../resources/supportfund1.jpg')"
-					>
-						<div class="card-content">
-							<h2>귀농창업자금</h2>
-							<p>접수기간: 자금 소진시까지</p>
-							<p>신청자격: 사이트에서 확인하세요</p>
-						</div>
-					</a>
-
-					<a
-						href="https://www.rda.go.kr/young/content/custom0201.do"
-						class="supportfund-card"
-						target="_blank"
-						style="background-image: url('../resources/supportfund2.jpg')"
-					>
-						<div class="card-content">
-							<h2>청년농업인 영농정착 지원사업</h2>
-							<p>접수기간: 자금 소진시까지</p>
-							<p>신청자격: 사이트에서 확인하세요</p>
-						</div>
-					</a>
-
-					<a
+						>
+							<div class="card-content">
+								<h2>귀농창업자금</h2>
+								<p>접수기간: 자금 소진시까지</p>
+								<p>신청자격: 사이트에서 확인하세요</p>
+							</div>
+						</a>
+					</div>
+					<div class="card">
+						<a
+							href="https://www.rda.go.kr/young/content/custom0201.do"
+							class="supportfund-card"
+							target="_blank"
+							style="background-image: url('../resources/supportfund2.jpg')"
+						>
+							<div class="card-content">
+								<h2>청년농업인 영농정착 지원사업</h2>
+								<p>접수기간: 자금 소진시까지</p>
+								<p>신청자격: 사이트에서 확인하세요</p>
+							</div>
+						</a>
+					</div>
+					<div class="card">
+						<a
 						href="https://www.smartfarmkorea.net/contents/view.do?menuId=M1102010103"
 						class="supportfund-card"
 						target="_blank"
 						style="background-image: url('../resources/supportfund3.jpg')"
-					>
+						>
 						<div class="card-content">
 							<h2>스마트팜 종합자금</h2>
 							<p>접수기간: 자금 소진시까지</p>
 							<p>신청자격: 사이트에서 확인하세요</p>
-						</div>
-					</a>
-
-					<a
-						href="https://www.smartfarmkorea.net/charge/supBusinessList.do?menuId=M11020301"
-						class="supportfund-card"
-						target="_blank"
-						style="background-image: url('../resources/supportfund4.jpg')"
-					>
-						<div class="card-content">
-							<h2>스마트팜 보조지원사업</h2>
-							<p>접수기간: 자금 소진시까지</p>
-							<p>신청자격: 사이트에서 확인하세요</p>
-						</div>
-					</a>
+							</div>
+						</a>
+					</div>
+					<div class="card">
+						<a
+							href="https://www.smartfarmkorea.net/charge/supBusinessList.do?menuId=M11020301"
+							class="supportfund-card"
+							target="_blank"
+							style="background-image: url('../resources/supportfund4.jpg')"
+						>
+							<div class="card-content">
+								<h2>스마트팜 보조지원사업</h2>
+								<p>접수기간: 자금 소진시까지</p>
+								<p>신청자격: 사이트에서 확인하세요</p>
+							</div>
+						</a>
+					</div>
+			</div>
+				<!-- 페이징 버튼 -->
+				<div class="pagination">
+					<button class="page-btn" data-page="1">1</button>
+					<button class="page-btn" data-page="2">2</button>
+					<button class="page-btn" data-page="3">3</button>
+					<button class="page-btn" data-page="4">4</button>
+					<button class="page-btn" data-page="5">5</button>
 				</div>
 			</div>
 		</main>
@@ -190,4 +229,36 @@
 	<script defer src="../common/header3.js"></script>
 	<script defer src="../common/footer2.js"></script>
 </body>
+<!-- 페이징 스크립트 -->
+<script>
+	$(document).ready(function () {
+		const itemsPerPage = 4;
+		const $cards = $('.card');
+		const totalItems = $cards.length;
+		const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+		function showPage(page) {
+			$cards.hide();
+			const start = (page - 1) * itemsPerPage;
+			const end = start + itemsPerPage;
+			$cards.slice(start, end).show();
+		}
+
+		$('.page-btn').on('click', function () {
+			const page = parseInt($(this).data('page'));
+
+			// 버튼 스타일 초기화 후 현재 버튼 활성화
+			$('.page-btn').removeClass('active');
+			$(this).addClass('active');
+
+			showPage(page);
+		});
+
+		// 초기 첫 페이지에 active 클래스 설정
+		$('.page-btn[data-page="1"]').addClass('active');
+
+		// 첫 페이지 초기 표시
+		showPage(1);
+	});
+</script>
 </html>
