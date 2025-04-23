@@ -217,6 +217,9 @@
 					margin-top: 80px;
 					padding: 0;
 				}
+				.user-review {
+					font-size: 17px !important;
+				}
 			}
 			@media (min-width: 1024px) {
 				.container {
@@ -374,7 +377,7 @@
 							return `
                 <div class="review">
                     <h4>${review.title}</h4>
-                    <p>${review.content}</p>
+                    <p class="user-review">${review.content}</p>
 										<p class="time-id">${review.userId}</p>
 										<p class="time-id">${review.date}</p>
                 </div>
