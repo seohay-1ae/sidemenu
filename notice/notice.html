@@ -65,6 +65,7 @@
 								<tr>
 									<th style="width: 10%">NO.</th>
 									<th>제목</th>
+									<th style="width: 20%">게시일</th>
 								</tr>
 							</thead>
 							<tbody id="notice-list">
@@ -72,14 +73,17 @@
 								<tr>
 									<td>1</td>
 									<td><a href="./notice1.html">홈페이지 리뉴얼 안내</a></td>
+									<td>2025-03-15</td>
 								</tr>
 								<tr>
 									<td>2</td>
 									<td>홈페이지 오류 안내</td>
+									<td>2025-04-10</td>
 								</tr>
 								<tr>
 									<td>3</td>
 									<td>긴급 서버 점검 공지</td>
+									<td>2025-04-16</td>
 								</tr>
 							</tbody>
 						</table>
@@ -101,7 +105,8 @@
 				const row = document.createElement('tr');
 				row.innerHTML = `
         <td>${notice.no + 3}</td>  <!-- no 값 출력 -->
-        <td><a href="#">${notice.title}</a></td>
+        <td>${notice.title}</a></td>
+				<td>${notice.date}</a></td>
     `;
 				noticeList.appendChild(row);
 			});

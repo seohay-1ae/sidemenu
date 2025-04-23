@@ -261,6 +261,9 @@
 					<div class="pagination">
 						<button class="page-btn" data-page="1">1</button>
 						<button class="page-btn" data-page="2">2</button>
+						<button class="page-btn" data-page="3">3</button>
+						<button class="page-btn" data-page="4">4</button>
+						<button class="page-btn" data-page="5">5</button>
 					</div>
 				</div>
 			</main>
@@ -285,7 +288,7 @@
 				const pagination = document.querySelector('.pagination');
 				pagination.innerHTML = '';
 
-				const totalPages = Math.ceil(filteredCards.length / itemsPerPage);
+				const totalPages = 5;
 
 				for (let i = 1; i <= totalPages; i++) {
 					const btn = document.createElement('button');

@@ -208,8 +208,24 @@
 						return;
 					}
 
-					// 새 리뷰 객체 생성
-					const newReview = { title, content };
+					// 현재 날짜시각 가져오기
+					const currentDate = new Date().toLocaleString(); // 현재 날짜시각 (로컬 형식)
+
+					const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+					const loggedInUserId = loggedInUser ? loggedInUser.id : null;
+
+					if (!loggedInUserId) {
+						alert('로그인 정보가 없습니다.');
+						return;
+					}
+
+					// 새 리뷰 객체 생성 (현재 날짜시각과 loggedInUser.id 추가)
+					const newReview = {
+						title,
+						content,
+						date: currentDate, // 현재 날짜시각 추가
+						userId: loggedInUserId, // 작성자의 유저 ID 추가
+					};
 
 					// 기존 리뷰 불러오기 및 저장 (상품 기준)
 					const reviewKey = 'reviews_' + productId;

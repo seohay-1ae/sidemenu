@@ -184,6 +184,11 @@
 				padding: 5px 10px;
 				border-radius: 6px;
 			}
+			.time-id {
+				font-size: 0.9rem;
+				color: #888;
+				margin-top: 5px;
+			}
 			@media (max-width: 750px) {
 				.top-section {
 					flex-direction: column;
@@ -368,6 +373,8 @@
                 <div class="review">
                     <h4>${review.title}</h4>
                     <p>${review.content}</p>
+										<p class="time-id">${review.userId}</p>
+										<p class="time-id">${review.date}</p>
                 </div>
             `;
 						})
