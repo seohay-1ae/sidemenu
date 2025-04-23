@@ -298,9 +298,20 @@
 					btn.classList.add('page-btn');
 					btn.textContent = i;
 					btn.dataset.page = i;
+
+					// 1페이지는 기본 active 처리
+					if (i === 1) {
+						btn.classList.add('active');
+					}
+
 					btn.addEventListener('click', () => {
 						showPage(i);
+
+						// 버튼 스타일 초기화 후 현재 버튼 활성화
+						document.querySelectorAll('.page-btn').forEach((b) => b.classList.remove('active'));
+						btn.classList.add('active');
 					});
+
 					pagination.appendChild(btn);
 				}
 			}
