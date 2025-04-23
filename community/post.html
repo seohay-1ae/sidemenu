@@ -158,7 +158,7 @@
 
 					<!-- 커뮤니티 페이지로 돌아가는 버튼 -->
 					<div class="parent">
-						<a href="./community.html" class="back-button">커뮤니티로 돌아가기</a>
+						<a href="#" class="back-button" onclick="goBack()">커뮤니티로 돌아가기</a>
 					</div>
 				</div>
 			</main>
@@ -168,13 +168,15 @@
 		<script defer src="../common/footer2.js"></script>
 		<script>
 			$(document).ready(function () {
-				// URL에서 index 파라미터 추출 (몇 번째 게시글인지)
+				// URL에서 postId 파라미터 추출
 				const urlParams = new URLSearchParams(window.location.search);
-				const postIndex = urlParams.get('index');
+				const postId = parseInt(urlParams.get('postId')); // URL에서 postId를 가져옴
 
 				// 전체 게시글 리스트 불러오기
 				const posts = JSON.parse(localStorage.getItem('posts')) || [];
-				const post = posts[postIndex]; // 현재 index에 해당하는 게시글
+				const post = posts.find((p) => p.postId === postId); // postId로 해당 게시글 찾기
+				// postIndex를 해당 게시글이 있는 배열의 인덱스로 설정
+				const postIndex = posts.findIndex((p) => p.postId === postId);
 
 				if (post) {
 					// 게시글 내용 렌더링
@@ -188,8 +190,8 @@
 						$('#post-image').html(`<img src="${post.image}" alt="게시글 이미지" />`);
 					}
 
-					// 댓글 로드 (key: comments_인덱스)
-					const comments = JSON.parse(localStorage.getItem(`comments_${postIndex}`)) || [];
+					// 댓글 로드 (key: comments_postId)
+					const comments = JSON.parse(localStorage.getItem(`comments_${postId}`)) || [];
 					comments.forEach(({ comment, time }) => {
 						$('#comment-list').append(`
 							<div class="comment">
@@ -216,7 +218,7 @@
 							comments.push(newComment);
 
 							// 업데이트된 댓글 배열을 localStorage에 저장
-							localStorage.setItem(`comments_${postIndex}`, JSON.stringify(comments));
+							localStorage.setItem(`comments_${postId}`, JSON.stringify(comments));
 
 							// 댓글 입력창 비워주기
 							$('#comment').val('');
@@ -236,9 +238,8 @@
 
 					// 게시물 신고 버튼 클릭 시 실행될 함수 정의
 					$('#report-post').click(function () {
-						// 신고 수를 저장할 localStorage 키 생성 (현제 페이지인덱스 값에 해당하는 번호의 신고값이 각각 저장됨)
-						// 0번 인덱스 페이지라면 0번 페이지의 신고횟수가 reportKey가 됨
-						const reportKey = `reportCount_post_${postIndex}`;
+						// 신고 수를 저장할 localStorage 키 생성 (현제 페이지id 값에 해당하는 번호의 신고값이 각각 저장됨)
+						const reportKey = `reportCount_post_${postId}`;
 
 						// reportKey를 currentCount로 재정의하고, 값이 없으면 기본값 0 사용
 						const currentCount = parseInt(localStorage.getItem(reportKey)) || 0;
@@ -247,17 +248,28 @@
 						const newCount = currentCount + 1;
 
 						// 증가된 신고 수를 localStorage에 다시 저장
-						// (reportCount_post_0,2)
+						// (reportCount_post_1,2)
 						localStorage.setItem(reportKey, newCount);
 
 						// 사용자에게 신고 완료 및 신고 수 표시
 						alert(`게시글을 신고했습니다. 현재 신고 수: ${newCount}`);
 					});
 				} else {
-					// 유효하지 않은 index일 경우
+					// 유효하지 않은 postId일 경우
 					alert('해당 게시글을 찾을 수 없습니다.');
 				}
 			});
+			function goBack() {
+				const storedUser = localStorage.getItem('loggedInUser');
+				if (storedUser) {
+					const user = JSON.parse(storedUser);
+					if (user.id === 'admin') {
+						location.href = '../admin/admin_report.html';
+						return;
+					}
+				}
+				location.href = './community.html';
+			}
 		</script>
 	</body>
 </html>

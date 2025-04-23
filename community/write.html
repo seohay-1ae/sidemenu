@@ -127,11 +127,24 @@
 				}
 
 				function savePost(imageBase64) {
-					const post = { title, author, content, date: formattedDate, image: imageBase64 };
+					// 기존 게시글 목록을 가져옵니다. (없다면 빈 배열로 초기화)
 					const posts = JSON.parse(localStorage.getItem('posts')) || [];
+					// 새로운 postId 계산 (현재 저장된 게시글 중 가장 큰 postId에 +1을 더함)
+					const postId = posts.length > 0 ? posts[posts.length - 1].postId + 1 : 1;
+
+					// 새로운 글 객체 생성
+					const post = {
+						postId, // postId 추가
+						title,
+						author,
+						content,
+						date: formattedDate,
+						image: imageBase64,
+					};
 
 					// 새 글을 맨 끝에 추가
 					posts.push(post); // 최근 글이 맨 끝에 추가되도록 수정
+					// 갱신된 게시글 목록을 다시 localStorage에 저장
 					localStorage.setItem('posts', JSON.stringify(posts));
 
 					alert('게시글이 등록되었습니다.');

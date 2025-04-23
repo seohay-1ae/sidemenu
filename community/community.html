@@ -270,81 +270,102 @@
 		$(document).ready(function () {
 			// 로컬스토리지에서 posts 가져오기 (없으면 빈 배열)
 			let rawPosts = JSON.parse(localStorage.getItem('posts')) || [];
-								
+			
 			// 기존 게시글에서 가장 큰 no 값을 찾아서 그 값을 기준으로 새 게시글에 no를 추가
 			let maxNo = rawPosts.reduce((max, post) => Math.max(max, post.no || 0), 0); // no가 없으면 0으로 처리
+	
+		// 게시글 목록에 no 추가 (새로운 게시글의 no는 maxNo+1로 설정)
+    let posts = rawPosts.map((post, index) => ({
+        ...post,
+        no: post.no || ++maxNo,  // 기존 no가 없으면 가장 큰 no 값을 증가시킴
+    }));
+	
+			// post.html에서 postId를 받아 해당 게시글을 찾기
+			const urlParams = new URLSearchParams(window.location.search);
+			const postId = urlParams.get('postId');
+	
+			// 해당 postId로 게시글 찾기
+			const post = posts.find((p) => p.postId === parseInt(postId));
+	
+			// 게시글을 화면에 렌더링
+			if (post) {
+    const titleElement = document.querySelector('#post-title');
+    const authorElement = document.querySelector('#post-author');
+    const contentElement = document.querySelector('#post-content');
+    const dateElement = document.querySelector('#post-date');
 
-			// 게시글 목록에 no 값 추가 (새로운 게시글의 no는 maxNo+1로 설정)
-			let posts = rawPosts.map((post) => ({
-					...post,
-					no: post.no || ++maxNo, // 기존 no가 없으면 가장 큰 no 값으로 증가시키기
-			}));
+    // 각 요소가 존재할 경우에만 값 설정
+    if (titleElement) titleElement.textContent = post.title;
+    if (authorElement) authorElement.textContent = post.author;
+    if (contentElement) contentElement.textContent = post.content;
+    if (dateElement) dateElement.textContent = post.date;
+} else {
+    // 게시글을 찾을 수 없을 경우 처리
+    const contentElement = document.querySelector('#post-content');
+    if (contentElement) contentElement.textContent = '게시글을 찾을 수 없습니다.';
+}
 			
 			// 게시글 목록을 테이블/카드 형태로 렌더링하는 함수
 			function displayPosts(filteredPosts) {
-				$('#post-list').empty();     // 테이블용 목록 비우기
-				$('.card-list').empty();     // 카드용 목록 비우기
-				
-				const isMobile = window.innerWidth <= 767;
-				
-				// 검색 결과가 없을 경우 표시
-				if (filteredPosts.length === 0) {
-					$('#post-list').html('<tr><td colspan="5" style="text-align:center;">검색 결과가 없습니다.</td></tr>');
-					$('.card-list').html('<div style="text-align:center; padding:1rem;">검색 결과가 없습니다.</div>');
-					return;
-				}
-				
-				// 필터된 게시글 하나씩 렌더링
-				filteredPosts.forEach((post) => {
-					// 현재 게시글의 원래 인덱스를 찾아서 post.html?index= 로 전달
-					const index = posts.findIndex(p =>
-					p.title === post.title &&
-					p.content === post.content &&
-					p.author === post.author &&
-					p.date === post.date
-				);
-				
-				// 테이블 뷰용 HTML 추가
-				$('#post-list').append(`
-				<tr class="clickable-row" data-index="${index}">
-					<td class="no">${post.no}</td>
-					<td class="title">${post.title}</td>
-					<td class="preview">${post.content || ''}</td>
-					<td class="author">${post.author}</td>
-					<td class="date">${post.date}</td>
-					</tr>
-					`);
+					$('#post-list').empty();     // 테이블용 목록 비우기
+					$('.card-list').empty();     // 카드용 목록 비우기
 					
-					// 모바일 카드 뷰용 HTML 추가
-					if (isMobile) {
-						$('.card-list').append(`
-						<div class="card">
-							<h4><a href="./post.html?index=${index}">${post.title}</a></h4>
-							<p><strong>내용:</strong> ${post.content || ''}</p>
-							<p><strong>작성자:</strong> ${post.author}</p>
-							<p><strong>작성일:</strong> ${post.date}</p>
-							</div>
+					const isMobile = window.innerWidth <= 767;
+					
+					// 검색 결과가 없을 경우 표시
+					if (filteredPosts.length === 0) {
+							$('#post-list').html('<tr><td colspan="5" style="text-align:center;">검색 결과가 없습니다.</td></tr>');
+							$('.card-list').html('<div style="text-align:center; padding:1rem;">검색 결과가 없습니다.</div>');
+							return;
+					}
+					
+					// 필터된 게시글 하나씩 렌더링
+						filteredPosts.forEach((post) => {
+							const postUrl = `post.html?postId=${post.postId}`;
+							// 여기에 a 태그나 div 같은 걸 만들어서 postUrl 넣어주면 됨
+						
+							
+							// 테이블 뷰용 HTML 추가
+							$('#post-list').append(`
+									<tr class="clickable-row" data-postId="${post.postId}">
+											<td class="no">${post.no}</td>
+											<td class="title">${post.title}</td>
+											<td class="preview">${post.content || ''}</td>
+											<td class="author">${post.author}</td>
+											<td class="date">${post.date}</td>
+									</tr>
 							`);
-						}
+							
+							// 모바일 카드 뷰용 HTML 추가
+							if (isMobile) {
+									$('.card-list').append(`
+											<div class="card">
+													<h4><a href="./post.html?postId=${post.postId}">${post.title}</a></h4>
+													<p><strong>내용:</strong> ${post.content || ''}</p>
+													<p><strong>작성자:</strong> ${post.author}</p>
+													<p><strong>작성일:</strong> ${post.date}</p>
+											</div>
+									`);
+							}
 					});
-				}
-				
-				// 게시글 리스트에서 각 행 클릭 시 해당 게시글로 이동
-				$(document).on('click', '.clickable-row', function () {
-					const index = $(this).data('index');
-					window.location.href = `./post.html?index=${index}`;
-				});
-				
-				// 검색 필터링 함수
-				function applySearch() {
+					
+					// 게시글 리스트에서 각 행 클릭 시 해당 게시글로 이동
+					$(document).on('click', '.clickable-row', function () {
+	const postId = $(this).data('postid'); // 소문자
+	window.location.href = `./post.html?postId=${postId}`;
+});
+			}
+			
+			// 검색 필터링 함수
+			function applySearch() {
 					const searchQuery = $('#search').val().toLowerCase(); // 검색어 소문자로
 					// 체크된 검색 필드 값 배열로 추출
 					const selectedOptions = [...new Set(
-						$('.search-option:checked:visible')
-						.map(function () {
-							return $(this).val();
-						})
-						.get()
+							$('.search-option:checked:visible')
+							.map(function () {
+									return $(this).val();
+							})
+							.get()
 					)];
 					
 					console.log("검색어:", searchQuery);
@@ -352,38 +373,42 @@
 					
 					// 검색어가 없으면 전체 게시글 보여주기
 					if (!searchQuery) {
-						displayPosts(posts);
-						return;
+							displayPosts(posts);
+							return;
 					}
 					
 					// 필터링된 게시글 목록 생성
 					const filteredPosts = posts.filter((post) => {
-						return selectedOptions.some((key) => {
-							if (key === 'no') {
-								// 번호는 숫자지만 검색어는 문자열이라 문자열로 변환 후 비교
-								return post.no.toString().includes(searchQuery);
-							}
-							// 나머지 필드는 문자열 포함 여부 확인
-							return (
-								typeof post[key] === 'string' &&
-								post[key].toLowerCase().includes(searchQuery)
-							);
-						});
+							return selectedOptions.some((key) => {
+									if (key === 'no') {
+											// 번호는 숫자지만 검색어는 문자열이라 문자열로 변환 후 비교
+											return post.no.toString().includes(searchQuery);
+									}
+									// 나머지 필드는 문자열 포함 여부 확인
+									return (
+											typeof post[key] === 'string' &&
+											post[key].toLowerCase().includes(searchQuery)
+									);
+							});
 					});
 					
 					// 필터링된 게시글 표시
-					displayPosts(filteredPosts);
-				}
-				
-				// 초기 전체 게시글 표시
-				displayPosts(posts);
-				
-				// 검색창 입력 시 필터링
-				$('#search').on('input', applySearch);
-				
-				// 검색 옵션 변경 시 필터링
-				$('.search-option').on('change', applySearch);
-			});
-		</script>
+					filteredPosts.sort((a, b) => b.postId - a.postId);
+displayPosts(filteredPosts);
+
+			}
+			
+			// 초기 전체 게시글 표시 전에 정렬
+posts.sort((a, b) => b.postId - a.postId);
+displayPosts(posts);
+
+			
+			// 검색창 입력 시 필터링
+			$('#search').on('input', applySearch);
+			
+			// 검색 옵션 변경 시 필터링
+			$('.search-option').on('change', applySearch);
+		});
+	</script>	
 	</body>
 </html>
