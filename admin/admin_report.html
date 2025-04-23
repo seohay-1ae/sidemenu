@@ -247,8 +247,9 @@
 
 				const indexes = checked.map((cb) => parseInt(cb.dataset.index)).sort((a, b) => b - a);
 				indexes.forEach((i) => {
+					const postId = posts[i].postId; // 먼저 postId 저장
 					posts.splice(i, 1);
-					localStorage.removeItem(`reportCount_post_${posts[i].postId}`);
+					localStorage.removeItem(`reportCount_post_${postId}`); // postId로 정확히 삭제
 				});
 				updateLocalStorageAndReports();
 			});
