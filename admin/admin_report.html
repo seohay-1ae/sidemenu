@@ -196,12 +196,12 @@
 				tbody.innerHTML = '';
 
 				posts.forEach((post, index) => {
-					const reportCount = localStorage.getItem(`reportCount_post_${post.postId}`) || 0;
+					const reportCount = localStorage.getItem(`reportCount_post_${index}`) || 0;
 
 					const row = document.createElement('tr');
 					row.innerHTML = `
 						<td><input type="checkbox" class="select-checkbox" data-index="${index}" /></td>
-						<td><a href="../community/post.html?postId=${post.postId}">${post.title}</a></td>
+						<td>${post.title}</td>
 						<td>${post.author}</td>
 						<td>${post.date}</td>
 						<td>${reportCount}</td>
@@ -229,7 +229,7 @@
 					if (!isNaN(index)) {
 						if (confirm('해당 게시글을 삭제하시겠습니까?')) {
 							posts.splice(index, 1);
-							localStorage.removeItem(`reportCount_post_${posts[index].postId}`);
+							localStorage.removeItem(`reportCount_post_${index}`);
 							updateLocalStorageAndReports();
 						}
 					}
@@ -247,9 +247,8 @@
 
 				const indexes = checked.map((cb) => parseInt(cb.dataset.index)).sort((a, b) => b - a);
 				indexes.forEach((i) => {
-					const postId = posts[i].postId; // 먼저 postId 저장
 					posts.splice(i, 1);
-					localStorage.removeItem(`reportCount_post_${postId}`); // postId로 정확히 삭제
+					localStorage.removeItem(`reportCount_post_${i}`);
 				});
 				updateLocalStorageAndReports();
 			});
@@ -260,9 +259,7 @@
 				// 신고 횟수 재정렬
 				const keys = Object.keys(localStorage).filter((k) => k.startsWith('reportCount_post_'));
 				keys.forEach((k) => localStorage.removeItem(k));
-				posts.forEach((post) => {
-					localStorage.setItem(`reportCount_post_${post.postId}`, 0); // 기본값 0
-				});
+				posts.forEach((_, i) => localStorage.setItem(`reportCount_post_${i}`, 0)); // 기본값 0
 				renderPosts();
 			}
 		</script>
